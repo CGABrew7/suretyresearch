@@ -1,0 +1,44 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const faqs = [
+  { q: "What is a surety bond?", a: "A surety bond is a three-party financial guarantee. You (the principal) get the bond to guarantee the obligee (usually a government agency) that you'll follow rules or complete obligations. The surety (an insurance company) backs the guarantee. If you fail, the surety pays the claim, then comes to you for repayment." },
+  { q: "How much does a surety bond cost?", a: "You pay an annual premium, typically 1-15% of the bond amount. Your credit score is the primary factor. Excellent credit (720+) usually gets 1-3%. Fair credit (600-679) gets 5-8%. Use our <a href='/#calculator'>calculator</a> for a quick estimate." },
+  { q: "Is a surety bond the same as insurance?", a: "No. Insurance protects you from losses. A surety bond protects others from your non-performance or non-compliance. If a claim is paid, the surety seeks reimbursement from you. Read our <a href='/guides/bond-vs-insurance'>full comparison guide</a>." },
+  { q: "Does getting a bond affect my credit score?", a: "The application involves a soft credit pull, which does not affect your credit score. It's the same type of check used for pre-approved credit offers." },
+  { q: "Can I get a bond with bad credit?", a: "Yes, but you'll pay a higher premium rate. Some surety programs specialize in high-risk applicants. For very low credit scores, collateral may be required. See our <a href='/guides/credit-score-impact'>credit score guide</a> for details." },
+  { q: "How long does it take to get a bond?", a: "Simple bonds (license & permit, contractor) can be issued in 1-3 business days. Complex or high-amount bonds (money transmitter, performance) may take 1-4 weeks due to financial underwriting." },
+  { q: "What happens if a claim is filed against my bond?", a: "The surety investigates the claim. If valid, the surety pays the claimant up to the bond amount. The surety then exercises its right of indemnity — you must reimburse the surety for the full claim amount. This is the key difference from insurance." },
+  { q: "How do I know what bond amount I need?", a: "The bond amount is set by the obligee — the government agency, court, or project owner requiring the bond. It's not something you choose. Check your license application or contract for the required bond amount." },
+  { q: "Do all businesses need surety bonds?", a: "No. Bonds are required for specific regulated industries and activities. Contractors, auto dealers, collection agencies, money transmitters, mortgage brokers, and freight brokers are among the most common. Check your state's licensing requirements to see if your business type requires one." },
+  { q: "Who provides your bond quotes?", a: "All bond procurement through SuretyResearch is handled by <a href='https://cornerstonelicensing.com' target='_blank' rel='noopener'>Cornerstone Licensing</a>, a firm with 28 years of experience and 525,000+ filings across all 50 states." }
+];
+---
+
+<Layout title="FAQ — SuretyResearch" description="Answers to common questions about surety bonds, costs, and the procurement process.">
+  <section class="page-hero">
+    <div class="container">
+      <h1>Frequently Asked Questions</h1>
+      <p>Common questions about surety bonds.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="max-width: 720px;">
+      {faqs.map(f => (
+        <details class="faq-item">
+          <summary class="faq-q">{f.q}<span class="faq-toggle">+</span></summary>
+          <div class="faq-a" set:html={f.a} />
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="container">
+      <h2>Still Have Questions?</h2>
+      <p>Contact us or use the bond cost calculator for an instant estimate.</p>
+      <a href="/contact">Contact Us</a>
+    </div>
+  </section>
+</Layout>

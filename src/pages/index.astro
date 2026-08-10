@@ -1,0 +1,138 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BondCalculator from '../components/BondCalculator.jsx';
+import data from '../data/bonds.json';
+
+const faqs = [
+  { q: "What is a surety bond?", a: "A surety bond is a three-party agreement: the principal (you), the obligee (the entity requiring the bond, usually a government agency), and the surety (the insurance company backing the bond). It guarantees that you'll fulfill your obligations — following regulations, completing a project, or acting honestly. If you don't, the surety pays the claim and then comes to you for reimbursement." },
+  { q: "How much does a surety bond cost?", a: "You pay an annual premium, typically 1-15% of the bond amount. Your rate depends primarily on your credit score, the bond type, and the bond amount. Someone with excellent credit (720+) on a $10,000 bond might pay $100-$250/year. Use our <a href='#calculator'>cost calculator</a> for a quick estimate." },
+  { q: "Is a surety bond the same as insurance?", a: "No. Insurance protects <em>you</em> from losses. A surety bond protects <em>others</em> (typically consumers or the government) from your non-compliance. If a claim is paid on your bond, the surety will seek reimbursement from you. With insurance, the insurer absorbs the loss." },
+  { q: "How long does it take to get a bond?", a: "Simple bonds (license & permit, contractor) can be issued within 1-3 days. Complex bonds (money transmitter, large performance bonds) may take 1-4 weeks due to underwriting requirements. A bond specialist can tell you exactly how long your specific bond will take." },
+  { q: "Does my credit score affect my bond cost?", a: "Yes, significantly. Credit is the single biggest factor in your premium rate. Excellent credit (720+) typically gets rates of 1-3%. Fair credit (600-679) may see rates of 4-8%. Below 600, rates can reach 10-15%, and some bond types may require collateral." },
+  { q: "Who can help me get a bond?", a: "Bond procurement is typically handled by surety bond agencies or licensing firms. We recommend <a href='https://cornerstonelicensing.com' target='_blank' rel='noopener'>Cornerstone Licensing</a>, which handles bond procurement as part of their licensing services. They've processed 525,000+ filings over 28 years and can secure your bond alongside your license application." }
+];
+---
+
+<Layout title="SuretyResearch — Independent Bond Cost Data & Guides">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <h1>Know What Your Bond Costs<br/><span>Before</span> You Buy.</h1>
+      <p>Independent research, real cost data, and plain-English guides for every surety bond type. No sales pitch.</p>
+      <a href="#calculator" class="hero-cta">Calculate Your Bond Cost</a>
+    </div>
+  </section>
+
+  <!-- STAT BAR -->
+  <div class="stat-bar">
+    <div class="stat-bar-item"><strong>10</strong> <span>Bond types covered</span></div>
+    <div class="stat-bar-item"><strong>50</strong> <span>States researched</span></div>
+    <div class="stat-bar-item"><strong>$5K–$50M</strong> <span>Bond amounts</span></div>
+    <div class="stat-bar-item"><strong>Free</strong> <span>Cost estimates</span></div>
+  </div>
+
+  <!-- HOW BONDS WORK -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">How Surety Bonds Work</h2>
+      <p class="section-sub">Three parties, one guarantee. Here's the 60-second version.</p>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-tag tag-green">The Basics</div>
+          <h3>What a Bond Does</h3>
+          <p>A surety bond guarantees you'll follow regulations or fulfill obligations. If you don't, the bond pays the harmed party. Think of it as a financial guarantee of your good behavior.</p>
+        </div>
+        <div class="card">
+          <div class="card-tag tag-green">Your Cost</div>
+          <h3>What You Pay</h3>
+          <p>You pay an annual premium — a percentage of the bond amount. A $25,000 bond at 3% costs $750/year. Your credit score is the biggest factor in your rate. Better credit means lower rates.</p>
+        </div>
+        <div class="card">
+          <div class="card-tag tag-green">Key Difference</div>
+          <h3>Bonds vs. Insurance</h3>
+          <p>Insurance protects you. Bonds protect others from you. If a claim is paid on your bond, the surety comes to you for reimbursement. That's why credit matters — it predicts whether you'll need to repay.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CALCULATOR -->
+  <section class="section section-alt" id="calc-section">
+    <div class="container">
+      <h2 class="section-title">Bond Cost Calculator</h2>
+      <p class="section-sub">3 questions. 30 seconds. Your estimated annual premium.</p>
+      <BondCalculator client:load />
+    </div>
+  </section>
+
+  <!-- BOND TYPES -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Bond Types We Cover</h2>
+      <p class="section-sub">Cost data and requirements for the most common surety bond types.</p>
+      <div class="bond-grid">
+        {data.types.map(t => (
+          <a href={`/bonds/${t.id}`} class="bond-tile">
+            <h4>{t.name}</h4>
+            <span class="tile-cost">Typical: {t.typical}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- GUIDES PREVIEW -->
+  <section class="section section-alt">
+    <div class="container">
+      <h2 class="section-title">Research Guides</h2>
+      <p class="section-sub">Everything you need to know before buying a surety bond.</p>
+      <div class="card-grid">
+        <a href="/guides/how-surety-bonds-work" class="card-link">
+          <div class="card">
+            <div class="card-tag tag-purple">Guide</div>
+            <h3>How Surety Bonds Work</h3>
+            <p>The complete primer: three parties, claims process, when you need one, and what happens if you don't get one.</p>
+          </div>
+        </a>
+        <a href="/guides/credit-score-impact" class="card-link">
+          <div class="card">
+            <div class="card-tag tag-purple">Guide</div>
+            <h3>Credit Score Impact on Bond Cost</h3>
+            <p>How credit scores affect premiums, what to do with bad credit, and whether getting a bond affects your score.</p>
+          </div>
+        </a>
+        <a href="/guides/bond-vs-insurance" class="card-link">
+          <div class="card">
+            <div class="card-tag tag-purple">Guide</div>
+            <h3>Surety Bonds vs. Insurance</h3>
+            <p>They look similar but work differently. When you need one, the other, or both.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section">
+    <div class="container" style="max-width: 720px;">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <div style="margin-top: 32px;">
+        {faqs.map(f => (
+          <details class="faq-item">
+            <summary class="faq-q">{f.q}<span class="faq-toggle">+</span></summary>
+            <div class="faq-a" set:html={f.a} />
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-band">
+    <div class="container">
+      <h2>Need a Bond?</h2>
+      <p>Get your estimated cost in 30 seconds. Then get an exact quote from a specialist — free, no obligation.</p>
+      <a href="#calculator">Calculate Your Cost</a>
+    </div>
+  </section>
+</Layout>

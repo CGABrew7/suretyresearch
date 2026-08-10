@@ -1,0 +1,76 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import data from '../../data/bonds.json';
+---
+
+<Layout title="Bond Types — SuretyResearch" description="Cost data and requirements for 10 surety bond types. Independent research, no sales pitch.">
+  <section class="page-hero">
+    <div class="container">
+      <h1>Surety Bond Types</h1>
+      <p>Cost data, requirements, and plain-English explanations for every common bond type.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="bond-list">
+        {data.types.map(t => (
+          <a href={`/bonds/${t.id}`} class="bond-row">
+            <div class="br-info">
+              <h3>{t.name}</h3>
+              <p>{t.description}</p>
+            </div>
+            <div class="br-stats">
+              <div class="br-stat">
+                <div class="br-stat-label">Bond Range</div>
+                <div class="br-stat-value">{t.bondRange}</div>
+              </div>
+              <div class="br-stat">
+                <div class="br-stat-label">Typical Cost</div>
+                <div class="br-stat-value">{t.typical}</div>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="container">
+      <h2>Estimate Your Bond Cost</h2>
+      <p>Pick your bond type, amount, and credit range. See your estimated premium in 30 seconds.</p>
+      <a href="/#calculator">Cost Calculator</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .bond-list { display: flex; flex-direction: column; gap: 14px; }
+  .bond-row {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    text-decoration: none;
+    color: var(--text);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .bond-row:hover { border-color: var(--primary-border); box-shadow: var(--shadow); text-decoration: none; }
+  .br-info { flex: 1; }
+  .br-info h3 { font-size: 1.05rem; margin-bottom: 4px; }
+  .br-info p { font-size: 0.85rem; color: var(--text-secondary); margin: 0; }
+  .br-stats { display: flex; gap: 20px; flex-shrink: 0; }
+  .br-stat { text-align: right; }
+  .br-stat-label { font-size: 0.7rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.3px; }
+  .br-stat-value { font-size: 0.92rem; font-weight: 700; }
+
+  @media (max-width: 768px) {
+    .bond-row { flex-direction: column; align-items: flex-start; }
+    .br-stats { flex-direction: row; gap: 16px; }
+    .br-stat { text-align: left; }
+  }
+</style>

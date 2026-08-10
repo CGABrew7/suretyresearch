@@ -1,0 +1,65 @@
+---
+import '../styles/global.css';
+interface Props { title: string; description?: string; }
+const { title, description = "Independent surety bond research, cost data, and expert guides. Find out what your bond costs before you buy." } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <title>{title}</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">Surety<span>Research</span></a>
+      <div class="nav-links">
+        <a href="/bonds">Bond Types</a>
+        <a href="/guides">Guides</a>
+        <a href="/about">About</a>
+        <a href="/#calculator" class="nav-cta">Cost Calculator</a>
+      </div>
+    </div>
+  </nav>
+
+  <slot />
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/" class="nav-logo">Surety<span>Research</span></a>
+          <p>Independent surety bond research and cost data. We help you understand bond requirements and costs before you commit.</p>
+        </div>
+        <div>
+          <h4>Bond Types</h4>
+          <a href="/bonds">All Bond Types</a>
+          <a href="/bonds/contractor">Contractor Bonds</a>
+          <a href="/bonds/mortgage-broker">Mortgage Broker Bonds</a>
+          <a href="/bonds/money-transmitter">Money Transmitter Bonds</a>
+        </div>
+        <div>
+          <h4>Resources</h4>
+          <a href="/guides">Guides</a>
+          <a href="/guides/how-surety-bonds-work">How Bonds Work</a>
+          <a href="/guides/credit-score-impact">Credit Score Impact</a>
+          <a href="/faq">FAQ</a>
+        </div>
+        <div>
+          <h4>Company</h4>
+          <a href="/about">About</a>
+          <a href="/contact">Contact</a>
+          <a href="/privacy">Privacy</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 SuretyResearch. All rights reserved.</span>
+        <span>Bond procurement powered by <a href="https://cornerstonelicensing.com" target="_blank" rel="noopener">Cornerstone Licensing</a></span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

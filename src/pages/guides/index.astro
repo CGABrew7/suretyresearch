@@ -1,0 +1,47 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const guides = [
+  { slug: "how-surety-bonds-work", title: "How Surety Bonds Work", desc: "The complete primer: three-party structure, claims process, when you need one, and what happens if you don't." },
+  { slug: "credit-score-impact", title: "How Credit Scores Affect Bond Cost", desc: "Why credit is the #1 factor in your premium rate, what to do with bad credit, and whether bonds affect your score." },
+  { slug: "bond-vs-insurance", title: "Surety Bonds vs. Insurance", desc: "They look similar but work differently. When you need one, the other, or both." }
+];
+---
+
+<Layout title="Guides — SuretyResearch" description="Plain-English guides to surety bonds: how they work, what they cost, and when you need one.">
+  <section class="page-hero">
+    <div class="container">
+      <h1>Research Guides</h1>
+      <p>Everything you need to know about surety bonds, in plain English.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="max-width: 720px;">
+      {guides.map(g => (
+        <a href={`/guides/${g.slug}`} class="guide-card">
+          <div class="card-tag tag-purple">Guide</div>
+          <h3>{g.title}</h3>
+          <p>{g.desc}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .guide-card {
+    display: block;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    margin-bottom: 16px;
+    text-decoration: none;
+    color: var(--text);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .guide-card:hover { border-color: var(--primary-border); box-shadow: var(--shadow); text-decoration: none; }
+  .guide-card h3 { font-size: 1.1rem; margin-bottom: 6px; }
+  .guide-card p { font-size: 0.88rem; color: var(--text-secondary); margin: 0; }
+</style>
