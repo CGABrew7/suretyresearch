@@ -1,138 +1,124 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import AgencyCard from '../components/AgencyCard.astro';
+import StatePicker from '../components/StatePicker.astro';
 import BondCalculator from '../components/BondCalculator.jsx';
-import data from '../data/bonds.json';
+import { rankedDirectory } from '../lib/ranking';
+import { BOND_CATEGORIES } from '../data/categories';
+import { SITE } from '../data/site';
 
-const faqs = [
-  { q: "What is a surety bond?", a: "A surety bond is a three-party agreement: the principal (you), the obligee (the entity requiring the bond, usually a government agency), and the surety (the insurance company backing the bond). It guarantees that you'll fulfill your obligations — following regulations, completing a project, or acting honestly. If you don't, the surety pays the claim and then comes to you for reimbursement." },
-  { q: "How much does a surety bond cost?", a: "You pay an annual premium, typically 1-15% of the bond amount. Your rate depends primarily on your credit score, the bond type, and the bond amount. Someone with excellent credit (720+) on a $10,000 bond might pay $100-$250/year. Use our <a href='#calculator'>cost calculator</a> for a quick estimate." },
-  { q: "Is a surety bond the same as insurance?", a: "No. Insurance protects <em>you</em> from losses. A surety bond protects <em>others</em> (typically consumers or the government) from your non-compliance. If a claim is paid on your bond, the surety will seek reimbursement from you. With insurance, the insurer absorbs the loss." },
-  { q: "How long does it take to get a bond?", a: "Simple bonds (license & permit, contractor) can be issued within 1-3 days. Complex bonds (money transmitter, large performance bonds) may take 1-4 weeks due to underwriting requirements. A bond specialist can tell you exactly how long your specific bond will take." },
-  { q: "Does my credit score affect my bond cost?", a: "Yes, significantly. Credit is the single biggest factor in your premium rate. Excellent credit (720+) typically gets rates of 1-3%. Fair credit (600-679) may see rates of 4-8%. Below 600, rates can reach 10-15%, and some bond types may require collateral." },
-  { q: "Who can help me get a bond?", a: "Bond procurement is typically handled by surety bond agencies or licensing firms. We recommend <a href='https://cornerstonelicensing.com' target='_blank' rel='noopener'>Cornerstone Licensing</a>, which handles bond procurement as part of their licensing services. They've processed 525,000+ filings over 28 years and can secure your bond alongside your license application." }
-];
+const ranked = rankedDirectory();
+const featured = ranked.slice(0, 6);
+const ifi = ranked[0];
 ---
 
-<Layout title="SuretyResearch — Independent Bond Cost Data & Guides">
-  <!-- HERO -->
-  <section class="hero">
-    <div class="container">
-      <h1>Know What Your Bond Costs<br/><span>Before</span> You Buy.</h1>
-      <p>Independent research, real cost data, and plain-English guides for every surety bond type. No sales pitch.</p>
-      <a href="#calculator" class="hero-cta">Calculate Your Bond Cost</a>
+<Layout title="SuretyResearch — the surety agency register" description={SITE.description}>
+  <section class="mast">
+    <div class="wrap mast-grid">
+      <div>
+        <p class="kicker">Ledger 01 · Agency register</p>
+        <h1>Find the desk that can actually place the bond.</h1>
+        <p class="lede">
+          A ranked directory of surety agencies and carriers for mortgage, insurance, and contractor
+          professionals. Integrity First Insurance is #1 because it is our Cornerstone Network
+          Preferred Partner — an editorial placement, not a fabricated five-star score.
+        </p>
+        <div class="btn-row">
+          <a class="btn btn-brass" href="/agencies/">Open the register</a>
+          <a class="btn btn-ghost" href="/agencies/integrity-first-insurance/">IFI #1 file</a>
+          <a class="btn btn-ghost" href="/methodology/">How ranks work</a>
+        </div>
+      </div>
+      <aside class="mast-aside">
+        <p class="kicker">Register no. 001</p>
+        <p>
+          <strong style="color:#faf4e6">{ifi.name}</strong><br />
+          {ifi.hqCity}, {ifi.hqState} · {ifi.kind}<br /><br />
+          {ifi.editorialReason}
+        </p>
+      </aside>
     </div>
   </section>
 
-  <!-- STAT BAR -->
-  <div class="stat-bar">
-    <div class="stat-bar-item"><strong>10</strong> <span>Bond types covered</span></div>
-    <div class="stat-bar-item"><strong>50</strong> <span>States researched</span></div>
-    <div class="stat-bar-item"><strong>$5K–$50M</strong> <span>Bond amounts</span></div>
-    <div class="stat-bar-item"><strong>Free</strong> <span>Cost estimates</span></div>
-  </div>
-
-  <!-- HOW BONDS WORK -->
   <section class="section">
-    <div class="container">
-      <h2 class="section-title">How Surety Bonds Work</h2>
-      <p class="section-sub">Three parties, one guarantee. Here's the 60-second version.</p>
-      <div class="card-grid">
-        <div class="card">
-          <div class="card-tag tag-green">The Basics</div>
-          <h3>What a Bond Does</h3>
-          <p>A surety bond guarantees you'll follow regulations or fulfill obligations. If you don't, the bond pays the harmed party. Think of it as a financial guarantee of your good behavior.</p>
-        </div>
-        <div class="card">
-          <div class="card-tag tag-green">Your Cost</div>
-          <h3>What You Pay</h3>
-          <p>You pay an annual premium — a percentage of the bond amount. A $25,000 bond at 3% costs $750/year. Your credit score is the biggest factor in your rate. Better credit means lower rates.</p>
-        </div>
-        <div class="card">
-          <div class="card-tag tag-green">Key Difference</div>
-          <h3>Bonds vs. Insurance</h3>
-          <p>Insurance protects you. Bonds protect others from you. If a claim is paid on your bond, the surety comes to you for reimbursement. That's why credit matters — it predicts whether you'll need to repay.</p>
-        </div>
+    <div class="wrap">
+      <div class="stat-row">
+        <div><strong>{ranked.length}</strong><span>Agencies &amp; carriers on the register</span></div>
+        <div><strong>01</strong><span>IFI — preferred partner, labeled</span></div>
+        <div><strong>4</strong><span>Bond series: license, contract, commercial, court</span></div>
+        <div><strong>50</strong><span>State picker — filter the same cards</span></div>
       </div>
     </div>
   </section>
 
-  <!-- CALCULATOR -->
-  <section class="section section-alt" id="calc-section">
-    <div class="container">
-      <h2 class="section-title">Bond Cost Calculator</h2>
-      <p class="section-sub">3 questions. 30 seconds. Your estimated annual premium.</p>
-      <BondCalculator client:load />
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="kicker">The register</p>
+          <h2>Ranked desks, sources on the card</h2>
+        </div>
+        <p>
+          After IFI, order follows live-cited public signals: BBB letter grades, AM Best (when we
+          opened a source), years, coverage, and bond-category breadth. Missing data is omitted — never invented.
+        </p>
+      </div>
+      <div class="ledger">
+        {featured.map((agency) => <AgencyCard agency={agency} />)}
+      </div>
+      <p style="margin-top:16px">
+        <a href="/agencies/">Full register ({ranked.length} entries) →</a>
+      </p>
     </div>
   </section>
 
-  <!-- BOND TYPES -->
-  <section class="section">
-    <div class="container">
-      <h2 class="section-title">Bond Types We Cover</h2>
-      <p class="section-sub">Cost data and requirements for the most common surety bond types.</p>
-      <div class="bond-grid">
-        {data.types.map(t => (
-          <a href={`/bonds/${t.id}`} class="bond-tile">
-            <h4>{t.name}</h4>
-            <span class="tile-cost">Typical: {t.typical}</span>
+  <section class="section" style="background:var(--paper-2); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule)">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="kicker">Series A–D</p>
+          <h2>Bond types, written like a clerk would</h2>
+        </div>
+        <p>SuretyBonds.com-style clarity on what the bond is for. We remain a directory, not a clone of their brand.</p>
+      </div>
+      <div class="grid-2">
+        {BOND_CATEGORIES.map((cat) => (
+          <a class="tile" href={`/bonds/${cat.id}/`}>
+            <p class="kicker">{cat.ledger}</p>
+            <h3>{cat.name}</h3>
+            <p>{cat.headline}. {cat.summary}</p>
           </a>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- GUIDES PREVIEW -->
-  <section class="section section-alt">
-    <div class="container">
-      <h2 class="section-title">Research Guides</h2>
-      <p class="section-sub">Everything you need to know before buying a surety bond.</p>
-      <div class="card-grid">
-        <a href="/guides/how-surety-bonds-work" class="card-link">
-          <div class="card">
-            <div class="card-tag tag-purple">Guide</div>
-            <h3>How Surety Bonds Work</h3>
-            <p>The complete primer: three parties, claims process, when you need one, and what happens if you don't get one.</p>
-          </div>
-        </a>
-        <a href="/guides/credit-score-impact" class="card-link">
-          <div class="card">
-            <div class="card-tag tag-purple">Guide</div>
-            <h3>Credit Score Impact on Bond Cost</h3>
-            <p>How credit scores affect premiums, what to do with bad credit, and whether getting a bond affects your score.</p>
-          </div>
-        </a>
-        <a href="/guides/bond-vs-insurance" class="card-link">
-          <div class="card">
-            <div class="card-tag tag-purple">Guide</div>
-            <h3>Surety Bonds vs. Insurance</h3>
-            <p>They look similar but work differently. When you need one, the other, or both.</p>
-          </div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
   <section class="section">
-    <div class="container" style="max-width: 720px;">
-      <h2 class="section-title">Frequently Asked Questions</h2>
-      <div style="margin-top: 32px;">
-        {faqs.map(f => (
-          <details class="faq-item">
-            <summary class="faq-q">{f.q}<span class="faq-toggle">+</span></summary>
-            <div class="faq-a" set:html={f.a} />
-          </details>
-        ))}
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="kicker">Jurisdictions</p>
+          <h2>Pick a state. Same register, filtered.</h2>
+        </div>
+        <p>
+          Nationwide writers appear in every state file. IFI appears because Cornerstone-network
+          placement covers multi-state licensees — we do not claim IFI holds a resident license in all 50.
+        </p>
       </div>
+      <StatePicker />
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="cta-band">
-    <div class="container">
-      <h2>Need a Bond?</h2>
-      <p>Get your estimated cost in 30 seconds. Then get an exact quote from a specialist — free, no obligation.</p>
-      <a href="#calculator">Calculate Your Cost</a>
+  <section class="section" id="calculator" style="background:var(--cream); border-top:1px solid var(--rule)">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="kicker">Premium sketch</p>
+          <h2>A range before you call the desk</h2>
+        </div>
+        <p>Industry-average bands only. Your actual rate is underwritten. After the estimate, talk to IFI / Cornerstone.</p>
+      </div>
+      <BondCalculator client:load />
     </div>
   </section>
 </Layout>

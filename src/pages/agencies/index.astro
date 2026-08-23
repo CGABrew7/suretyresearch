@@ -1,0 +1,117 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AgencyCard from '../../components/AgencyCard.astro';
+import { rankedDirectory } from '../../lib/ranking';
+import { STATES } from '../../data/states';
+
+const ranked = rankedDirectory();
+const ifi = ranked[0];
+---
+
+<Layout
+  title="Agency register — SuretyResearch"
+  description="Ranked directory of surety agencies and carriers. Integrity First Insurance is editor’s #1 as the Cornerstone Network Preferred Partner. Other names follow cited BBB, AM Best, years, and coverage signals."
+>
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="kicker">The register · {ranked.length} files</p>
+      <h1>Agencies and carriers, in order we will defend.</h1>
+      <p>
+        Rank 01 is Integrity First Insurance because this site’s owner designated IFI as the
+        Cornerstone Network Preferred Partner — licensing and surety specialists in that ecosystem.
+        That is an editorial placement. It is not a claim that IFI is “#1 in America,” and it is
+        not a star rating we invented.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="cert" style="margin-bottom:22px">
+        <p class="kicker">How the rest of the list is ordered</p>
+        <p style="margin-top:8px;color:var(--ink-2)">
+          After the preferred partner, we score only signals we cited: BBB letter grade, AM Best
+          (when a source was opened), years since founding, nationwide vs. known states, bond-category
+          count, and a Treasury-list mention. Empty fields score zero. Read the
+          <a href="/methodology/">methodology</a>.
+        </p>
+      </div>
+
+      <div class="filters" id="register-filters">
+        <label>
+          State
+          <select name="state">
+            <option value="">All states</option>
+            {STATES.map((s) => (
+              <option value={s.code}>{s.code} — {s.name}</option>
+            ))}
+          </select>
+        </label>
+        <label>
+          Bond series
+          <select name="category">
+            <option value="">All bond series</option>
+            <option value="license-permit">License &amp; permit</option>
+            <option value="contract">Contract / performance</option>
+            <option value="commercial">Commercial</option>
+            <option value="court">Court / judicial</option>
+          </select>
+        </label>
+        <label>
+          Kind
+          <select name="kind">
+            <option value="">All kinds</option>
+            <option value="agency">Agencies</option>
+            <option value="carrier">Carriers</option>
+            <option value="marketplace">Marketplaces</option>
+          </select>
+        </label>
+        <label>
+          Find
+          <input type="search" name="q" placeholder="Name or city" />
+        </label>
+      </div>
+
+      <p class="disclaimer" id="register-count" style="margin-bottom:16px">
+        Showing {ranked.length} of {ranked.length} register entries. {ifi.name} is #1 as Cornerstone Network Preferred Partner — not a star score.
+      </p>
+
+      <div class="ledger" id="register-list">
+        {ranked.map((agency) => <AgencyCard agency={agency} />)}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  const root = document.getElementById('register-filters');
+  const list = document.getElementById('register-list');
+  const count = document.getElementById('register-count');
+  if (root && list && count) {
+    const cards = [...list.querySelectorAll('.agency-card')];
+    const total = cards.length;
+    const apply = () => {
+      const state = (root.querySelector('[name="state"]') as HTMLSelectElement).value;
+      const category = (root.querySelector('[name="category"]') as HTMLSelectElement).value;
+      const kind = (root.querySelector('[name="kind"]') as HTMLSelectElement).value;
+      const q = (root.querySelector('[name="q"]') as HTMLInputElement).value.trim().toLowerCase();
+      let shown = 0;
+      for (const card of cards) {
+        const okKind = !kind || card.getAttribute('data-kind') === kind;
+        const cats = (card.getAttribute('data-categories') || '').split(',');
+        const okCat = !category || cats.includes(category);
+        const nationwide = card.getAttribute('data-nationwide') === '1';
+        const states = (card.getAttribute('data-states') || '').split(',');
+        const okState = !state || nationwide || states.includes(state);
+        const hay = card.getAttribute('data-search') || '';
+        const okQ = !q || hay.includes(q);
+        const show = okKind && okCat && okState && okQ;
+        (card as HTMLElement).style.display = show ? '' : 'none';
+        if (show) shown += 1;
+      }
+      count.textContent = `Showing ${shown} of ${total} register entries. Integrity First Insurance stays #1 whenever it matches — Cornerstone Network Preferred Partner, not a star score.`;
+    };
+    root.addEventListener('change', apply);
+    root.addEventListener('input', apply);
+  }
+</script>

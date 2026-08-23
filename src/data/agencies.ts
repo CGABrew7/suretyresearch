@@ -1,0 +1,918 @@
+import type { BondCategoryId } from "./categories";
+
+export type EntityKind = "agency" | "carrier" | "marketplace";
+
+export interface PublicSignal {
+  key: "bbb" | "amBest" | "years" | "states" | "treasury" | "appointment" | "editorial";
+  label: string;
+  value: string;
+  source: string;
+  sourceUrl?: string;
+  asOf: string;
+  unverified?: boolean;
+}
+
+export interface AgencyRecord {
+  slug: string;
+  name: string;
+  shortName: string;
+  legalName?: string;
+  kind: EntityKind;
+  preferredPartner?: boolean;
+  editorialReason?: string;
+  tagline: string;
+  summary: string;
+  detail: string[];
+  hqCity: string;
+  hqState: string;
+  address?: string;
+  website: string;
+  phone?: string;
+  foundedYear?: number;
+  servesNationwide: boolean;
+  /** Verified HQ / known operating states. Nationwide writers use servesNationwide. */
+  knownStates: string[];
+  categories: BondCategoryId[];
+  audiences: string[];
+  signals: PublicSignal[];
+  sources: { label: string; url: string }[];
+  relatedLinks?: { label: string; url: string }[];
+  notes: string[];
+}
+
+export const SIGNAL_AS_OF = "2026-08-23";
+
+export const AGENCIES: AgencyRecord[] = [
+  {
+    slug: "integrity-first-insurance",
+    name: "Integrity First Insurance",
+    shortName: "IFI",
+    legalName: "Integrity First Insurance Agency LLC",
+    kind: "agency",
+    preferredPartner: true,
+    editorialReason:
+      "Editor’s #1 — Cornerstone Network Preferred Partner. Licensing and surety specialists inside the Cornerstone ecosystem (Georgia agency; bonds placed with the Cornerstone stack).",
+    tagline: "Georgia agency for licensing-grade surety inside the Cornerstone network",
+    summary:
+      "Integrity First Insurance is Jeff Brewer’s Georgia insurance agency and the preferred surety desk for the Cornerstone network. The public Travelers appointment lists surety among the lines placed from Alpharetta. Bond work for licensed professionals is coordinated with Covered by Cornerstone and Cornerstone Surety Bonds — not sold as a fabricated five-star score.",
+    detail: [
+      "SuretyResearch is an editorial directory. Integrity First Insurance is placed first because it is the Cornerstone Network Preferred Partner — the agency we send licensing, mortgage, contractor, and commercial bond inquiries to — not because we invented a national ranking or a review score.",
+      "Public records place Integrity First Insurance Agency LLC at 925 North Point Parkway, Suite 475, Alpharetta, Georgia. The same campus houses Cornerstone Licensing (Suite 470). A 2017 Insurance Business America profile described Integrity First as the in-house insurance agency of Cornerstone Support, focused on regulated operators.",
+      "Travelers’ public agent directory lists Integrity First Insurance LLC at that Alpharetta address and names surety among available lines. We did not independently confirm a BBB letter grade or a Google star average for this listing, so those fields are omitted.",
+      "Operations sit with the Cornerstone insurance/surety desk (Andrea leads IFI day-to-day; Jody is a producing agent). For a bond quote, start with IFI or the Cornerstone surety line — same network, licensed placement.",
+    ],
+    hqCity: "Alpharetta",
+    hqState: "GA",
+    address: "925 North Point Parkway, Suite 475, Alpharetta, GA 30005",
+    website: "https://www.integrityfirstinsurance.com",
+    phone: "770-587-4595",
+    foundedYear: 2021,
+    servesNationwide: true,
+    knownStates: ["GA", "NY"],
+    categories: ["license-permit", "contract", "commercial", "court"],
+    audiences: ["Mortgage & NMLS licensees", "Collection & debt buyers", "Money transmitters", "Contractors", "Insurance producers"],
+    signals: [
+      {
+        key: "editorial",
+        label: "Directory rank",
+        value: "Editor’s #1 — preferred partner",
+        source: "SuretyResearch methodology",
+        sourceUrl: "/methodology",
+        asOf: SIGNAL_AS_OF,
+      },
+      {
+        key: "appointment",
+        label: "Carrier appointment (public)",
+        value: "Travelers agent listing includes Surety",
+        source: "Travelers agent directory",
+        sourceUrl: "https://agent.travelers.com/ga/alpharetta/925-north-pt-parkway-18013-1",
+        asOf: SIGNAL_AS_OF,
+      },
+      {
+        key: "years",
+        label: "Entity filing",
+        value: "DE LLC (foreign NY filing 26 Oct 2021); GA operating address",
+        source: "NYS Department of State / OpenDataNY compilation",
+        sourceUrl: "https://opendatany.com/corporation.php?id=6442977",
+        asOf: SIGNAL_AS_OF,
+      },
+      {
+        key: "states",
+        label: "Footprint we can show",
+        value: "Georgia HQ; NY foreign LLC filing; multi-state placement via Cornerstone network",
+        source: "NYS DOS + Cornerstone public sites",
+        sourceUrl: "https://cornerstonesuretybonds.com/",
+        asOf: SIGNAL_AS_OF,
+      },
+    ],
+    sources: [
+      { label: "Integrity First Insurance", url: "https://www.integrityfirstinsurance.com" },
+      { label: "Travelers agent listing (Alpharetta)", url: "https://agent.travelers.com/ga/alpharetta/925-north-pt-parkway-18013-1" },
+      { label: "NYS DOS / Integrity First Insurance Agency LLC", url: "https://opendatany.com/corporation.php?id=6442977" },
+      { label: "Insurance Business America 2017 specialist-broker profile", url: "https://www.insurancebusinessmag.com/us/special-reports/top-specialist-brokerages-2017/integrity-first-insurance-61060.aspx" },
+      { label: "Covered by Cornerstone", url: "https://coveredbycornerstone.com/" },
+      { label: "Cornerstone Surety Bonds", url: "https://cornerstonesuretybonds.com/" },
+      { label: "Cornerstone Licensing", url: "https://cornerstonelicensing.com/about" },
+    ],
+    relatedLinks: [
+      { label: "Request a bond via Cornerstone Surety", url: "https://cornerstonesuretybonds.com/" },
+      { label: "Business insurance — Covered by Cornerstone", url: "https://coveredbycornerstone.com/" },
+      { label: "State licensing — Cornerstone Licensing", url: "https://cornerstonelicensing.com/" },
+    ],
+    notes: [
+      "Do not confuse this Georgia/Cornerstone IFI with unrelated “Integrity First Insurance” agencies in other states (for example Colorado).",
+      "BBB letter grade and consumer-review averages were not independently confirmed for this file, so they are not shown.",
+      "Nationwide service here means Cornerstone-network placement for multi-state licensees, not a claim that IFI holds a resident producer license in every state.",
+    ],
+  },
+  {
+    slug: "suretybonds-com",
+    name: "SuretyBonds.com",
+    shortName: "SuretyBonds.com",
+    legalName: "Brooklyn Ventures, LLC d.b.a. SuretyBonds.com",
+    kind: "agency",
+    tagline: "Columbia, Missouri online agency — licensed in all 50 states",
+    summary:
+      "A high-volume online surety agency founded in 2009. Public BBB file shows an A+ accredited rating. The firm publishes a 50-state license table and is part of the Tokio Marine / HCC family after a 2014–2015 acquisition chain.",
+    detail: [
+      "Founder Josh Kayser launched the site on 13 March 2009. SuretyBonds.com’s own anniversary reporting says HCC Insurance Holdings acquired the firm in 2014, then Tokio Marine acquired HCC in 2015.",
+      "BBB Serving Greater Missouri lists the business as accredited with an A+ rating (file opened 2011; business started 18 January 2009). We treat that as a BBB letter grade, not a SuretyResearch star score.",
+      "The agency’s license page states it is licensed in all 50 states, in some jurisdictions as Brooklyn Ventures, LLC d.b.a. Surety Bonds.com.",
+    ],
+    hqCity: "Columbia",
+    hqState: "MO",
+    website: "https://www.suretybonds.com",
+    foundedYear: 2009,
+    servesNationwide: true,
+    knownStates: [],
+    categories: ["license-permit", "contract", "commercial", "court"],
+    audiences: ["Small business", "License applicants", "Contractors"],
+    signals: [
+      {
+        key: "bbb",
+        label: "BBB letter grade",
+        value: "A+ (accredited)",
+        source: "BBB profile — SuretyBonds.com, Columbia, MO",
+        sourceUrl: "https://www.bbb.org/us/mo/columbia/profile/surety-bonds/suretybondscom-0734-310444905",
+        asOf: SIGNAL_AS_OF,
+      },
+      {
+        key: "years",
+        label: "Years in business (BBB start date)",
+        value: "Started 18 Jan 2009",
+        source: "BBB business start date",
+        sourceUrl: "https://www.bbb.org/us/mo/columbia/profile/surety-bonds/suretybondscom-0734-310444905",
+        asOf: SIGNAL_AS_OF,
+      },
+      {
+        key: "states",
+        label: "Licensed states (self-published)",
+        value: "All 50 states (Brooklyn Ventures, LLC d.b.a.)",
+        source: "SuretyBonds.com license table",
+        sourceUrl: "https://www.suretybonds.com/licenses",
+        asOf: SIGNAL_AS_OF,
+      },
+    ],
+    sources: [
+      { label: "SuretyBonds.com", url: "https://www.suretybonds.com/" },
+      { label: "License table", url: "https://www.suretybonds.com/licenses" },
+      { label: "15-year anniversary post", url: "https://www.suretybonds.com/blog/suretybondcom-celebrates-15-year-anniversary/" },
+      { label: "BBB profile", url: "https://www.bbb.org/us/mo/columbia/profile/surety-bonds/suretybondscom-0734-310444905" },
+    ],
+    notes: [
+      "Their homepage marketing language (“#1 surety bond agency in the nation”) is their claim, not ours.",
+    ],
+  },
+  {
+    slug: "jw-surety-bonds",
+    name: "JW Surety Bonds",
+    shortName: "JW",
+    legalName: "J.W. Bond Consultants, Inc.",
+    kind: "agency",
+    tagline: "Family-owned Pennsylvania agency writing since 2003",
+    summary:
+      "J.W. Bond Consultants, doing business as JW Surety Bonds, is a family-owned surety agency in Pipersville, Pennsylvania. BBB lists an A+ accredited rating and a 1 March 2003 start date, with Pennsylvania producer license 63830 on file.",
+    detail: [
+      "The public website states the property is operated by J.W. Bond Consultants (PA company registration / license no. 63830).",
+      "BBB describes a family-owned surety bond agency that started in 2003 and serves nationwide. Letter grade shown: A+ accredited.",
+      "Volume and “nation’s largest” marketing lines on their homepage are their language. We do not convert those into a SuretyResearch score.",
+    ],
+    hqCity: "Pipersville",
+    hqState: "PA",
+    address: "6023-A Kellers Church Rd, Pipersville, PA 18947",
+    website: "https://www.jwsuretybonds.com",
+    phone: "215-766-1990",
+    foundedYear: 2003,
+    servesNationwide: true,
+    knownStates: ["PA"],
+    categories: ["license-permit", "contract", "commercial", "court"],
+    audiences: ["Small business", "License applicants", "Contractors"],
+    signals: [
+      {
+        key: "bbb",
+        label: "BBB letter grade",
+        value: "A+ (accredited)",
+        source: "BBB — J.W. Bond Consultants, Pipersville, PA",
+        sourceUrl: "https://www.bbb.org/us/pa/pipersville/profile/surety-bonds/jw-bond-consultants-0241-135744166",
+        asOf: SIGNAL_AS_OF,
+      },
+      {
+        key: "years",
+        label: "Years in business (BBB)",
+        value: "Started 1 Mar 2003",
+        source: "BBB founding / start date",
+        sourceUrl: "https://www.bbb.org/us/pa/pipersville/profile/surety-bonds/jw-bond-consultants-0241-135744166",
+        asOf: SIGNAL_AS_OF,
+      },
+      {
+        key: "states",
+        label: "Service area (BBB)",
+        value: "Nationwide (BBB areaServed)",
+        source: "BBB schema / profile",
+        sourceUrl: "https://www.bbb.org/us/pa/pipersville/profile/surety-bonds/jw-bond-consultants-0241-135744166",
+        asOf: SIGNAL_AS_OF,
+      },
+    ],
+    sources: [
+      { label: "JW Surety Bonds", url: "https://www.jwsuretybonds.com/" },
+      { label: "Disclaimer (legal name)", url: "https://www.jwsuretybonds.com/disclaimer" },
+      { label: "BBB profile", url: "https://www.bbb.org/us/pa/pipersville/profile/surety-bonds/jw-bond-consultants-0241-135744166" },
+    ],
+    notes: [],
+  },
+  {
+    slug: "lance-surety-bonds",
+    name: "Lance Surety Bonds",
+    shortName: "Lance",
+    kind: "agency",
+    tagline: "Doylestown agency — license, contract, court, and fidelity",
+    summary:
+      "Lance Surety Bonds is a Pennsylvania agency (Doylestown) with a BBB A+ accredited file. BBB lists a 1 May 2010 start date, accreditation since 9 February 2012, and Pennsylvania license 683386.",
+    detail: [
+      "BBB’s public description names license bonds, auto dealer, freight broker, mortgage broker, contract, court, appeal, fiduciary, probate, and fidelity bonds.",
+      "We show the BBB letter grade only. We do not invent a star average.",
+    ],
+    hqCity: "Doylestown",
+    hqState: "PA",
+    address: "4387 W Swamp Rd #287, Doylestown, PA 18902",
+    website: "https://www.suretybonds.org",
+    phone: "877-514-5146",
+    foundedYear: 2010,
+    servesNationwide: true,
+    knownStates: ["PA"],
+    categories: ["license-permit", "contract", "commercial", "court"],
+    audiences: ["Auto dealers", "Freight brokers", "Mortgage brokers", "Fiduciaries"],
+    signals: [
+      {
+        key: "bbb",
+        label: "BBB letter grade",
+        value: "A+ (accredited)",
+        source: "BBB — Lance Surety Bonds, Doylestown, PA",
+        sourceUrl: "https://www.bbb.org/us/pa/doylestown/profile/fidelity-bonds/lance-surety-bonds-0241-235987134",
+        asOf: SIGNAL_AS_OF,
+      },
+      {
+        key: "years",
+        label: "Years in business (BBB)",
+        value: "Started 1 May 2010",
+        source: "BBB start date",
+        sourceUrl: "https://www.bbb.org/us/pa/doylestown/profile/fidelity-bonds/lance-surety-bonds-0241-235987134",
+        asOf: SIGNAL_AS_OF,
+      },
+    ],
+    sources: [
+      { label: "Lance Surety Bonds", url: "https://www.suretybonds.org" },
+      { label: "BBB profile", url: "https://www.bbb.org/us/pa/doylestown/profile/fidelity-bonds/lance-surety-bonds-0241-235987134" },
+      { label: "Texas DOI surety contacts (lists Lance)", url: "https://www.tdi.texas.gov/commercial/pcbondsurety.html" },
+    ],
+    notes: [],
+  },
+  {
+    slug: "colonial-surety",
+    name: "Colonial Surety Company",
+    shortName: "Colonial",
+    kind: "carrier",
+    tagline: "Direct-writing carrier since 1930 — AM Best A, all U.S. jurisdictions",
+    summary:
+      "Colonial Surety is a Woodcliff Lake, New Jersey carrier that sells surety and fidelity directly. Its about page states it was founded in 1930, is rated A (Excellent) by AM Best, is Treasury-listed, and is licensed and admitted in all U.S. states and territories.",
+    detail: [
+      "Colonial is a carrier, not a retail agency. Principals can bind many commercial forms online; larger contract bonds still go through underwriting.",
+      "AM Best ratings change. Confirm the current financial-strength rating on AM Best before you rely on it for a bid.",
+    ],
+    hqCity: "Woodcliff Lake",
+    hqState: "NJ",
+    website: "https://www.colonialsurety.com",
+    foundedYear: 1930,
+    servesNationwide: true,
+    knownStates: [],
+    categories: ["license-permit", "contract", "commercial", "court"],
+    audiences: ["License applicants", "Fiduciaries", "Contractors"],
+    signals: [
+      {
+        key: "amBest",
+        label: "AM Best (company-published)",
+        value: "A (Excellent)",
+        source: "Colonial Surety — Our Story",
+        sourceUrl: "https://colonialsurety.com/about/",
+        asOf: SIGNAL_AS_OF,
+      },
+      {
+        key: "years",
+        label: "Founded",
+        value: "1930",
+        source: "Colonial Surety — Our Story",
+        sourceUrl: "https://colonialsurety.com/about/",
+        asOf: SIGNAL_AS_OF,
+      },
+      {
+        key: "states",
+        label: "Admitted footprint",
+        value: "All U.S. states and territories (company-published)",
+        source: "Colonial Surety — Our Story",
+        sourceUrl: "https://colonialsurety.com/about/",
+        asOf: SIGNAL_AS_OF,
+      },
+      {
+        key: "treasury",
+        label: "Treasury listing",
+        value: "Treasury Listed (company-published)",
+        source: "Colonial Surety — Our Story",
+        sourceUrl: "https://colonialsurety.com/about/",
+        asOf: SIGNAL_AS_OF,
+      },
+    ],
+    sources: [{ label: "Colonial Surety — Our Story", url: "https://colonialsurety.com/about/" }],
+    notes: ["Confirm Circular 570 status on the current Treasury list before a federal bid."],
+  },
+  {
+    slug: "merchants-bonding",
+    name: "Merchants Bonding Company",
+    shortName: "Merchants",
+    legalName: "Merchants Bonding Company (Mutual)",
+    kind: "carrier",
+    tagline: "Surety-only mutual, West Des Moines — writing since 1933",
+    summary:
+      "Merchants is a surety specialist mutual founded in 1933 by E.H. Warner and Merle Milligan. The company publishes an AM Best A (Excellent) rating (A or better since 1958) and writes contract and commercial surety in all 50 states from 6700 Westown Parkway, West Des Moines, Iowa.",
+    detail: [
+      "Merchants’ public materials emphasize that surety is essentially the whole book — not a sideline of a multiline carrier.",
+      "AM Best’s company profile (May 2025 action in the public snippet we reviewed) shows A (Excellent). Outlook language can move; check AM Best for the live view.",
+      "Sold through appointed agents, not as a consumer direct writer in the Colonial/Jet sense.",
+    ],
+    hqCity: "West Des Moines",
+    hqState: "IA",
+    address: "6700 Westown Parkway, West Des Moines, IA 50266",
+    website: "https://www.merchantsbonding.com",
+    foundedYear: 1933,
+    servesNationwide: true,
+    knownStates: [],
+    categories: ["license-permit", "contract", "commercial"],
+    audiences: ["Contractors", "Commercial principals", "Independent agents"],
+    signals: [
+      {
+        key: "amBest",
+        label: "AM Best (company + AM Best profile)",
+        value: "A (Excellent)",
+        source: "Merchants about page; AM Best company profile",
+        sourceUrl: "https://www.merchantsbonding.com/about",
+        asOf: SIGNAL_AS_OF,
+      },
+      {
+        key: "years",
+        label: "Founded",
+        value: "1933 (Warner / Milligan)",
+        source: "Merchants Bonding — About",
+        sourceUrl: "https://www.merchantsbonding.com/about",
+        asOf: SIGNAL_AS_OF,
+      },
+      {
+        key: "states",
+        label: "Licensed footprint",
+        value: "All 50 states (company-published)",
+        source: "Merchants Bonding — About",
+        sourceUrl: "https://www.merchantsbonding.com/about",
+        asOf: SIGNAL_AS_OF,
+      },
+    ],
+    sources: [
+      { label: "Merchants Bonding — About", url: "https://www.merchantsbonding.com/about" },
+      { label: "AM Best company profile", url: "https://ratings.ambest.com/CompanyProfile.aspx?ambnum=594" },
+    ],
+    notes: [],
+  },
+  {
+    slug: "travelers-surety",
+    name: "Travelers Surety",
+    shortName: "Travelers",
+    legalName: "Travelers Casualty and Surety Company of America",
+    kind: "carrier",
+    tagline: "National carrier — AM Best A++ commonly cited for the group",
+    summary:
+      "Travelers is a major U.S. surety writer for contract and commercial bonds, distributed through appointed agents (including Integrity First Insurance’s public Alpharetta listing). Independent roundups in 2026 cite an AM Best A++ (Superior) financial-strength rating for Travelers.",
+    detail: [
+      "Travelers does not sell most surety direct to principals. You need an appointed agent.",
+      "Texas Department of Insurance’s public surety-contacts page lists Travelers Casualty and Surety Company of America and related St. Paul companies at One Tower Square, Hartford, CT.",
+    ],
+    hqCity: "Hartford",
+    hqState: "CT",
+    address: "One Tower Square, Hartford, CT 06183",
+    website: "https://www.travelers.com",
+    phone: "866-336-2077",
+    servesNationwide: true,
+    knownStates: [],
+    categories: ["license-permit", "contract", "commercial", "court"],
+    audiences: ["Contractors", "Commercial principals", "Appointed agents"],
+    signals: [
+      {
+        key: "amBest",
+        label: "AM Best (third-party compilation)",
+        value: "A++ (Superior) — confirm live at AM Best",
+        source: "Construction Coverage 2026 surety roundup",
+        sourceUrl: "https://constructioncoverage.com/surety-bonds",
+        asOf: SIGNAL_AS_OF,
+      },
+      {
+        key: "states",
+        label: "Distribution",
+        value: "National appointed-agent network",
+        source: "Travelers public surety materials / TDI listing",
+        sourceUrl: "https://www.tdi.texas.gov/commercial/pcbondsurety.html",
+        asOf: SIGNAL_AS_OF,
+      },
+    ],
+    sources: [
+      { label: "Travelers", url: "https://www.travelers.com" },
+      { label: "Texas DOI surety company list", url: "https://www.tdi.texas.gov/commercial/pcbondsurety.html" },
+      { label: "Construction Coverage surety guide", url: "https://constructioncoverage.com/surety-bonds" },
+    ],
+    notes: ["IFI’s public Travelers listing is one appointment, not an exclusive."],
+  },
+  {
+    slug: "old-republic-surety",
+    name: "Old Republic Surety",
+    shortName: "Old Republic",
+    legalName: "Old Republic Surety Company",
+    kind: "carrier",
+    tagline: "Brookfield, Wisconsin underwriter — A+ Superior, all 50 states",
+    summary:
+      "Old Republic Surety writes contract, miscellaneous, and commercial fidelity through a large independent-agency network. The company publishes an AM Best A+ (Superior) rating (as of an 11 April 2025 snapshot on its ratings page), a Treasury listing in excess of $200 million, licensed-in-all-50-states status, and surety roots to 1923 / the 1986 Old Republic Surety name.",
+    detail: [
+      "Parent is Old Republic International (NYSE: ORI). The surety company took its current name in 1986 after Old Republic acquired Northwestern National Surety and related entities.",
+      "BondStar is their agent portal for many commercial and miscellaneous forms.",
+    ],
+    hqCity: "Brookfield",
+    hqState: "WI",
+    website: "https://www.orsurety.com",
+    foundedYear: 1923,
+    servesNationwide: true,
+    knownStates: [],
+    categories: ["license-permit", "contract", "commercial", "court"],
+    audiences: ["Contractors", "Independent agents", "Commercial principals"],
+    signals: [
+      {
+        key: "amBest",
+        label: "AM Best (company ratings page)",
+        value: "A+ (Superior), FSC XV — as of 11 Apr 2025 on their page",
+        source: "Old Republic Surety — Financial Ratings",
+        sourceUrl: "https://www.orsurety.com/about/financial-ratings",
+        asOf: SIGNAL_AS_OF,
+      },
+      {
+        key: "treasury",
+        label: "Treasury listing (company-published)",
+        value: "In excess of $200,000,000",
+        source: "Old Republic Surety — About / At a Glance",
+        sourceUrl: "https://www.orsurety.com/about",
+        asOf: SIGNAL_AS_OF,
+      },
+      {
+        key: "years",
+        label: "Writing surety since",
+        value: "1923 (ORI); current name 1986",
+        source: "Old Republic Surety — About / History",
+        sourceUrl: "https://www.orsurety.com/about/our-history",
+        asOf: SIGNAL_AS_OF,
+      },
+      {
+        key: "states",
+        label: "Licensed footprint",
+        value: "All 50 states (company-published)",
+        source: "Old Republic Surety At a Glance PDF",
+        sourceUrl: "https://www.orsurety.com/about",
+        asOf: SIGNAL_AS_OF,
+      },
+    ],
+    sources: [
+      { label: "About Old Republic Surety", url: "https://www.orsurety.com/about" },
+      { label: "History", url: "https://www.orsurety.com/about/our-history" },
+      { label: "Financial ratings", url: "https://www.orsurety.com/about/financial-ratings" },
+    ],
+    notes: [],
+  },
+  {
+    slug: "liberty-mutual-surety",
+    name: "Liberty Mutual Surety",
+    shortName: "Liberty Mutual",
+    kind: "carrier",
+    tagline: "Global contract surety — company calls itself the world’s largest surety",
+    summary:
+      "Liberty Mutual’s commercial surety page describes the group as the world’s largest surety and publishes financial-strength ratings of A (Excellent) from AM Best, A2 from Moody’s, and A from S&P. Distribution is through brokers and agents on mid-to-large contract accounts as well as commercial lines.",
+    detail: [
+      "“World’s largest surety” is Liberty’s claim, sourced to their commercial surety page. We repeat it as a labeled company statement, not as our measurement.",
+      "Best for contractors who already have a broker relationship. Not a click-to-bind license-bond shop.",
+    ],
+    hqCity: "Boston",
+    hqState: "MA",
+    website: "https://business.libertymutual.com/commercial-solutions/surety/",
+    servesNationwide: true,
+    knownStates: [],
+    categories: ["contract", "commercial", "license-permit"],
+    audiences: ["Large contractors", "Brokers", "Infrastructure"],
+    signals: [
+      {
+        key: "amBest",
+        label: "AM Best (company-published)",
+        value: "A (Excellent)",
+        source: "Liberty Mutual Business — Surety",
+        sourceUrl: "https://business.libertymutual.com/commercial-solutions/surety/",
+        asOf: SIGNAL_AS_OF,
+      },
+      {
+        key: "states",
+        label: "Footprint",
+        value: "Global / U.S. national (company-published)",
+        source: "Liberty Mutual Business — Surety",
+        sourceUrl: "https://business.libertymutual.com/commercial-solutions/surety/",
+        asOf: SIGNAL_AS_OF,
+      },
+    ],
+    sources: [
+      { label: "Liberty Mutual Surety", url: "https://business.libertymutual.com/commercial-solutions/surety/" },
+    ],
+    notes: [],
+  },
+  {
+    slug: "the-hartford-surety",
+    name: "The Hartford Surety",
+    shortName: "Hartford",
+    kind: "carrier",
+    tagline: "National carrier — A+ Excellent cited in 2026 contractor guides",
+    summary:
+      "The Hartford writes contract and commercial surety through agents. A 2026 Construction Coverage compilation lists The Hartford at AM Best A+ (Excellent) and flags the company as a full-line option for contractors.",
+    detail: [
+      "We did not pull a live AM Best PDF in this pass. The A+ figure is attributed to the Construction Coverage compilation dated for 2026 — confirm on AM Best before a bid.",
+      "Works through appointed agents, including many independent commercial agencies.",
+    ],
+    hqCity: "Hartford",
+    hqState: "CT",
+    website: "https://www.thehartford.com",
+    servesNationwide: true,
+    knownStates: [],
+    categories: ["license-permit", "contract", "commercial"],
+    audiences: ["Contractors", "Commercial principals", "Independent agents"],
+    signals: [
+      {
+        key: "amBest",
+        label: "AM Best (third-party compilation)",
+        value: "A+ (Excellent) — confirm live at AM Best",
+        source: "Construction Coverage 2026 surety roundup",
+        sourceUrl: "https://constructioncoverage.com/surety-bonds",
+        asOf: SIGNAL_AS_OF,
+      },
+    ],
+    sources: [
+      { label: "The Hartford", url: "https://www.thehartford.com" },
+      { label: "Construction Coverage surety guide", url: "https://constructioncoverage.com/surety-bonds" },
+    ],
+    notes: [],
+  },
+  {
+    slug: "cna-surety",
+    name: "CNA Surety",
+    shortName: "CNA",
+    legalName: "CNA Surety / Western Surety Company",
+    kind: "carrier",
+    tagline: "Western Surety paper, 50-state commercial and contract book",
+    summary:
+      "CNA Surety (including Western Surety Company) publishes a full commercial and contract offering in all 50 states, Canada, and Puerto Rico, with a FAST-Track program for smaller contractors and bONdLINE for transactional commercial bonds. Texas DOI lists Western Surety / CNA companies among admitted surety markets.",
+    detail: [
+      "Western Surety’s Sioux Falls heritage is now inside CNA. Agents still see Western Surety paper on many license and permit bonds.",
+      "We are not reprinting an AM Best figure we did not open on CNA’s own ratings page in this pass.",
+    ],
+    hqCity: "Chicago",
+    hqState: "IL",
+    website: "https://www.cna.com/products/cna-surety",
+    servesNationwide: true,
+    knownStates: [],
+    categories: ["license-permit", "contract", "commercial", "court"],
+    audiences: ["Contractors", "License applicants", "Public officials"],
+    signals: [
+      {
+        key: "states",
+        label: "Licensed footprint (company-published)",
+        value: "All 50 states, Canada, Puerto Rico",
+        source: "CNA Surety product page",
+        sourceUrl: "https://www.cna.com/products/cna-surety",
+        asOf: SIGNAL_AS_OF,
+      },
+      {
+        key: "years",
+        label: "Platform note",
+        value: "bONdLINE transactional issuance + FAST-Track contract",
+        source: "CNA Surety product page",
+        sourceUrl: "https://www.cna.com/products/cna-surety",
+        asOf: SIGNAL_AS_OF,
+      },
+    ],
+    sources: [
+      { label: "CNA Surety", url: "https://www.cna.com/products/cna-surety" },
+      { label: "Texas DOI surety list", url: "https://www.tdi.texas.gov/commercial/pcbondsurety.html" },
+    ],
+    notes: ["AM Best omitted until we can cite CNA’s own current rating page."],
+  },
+  {
+    slug: "jet-surety",
+    name: "Jet Surety",
+    shortName: "Jet",
+    legalName: "Amherst National Insurance Company (formerly Jet Insurance Company)",
+    kind: "carrier",
+    tagline: "Direct-to-principal digital surety — Treasury-listed, AM Best A−",
+    summary:
+      "Jet launched in late 2018 as a direct-to-principal surety and fidelity carrier out of Charlotte, licensed in all 50 states and D.C. (except bail). Treasury added Jet to Circular 570 in September 2024. AM Best later affirmed A− (Excellent) on Amherst National Insurance Company, the former Jet Insurance Company, after a December 2025 Amherst acquisition.",
+    detail: [
+      "Corporate names moved in 2025–2026 (Jet → Amherst National / related Amherst vehicles). The consumer brand many principals still search is Jet / jetsurety.com.",
+      "Construction Coverage’s 2026 guide still treats Jet as a small-business / license-and-permit specialist. Confirm the legal paper name on any bond form.",
+    ],
+    hqCity: "Charlotte",
+    hqState: "NC",
+    website: "https://jetsurety.com",
+    foundedYear: 2018,
+    servesNationwide: true,
+    knownStates: [],
+    categories: ["license-permit", "commercial", "court"],
+    audiences: ["Small business", "License applicants", "Probate"],
+    signals: [
+      {
+        key: "amBest",
+        label: "AM Best (ANIC / former Jet)",
+        value: "A− (Excellent), stable — ANIC affirmation",
+        source: "AM Best news action on Amherst National Insurance Company",
+        sourceUrl: "https://news.ambest.com/newscontent.aspx?altsrc=23&refnum=273751",
+        asOf: SIGNAL_AS_OF,
+      },
+      {
+        key: "treasury",
+        label: "Circular 570",
+        value: "Added 3 Sep 2024 (Jet Insurance Company PR)",
+        source: "PR Newswire / Jet",
+        sourceUrl: "https://www.prnewswire.com/news-releases/us-treasury-adds-jet-insurance-company-to-list-of-certified-companies-302236885.html",
+        asOf: SIGNAL_AS_OF,
+      },
+      {
+        key: "states",
+        label: "Licensed footprint",
+        value: "All 50 states and D.C. (company PR, excl. bail)",
+        source: "Jet Treasury-list press release",
+        sourceUrl: "https://www.prnewswire.com/news-releases/us-treasury-adds-jet-insurance-company-to-list-of-certified-companies-302236885.html",
+        asOf: SIGNAL_AS_OF,
+      },
+      {
+        key: "years",
+        label: "Launched",
+        value: "Late 2018",
+        source: "Jet Treasury-list press release",
+        sourceUrl: "https://www.prnewswire.com/news-releases/us-treasury-adds-jet-insurance-company-to-list-of-certified-companies-302236885.html",
+        asOf: SIGNAL_AS_OF,
+      },
+    ],
+    sources: [
+      { label: "Jet Surety", url: "https://jetsurety.com" },
+      { label: "Treasury-list press release", url: "https://www.prnewswire.com/news-releases/us-treasury-adds-jet-insurance-company-to-list-of-certified-companies-302236885.html" },
+      { label: "AM Best ANIC action", url: "https://news.ambest.com/newscontent.aspx?altsrc=23&refnum=273751" },
+    ],
+    notes: ["Confirm the issuing company name on the bond — Jet’s legal wrapper changed after the 2025 Amherst transaction."],
+  },
+  {
+    slug: "american-surety-company",
+    name: "American Surety Company",
+    shortName: "ASC",
+    kind: "carrier",
+    tagline: "Indianapolis commercial surety — 1993, all 50 states, Core Specialty",
+    summary:
+      "American Surety Company (Indianapolis) writes commercial surety for independent agents in all 50 states and has been in business since 1993. Core Specialty completed its acquisition in 2024. ASC’s own FAQ publishes an AM Best A (Excellent) financial-strength rating; AM Best’s public profile (9 Oct 2025 snippet) shows A (Excellent) on the Core Specialty group rating unit.",
+    detail: [
+      "Do not confuse this commercial writer with bail-only brands that share similar names. ASC also has a historic bail division; their commercial FAQ is the source for the 50-state commercial claim.",
+      "Core Specialty is the parent to confirm on appointment paperwork.",
+    ],
+    hqCity: "Indianapolis",
+    hqState: "IN",
+    address: "250 East 96th Street, Suite 202, Indianapolis, IN 46240",
+    website: "https://www.american-surety.com",
+    foundedYear: 1993,
+    servesNationwide: true,
+    knownStates: [],
+    categories: ["license-permit", "commercial", "court"],
+    audiences: ["Independent agents", "License applicants", "Commercial principals"],
+    signals: [
+      {
+        key: "amBest",
+        label: "AM Best (company FAQ + AM Best profile)",
+        value: "A (Excellent) — group / company-published",
+        source: "ASC FAQ; AM Best company profile",
+        sourceUrl: "https://www.american-surety.com/faq/",
+        asOf: SIGNAL_AS_OF,
+      },
+      {
+        key: "years",
+        label: "Founded",
+        value: "1993",
+        source: "American Surety Company FAQ",
+        sourceUrl: "https://www.american-surety.com/faq/",
+        asOf: SIGNAL_AS_OF,
+      },
+      {
+        key: "states",
+        label: "Licensed footprint",
+        value: "All 50 states (company-published)",
+        source: "American Surety Company FAQ",
+        sourceUrl: "https://www.american-surety.com/faq/",
+        asOf: SIGNAL_AS_OF,
+      },
+    ],
+    sources: [
+      { label: "ASC FAQ", url: "https://www.american-surety.com/faq/" },
+      { label: "AM Best company profile", url: "https://ratings.ambest.com/companyprofile.aspx?ambnum=2557" },
+    ],
+    notes: [],
+  },
+  {
+    slug: "philadelphia-insurance",
+    name: "Philadelphia Insurance Companies",
+    shortName: "PHLY",
+    legalName: "Philadelphia Indemnity Insurance Company (Tokio Marine)",
+    kind: "carrier",
+    tagline: "Tokio Marine specialty carrier — commercial surety via appointed agents",
+    summary:
+      "Philadelphia Insurance Companies (PHLY), a Tokio Marine company, writes specialty commercial lines including surety through appointed agents. SuretyBonds.com’s public history notes the HCC → Tokio Marine ownership chain that also sits behind that online agency — a related but separate distribution story.",
+    detail: [
+      "PHLY is a carrier. Retail buyers still need an agent of record.",
+      "We omit an AM Best number here because we did not open PHLY’s current ratings page in this research pass.",
+    ],
+    hqCity: "Bala Cynwyd",
+    hqState: "PA",
+    website: "https://www.phly.com",
+    servesNationwide: true,
+    knownStates: [],
+    categories: ["license-permit", "commercial", "contract"],
+    audiences: ["Specialty commercial", "Nonprofits", "Appointed agents"],
+    signals: [
+      {
+        key: "states",
+        label: "Footprint",
+        value: "National specialty carrier (Tokio Marine)",
+        source: "PHLY public site",
+        sourceUrl: "https://www.phly.com",
+        asOf: SIGNAL_AS_OF,
+      },
+    ],
+    sources: [
+      { label: "Philadelphia Insurance Companies", url: "https://www.phly.com" },
+      { label: "SuretyBonds.com ownership history", url: "https://www.suretybonds.com/blog/suretybondcom-celebrates-15-year-anniversary/" },
+    ],
+    notes: ["AM Best omitted until we can cite PHLY’s own current rating disclosure."],
+  },
+  {
+    slug: "zurich-surety",
+    name: "Zurich Surety",
+    shortName: "Zurich",
+    kind: "carrier",
+    tagline: "Global contract surety — used on large contractor programs",
+    summary:
+      "Zurich is a major global surety writer used on large U.S. contractor programs. Third-party 2026 contractor guides describe Zurich as a top-share U.S. surety market. Placement is almost entirely through construction brokers, not a consumer website checkout.",
+    detail: [
+      "We are not reprinting a specific AM Best figure from a secondary roundup without Zurich’s own ratings page in front of us.",
+      "If you need a $50 million performance program, this is the kind of paper your broker already knows. If you need a $10,000 contractor license bond, start with an agency (IFI or another retail shop).",
+    ],
+    hqCity: "Schaumburg",
+    hqState: "IL",
+    website: "https://www.zurichna.com",
+    servesNationwide: true,
+    knownStates: [],
+    categories: ["contract", "commercial"],
+    audiences: ["Large contractors", "Construction brokers"],
+    signals: [
+      {
+        key: "states",
+        label: "Footprint",
+        value: "U.S. national / global contract surety",
+        source: "Construction Coverage 2026 surety roundup (share commentary)",
+        sourceUrl: "https://constructioncoverage.com/surety-bonds",
+        asOf: SIGNAL_AS_OF,
+      },
+    ],
+    sources: [
+      { label: "Zurich North America", url: "https://www.zurichna.com" },
+      { label: "Construction Coverage surety guide", url: "https://constructioncoverage.com/surety-bonds" },
+    ],
+    notes: ["AM Best omitted pending a first-party citation."],
+  },
+  {
+    slug: "nationwide-surety",
+    name: "Nationwide Surety & Fidelity",
+    shortName: "Nationwide",
+    kind: "carrier",
+    tagline: "National mutual — contract and commercial via agents; CBIC heritage in contract",
+    summary:
+      "Nationwide writes surety and fidelity through its agency force. Contractors Bonding and Insurance Company (CBIC) is the well-known contract-surety specialist inside the Nationwide family. We list the group as a carrier market, not as a retail bond shop.",
+    detail: [
+      "Ask your agent whether the paper is Nationwide or CBIC — the form and underwriting desk can differ.",
+      "No AM Best figure is shown here because we did not capture Nationwide’s current surety-entity rating page in this pass.",
+    ],
+    hqCity: "Columbus",
+    hqState: "OH",
+    website: "https://www.nationwide.com",
+    servesNationwide: true,
+    knownStates: [],
+    categories: ["license-permit", "contract", "commercial"],
+    audiences: ["Independent agents", "Contractors", "Farm & commercial"],
+    signals: [
+      {
+        key: "states",
+        label: "Footprint",
+        value: "National agency distribution",
+        source: "Nationwide public site",
+        sourceUrl: "https://www.nationwide.com",
+        asOf: SIGNAL_AS_OF,
+      },
+    ],
+    sources: [{ label: "Nationwide", url: "https://www.nationwide.com" }],
+    notes: ["AM Best omitted pending a first-party citation for the surety-writing entity."],
+  },
+  {
+    slug: "nfp-surety",
+    name: "NFP Surety",
+    shortName: "NFP",
+    kind: "agency",
+    tagline: "National broker — surety practice for commercial and construction accounts",
+    summary:
+      "NFP is a large U.S. insurance broker with a dedicated surety practice for commercial and construction clients. This is a broker of record relationship, not a click-out license-bond storefront. We include NFP because licensed professionals already in an NFP benefits/P&C house often keep surety there.",
+    detail: [
+      "We do not show a BBB letter grade or AM Best figure — NFP is a broker, and we did not lock a single surety-office BBB file in this pass.",
+      "Best when you already have (or want) a full commercial program, not when you only need a $15,000 auto-dealer bond tonight.",
+    ],
+    hqCity: "New York",
+    hqState: "NY",
+    website: "https://www.nfp.com",
+    servesNationwide: true,
+    knownStates: [],
+    categories: ["contract", "commercial", "license-permit"],
+    audiences: ["Middle-market commercial", "Contractors", "Private equity portfolio companies"],
+    signals: [
+      {
+        key: "states",
+        label: "Footprint",
+        value: "National brokerage",
+        source: "NFP public site",
+        sourceUrl: "https://www.nfp.com",
+        asOf: SIGNAL_AS_OF,
+      },
+    ],
+    sources: [{ label: "NFP", url: "https://www.nfp.com" }],
+    notes: ["BBB and AM Best omitted — confirm the specific NFP office and issuing carriers on your proposal."],
+  },
+  {
+    slug: "bondexchange",
+    name: "BondExchange",
+    shortName: "BondExchange",
+    kind: "marketplace",
+    tagline: "Wholesale / technology marketplace used by retail agents",
+    summary:
+      "BondExchange is a wholesale surety marketplace and technology layer that appointed retail agents use to quote and issue commercial and license bonds. Principals usually do not open an account directly — your agent does.",
+    detail: [
+      "Listed so licensing professionals understand why an agency (including IFI) might bind a Western Surety or similar form through a wholesale portal.",
+      "Founding-year figures circulating in trade writeups (often 1977) were not opened on BondExchange’s own legal page in this pass, so we do not print a year.",
+    ],
+    hqCity: "United States",
+    hqState: "GA",
+    website: "https://www.bondexchange.com",
+    servesNationwide: true,
+    knownStates: [],
+    categories: ["license-permit", "commercial", "court"],
+    audiences: ["Retail surety agents", "Independent agencies"],
+    signals: [
+      {
+        key: "states",
+        label: "Role",
+        value: "Wholesale marketplace for appointed agents",
+        source: "BondExchange public site",
+        sourceUrl: "https://www.bondexchange.com",
+        asOf: SIGNAL_AS_OF,
+      },
+    ],
+    sources: [{ label: "BondExchange", url: "https://www.bondexchange.com" }],
+    notes: ["Not a consumer agency. If you are a principal, call IFI or another retail shop."],
+  },
+];
+
+export function getAgency(slug: string) {
+  return AGENCIES.find((a) => a.slug === slug);
+}

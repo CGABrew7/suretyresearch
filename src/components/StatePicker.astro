@@ -1,0 +1,18 @@
+---
+import { STATES } from '../data/states';
+
+interface Props {
+  base?: string;
+}
+
+const { base = '/states' } = Astro.props;
+---
+
+<div class="state-grid">
+  {STATES.map((s) => (
+    <a class="state-chip" href={`${base}/${s.slug}/`}>
+      <strong>{s.code}</strong>
+      {s.name}
+    </a>
+  ))}
+</div>
