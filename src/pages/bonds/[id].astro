@@ -1,153 +1,134 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AgencyCard from '../../components/AgencyCard.astro';
 import data from '../../data/bonds.json';
+import { BOND_CATEGORIES, getCategory } from '../../data/categories';
+import { filterAgencies } from '../../lib/ranking';
+
+const categoryIds = new Set(BOND_CATEGORIES.map((c) => c.id));
+const typeIds = new Set(data.types.map((t) => t.id));
 
 export function getStaticPaths() {
-  return data.types.map(t => ({ params: { id: t.id }, props: { bond: t } }));
+  const fromTypes = data.types.map((t) => ({ params: { id: t.id } }));
+  const fromCats = BOND_CATEGORIES.filter((c) => !data.types.some((t) => t.id === c.id)).map((c) => ({
+    params: { id: c.id },
+  }));
+  return [...fromTypes, ...fromCats];
 }
 
-const { bond } = Astro.props;
+const { id } = Astro.params;
+const bond = data.types.find((t) => t.id === id);
+const category = getCategory(id) ?? BOND_CATEGORIES.find((c) => c.bondTypeIds.includes(id ?? ''));
+const isCategoryPage = categoryIds.has(id ?? '');
+const agencies = filterAgencies({ category: (isCategoryPage ? id : category?.id) as any });
+
+const title = isCategoryPage && category
+  ? `${category.name} bonds — SuretyResearch`
+  : `${bond?.name} — SuretyResearch`;
+
+const description = isCategoryPage && category
+  ? category.summary
+  : `${bond?.name} cost bands: typical ${bond?.typical}. Face ${bond?.bondRange}.`;
 ---
 
-<Layout title={`${bond.name} — SuretyResearch`} description={`${bond.name} cost data: ${bond.typical} typical annual premium. Bond amounts ${bond.bondRange}.`}>
+<Layout title={title} description={description}>
   <section class="page-hero">
-    <div class="container">
-      <h1>{bond.name}</h1>
-      <p>{bond.description}</p>
+    <div class="wrap">
+      <p class="kicker">{category ? `${category.ledger} · ${category.name}` : 'Bond form'}</p>
+      <h1>{isCategoryPage && category ? category.name : bond?.name}</h1>
+      <p>{isCategoryPage && category ? category.headline + '. ' + category.summary : bond?.description}</p>
     </div>
   </section>
 
   <section class="section">
-    <div class="container" style="max-width: 800px;">
-      <div class="detail-grid">
-        <div class="detail-card accent">
-          <div class="dc-label">Typical Annual Cost</div>
-          <div class="dc-value">{bond.typical}</div>
-        </div>
-        <div class="detail-card">
-          <div class="dc-label">Bond Amount Range</div>
-          <div class="dc-value">{bond.bondRange}</div>
-        </div>
-        <div class="detail-card">
-          <div class="dc-label">Premium Rate Range</div>
-          <div class="dc-value">{bond.premiumRange}</div>
-        </div>
-        <div class="detail-card">
-          <div class="dc-label">Credit Sensitivity</div>
-          <div class="dc-value">{bond.creditImpact}</div>
-        </div>
-      </div>
-
-      <div class="content-block">
-        <h2>Cost Breakdown</h2>
-        <p>Your annual premium for a {bond.name.toLowerCase()} depends on three factors: the required bond amount, your credit score, and the specific state requirements.</p>
-        <div class="cost-table">
-          <div class="ct-row ct-header">
-            <div>Credit Range</div>
-            <div>Typical Rate</div>
-            <div>$25K Bond</div>
-            <div>$100K Bond</div>
+    <div class="wrap">
+      {isCategoryPage && category && (
+        <div class="grid-2" style="margin-bottom:32px">
+          <div class="cert">
+            <p class="kicker">Who posts these</p>
+            <p style="margin-top:8px;color:var(--ink-2)">{category.whoNeeds}</p>
           </div>
-          <div class="ct-row">
-            <div>Excellent (720+)</div>
-            <div>1-3%</div>
-            <div>$250 - $750</div>
-            <div>$1,000 - $3,000</div>
-          </div>
-          <div class="ct-row">
-            <div>Good (680-719)</div>
-            <div>2-5%</div>
-            <div>$500 - $1,250</div>
-            <div>$2,000 - $5,000</div>
-          </div>
-          <div class="ct-row">
-            <div>Fair (600-679)</div>
-            <div>5-8%</div>
-            <div>$1,250 - $2,000</div>
-            <div>$5,000 - $8,000</div>
-          </div>
-          <div class="ct-row">
-            <div>Below 600</div>
-            <div>8-15%</div>
-            <div>$2,000 - $3,750</div>
-            <div>$8,000 - $15,000</div>
+          <div class="cert">
+            <p class="kicker">Money, roughly</p>
+            <p style="margin-top:8px;color:var(--ink-2)">{category.typicalRange}</p>
           </div>
         </div>
-        <p class="note">Rates shown are industry averages. Your actual premium may vary based on financial history, business experience, and state-specific requirements.</p>
-      </div>
+      )}
 
-      <div class="content-block">
-        <h2>Common Uses</h2>
-        <p>This bond type is commonly required for: {bond.examples}.</p>
-      </div>
+      {bond && (
+        <>
+          <div class="stat-row" style="margin-bottom:28px">
+            <div><strong>{bond.typical}</strong><span>Typical annual premium</span></div>
+            <div><strong>{bond.bondRange}</strong><span>Face amount range</span></div>
+            <div><strong>{bond.premiumRange}</strong><span>Premium rate band</span></div>
+            <div><strong>{bond.creditImpact}</strong><span>Credit sensitivity</span></div>
+          </div>
 
-      <div class="content-block">
-        <h2>How to Get This Bond</h2>
-        <p>The typical process takes 1-5 business days for standard bonds and 1-4 weeks for complex or high-amount bonds. Here's what to expect:</p>
-        <ol class="steps-list">
-          <li><strong>Application:</strong> Provide basic business information and authorize a credit check (soft pull — does not affect your score).</li>
-          <li><strong>Underwriting:</strong> The surety reviews your credit, financials, and business history to determine your premium rate.</li>
-          <li><strong>Quote:</strong> You receive your exact annual premium. No obligation to proceed.</li>
-          <li><strong>Issuance:</strong> Once you accept and pay, the bond is issued and filed with the obligee.</li>
-        </ol>
-      </div>
+          <div class="prose" style="margin-bottom:32px">
+            <h2>Cost bands by credit (industry averages)</h2>
+            <p>
+              These are clerk-style ranges, not a quote. A $25,000 and $100,000 face are shown so you
+              can scale. High-face contract and money-transmitter bonds do not price on this table alone.
+            </p>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Credit range</th>
+                  <th>Typical rate</th>
+                  <th>$25K face</th>
+                  <th>$100K face</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Excellent (720+)</td><td>1–3%</td><td>$250 – $750</td><td>$1,000 – $3,000</td></tr>
+                <tr><td>Good (680–719)</td><td>2–5%</td><td>$500 – $1,250</td><td>$2,000 – $5,000</td></tr>
+                <tr><td>Fair (600–679)</td><td>5–8%</td><td>$1,250 – $2,000</td><td>$5,000 – $8,000</td></tr>
+                <tr><td>Below 600</td><td>8–15%</td><td>$2,000 – $3,750</td><td>$8,000 – $15,000</td></tr>
+              </tbody>
+            </table>
+            <p>Common uses: {bond.examples}.</p>
+          </div>
+        </>
+      )}
 
-      <div class="content-block">
-        <h2>Need This Bond?</h2>
-        <p>Use our <a href="/#calculator">bond cost calculator</a> for an instant estimate, or request a free exact quote from a bond specialist. All bond procurement is handled by <a href="https://cornerstonelicensing.com" target="_blank" rel="noopener">Cornerstone Licensing</a>, which has processed 525,000+ filings over 28 years.</p>
-      </div>
+      {isCategoryPage && category && (
+        <div class="prose" style="margin-bottom:28px">
+          <h2>Forms in this series</h2>
+          <ul>
+            {category.examples.map((ex) => <li>{ex}</li>)}
+          </ul>
+          <p>
+            Related researched forms:
+            {category.bondTypeIds
+              .filter((tid) => typeIds.has(tid) && tid !== id)
+              .map((tid, i, arr) => {
+                const t = data.types.find((x) => x.id === tid);
+                return t ? (
+                  <>
+                    <a href={`/bonds/${t.id}/`}>{t.name}</a>
+                    {i < arr.length - 1 ? ', ' : ''}
+                  </>
+                ) : null;
+              })}
+          </p>
+        </div>
+      )}
 
-      <div class="cta-box">
-        <h3>Estimate Your {bond.name} Cost</h3>
-        <p>3 questions, 30 seconds, free estimate.</p>
-        <a href="/#calculator" class="btn" style="display: inline-block; width: auto; padding: 14px 32px;">Cost Calculator</a>
+      <div class="section-head">
+        <div>
+          <p class="kicker">Desks on this series</p>
+          <h2>Register entries that list this category</h2>
+        </div>
+        <p>IFI remains first. Carriers still need an appointed agent.</p>
       </div>
+      <div class="ledger">
+        {agencies.slice(0, 8).map((agency) => <AgencyCard agency={agency} />)}
+      </div>
+      <p style="margin-top:16px">
+        <a href={`/agencies/?`}>See the full register</a>
+        {' · '}
+        <a href="/#calculator">Premium sketch</a>
+      </p>
     </div>
   </section>
 </Layout>
-
-<style>
-  .detail-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 32px; }
-  .detail-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 18px;
-    text-align: center;
-  }
-  .detail-card.accent { background: var(--primary-light); border-color: var(--primary-border); }
-  .dc-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.4px; color: var(--text-muted); margin-bottom: 4px; }
-  .dc-value { font-size: 1.05rem; font-weight: 800; }
-  .detail-card.accent .dc-value { color: var(--primary); }
-
-  .content-block { margin-bottom: 32px; }
-  .content-block h2 { font-size: 1.25rem; margin-bottom: 10px; }
-  .content-block p { font-size: 0.92rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 12px; }
-  .note { font-size: 0.82rem; color: var(--text-muted); font-style: italic; }
-
-  .cost-table { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin: 16px 0; }
-  .ct-row { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; padding: 12px 16px; font-size: 0.88rem; }
-  .ct-header { background: var(--dark); color: white; font-weight: 700; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.3px; }
-  .ct-row:not(.ct-header) { border-bottom: 1px solid var(--border-light); color: var(--text-secondary); }
-  .ct-row:last-child { border-bottom: none; }
-
-  .steps-list { padding-left: 20px; margin: 12px 0; }
-  .steps-list li { font-size: 0.92rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 8px; }
-
-  .cta-box {
-    background: var(--primary-light);
-    border: 1px solid var(--primary-border);
-    border-radius: var(--radius-lg);
-    padding: 32px;
-    text-align: center;
-    margin-top: 36px;
-  }
-  .cta-box h3 { font-size: 1.2rem; margin-bottom: 6px; }
-  .cta-box p { color: var(--text-secondary); margin-bottom: 16px; font-size: 0.92rem; }
-
-  @media (max-width: 768px) {
-    .detail-grid { grid-template-columns: 1fr 1fr; }
-    .ct-row { grid-template-columns: 1fr 1fr; gap: 4px; font-size: 0.82rem; }
-    .ct-header { font-size: 0.72rem; }
-  }
-</style>

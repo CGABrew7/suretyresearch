@@ -1,5 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="6" fill="#059669"/>
-  <text x="4" y="23" font-family="Arial,sans-serif" font-weight="900" font-size="18" fill="white">S</text>
-  <text x="16" y="23" font-family="Arial,sans-serif" font-weight="900" font-size="18" fill="#A7F3D0">R</text>
+  <rect width="32" height="32" fill="#163044"/>
+  <rect x="3" y="3" width="26" height="26" fill="none" stroke="#c9a25a" stroke-width="1"/>
+  <rect x="5" y="5" width="22" height="22" fill="none" stroke="#c9a25a" stroke-width="0.5"/>
+  <text x="16" y="21" text-anchor="middle" font-family="Georgia, serif" font-size="13" font-weight="700" fill="#f3ead4">SR</text>
 </svg>

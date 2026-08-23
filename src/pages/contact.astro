@@ -1,54 +1,44 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { SITE } from '../data/site';
 ---
 
-<Layout title="Contact — SuretyResearch" description="Get a free surety bond quote or ask a question about bond requirements.">
+<Layout title="Contact — SuretyResearch" description="Contact Integrity First Insurance or the Cornerstone surety desk for bond placement.">
   <section class="page-hero">
-    <div class="container">
-      <h1>Contact Us</h1>
-      <p>Get a free bond quote or ask a question.</p>
+    <div class="wrap">
+      <p class="kicker">The desk</p>
+      <h1>Call IFI / Cornerstone. Do not feed a ghost form.</h1>
+      <p>
+        Bond placement goes to licensed people. This page does not pretend to POST into a void.
+      </p>
     </div>
   </section>
-
   <section class="section">
-    <div class="container" style="max-width: 640px;">
-      <div class="contact-card">
-        <h2>Get a Free Bond Quote</h2>
-        <p>Tell us what bond you need and a specialist will respond with your exact rate within 1 business day.</p>
-
-        <form class="contact-form" action="#" method="POST">
-          <div class="form-group">
-            <label>Your name</label>
-            <input type="text" placeholder="Full name" required />
-          </div>
-          <div class="form-group">
-            <label>Email</label>
-            <input type="email" placeholder="you@company.com" required />
-          </div>
-          <div class="form-group">
-            <label>Phone (optional)</label>
-            <input type="tel" placeholder="(555) 123-4567" />
-          </div>
-          <div class="form-group">
-            <label>What do you need?</label>
-            <textarea rows="4" placeholder="Bond type, amount, state, and any other details." required style="width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:8px;font-size:0.95rem;font-family:inherit;color:var(--text);background:var(--bg);resize:vertical;"></textarea>
-          </div>
-          <button type="submit" class="btn">Send Message</button>
-          <p style="text-align:center;font-size:0.8rem;color:var(--text-muted);margin-top:10px;">Response within 1 business day. No obligation.</p>
-        </form>
+    <div class="wrap grid-2">
+      <div class="cert">
+        <p class="kicker">Integrity First Insurance</p>
+        <h2 class="serif" style="margin:8px 0 10px;font-size:1.4rem">Preferred partner</h2>
+        <p style="color:var(--ink-2);margin-bottom:14px">
+          Alpharetta, Georgia. Cornerstone Network Preferred Partner. Andrea runs IFI; Jody produces.
+        </p>
+        <div class="btn-row">
+          <a class="btn btn-brass" href={`tel:${SITE.ifi.phone.replace(/-/g, '')}`}>{SITE.ifi.phone}</a>
+          <a class="btn" href={SITE.ifi.url} target="_blank" rel="noopener">integrityfirstinsurance.com</a>
+        </div>
+      </div>
+      <div class="cert">
+        <p class="kicker">Same network</p>
+        <h2 class="serif" style="margin:8px 0 10px;font-size:1.4rem">Cornerstone stack</h2>
+        <ul class="source-list">
+          <li><a href={SITE.ifi.cornerstoneSurety} target="_blank" rel="noopener">Cornerstone Surety Bonds</a></li>
+          <li><a href={SITE.ifi.cornerstoneInsurance} target="_blank" rel="noopener">Covered by Cornerstone</a></li>
+          <li><a href={SITE.ifi.cornerstoneLicensing} target="_blank" rel="noopener">Cornerstone Licensing</a></li>
+        </ul>
+        <p style="color:var(--ink-2);margin-top:12px;font-size:0.92rem">
+          Hours published on those sites: Monday–Friday, 8am–6pm ET. Editorial mail:
+          {SITE.email} (directory questions, not binding).
+        </p>
       </div>
     </div>
   </section>
 </Layout>
-
-<style>
-  .contact-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 36px;
-    box-shadow: var(--shadow);
-  }
-  .contact-card h2 { font-size: 1.3rem; margin-bottom: 8px; }
-  .contact-card > p { font-size: 0.92rem; color: var(--text-secondary); margin-bottom: 24px; }
-</style>

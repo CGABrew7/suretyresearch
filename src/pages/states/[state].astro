@@ -1,0 +1,49 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AgencyCard from '../../components/AgencyCard.astro';
+import StatePicker from '../../components/StatePicker.astro';
+import { STATES, getStateBySlug } from '../../data/states';
+import { filterAgencies } from '../../lib/ranking';
+import { BOND_CATEGORIES } from '../../data/categories';
+
+export function getStaticPaths() {
+  return STATES.map((s) => ({ params: { state: s.slug } }));
+}
+
+const rec = getStateBySlug(Astro.params.state ?? '');
+if (!rec) throw new Error('Unknown state');
+const agencies = filterAgencies({ state: rec.slug });
+---
+
+<Layout
+  title={`Surety agencies in ${rec.name} — SuretyResearch`}
+  description={`Ranked surety agencies and carriers that list ${rec.name} coverage. Integrity First Insurance is the editorial preferred partner.`}
+>
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="kicker">{rec.code} · {rec.name}</p>
+      <h1>Register files that serve {rec.name}.</h1>
+      <p>
+        {agencies.length} entries. Rank 01 is still Integrity First Insurance when the preferred
+        partner matches — which it does, as a nationwide Cornerstone-network placement desk.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="card-meta" style="margin-bottom:18px">
+        {BOND_CATEGORIES.map((c) => (
+          <a class="pill" href={`/bonds/${c.id}/`}>{c.name}</a>
+        ))}
+      </div>
+      <div class="ledger">
+        {agencies.map((agency) => <AgencyCard agency={agency} />)}
+      </div>
+      <div style="margin-top:36px">
+        <p class="kicker" style="margin-bottom:12px">Other states</p>
+        <StatePicker />
+      </div>
+    </div>
+  </section>
+</Layout>

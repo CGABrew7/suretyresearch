@@ -1,0 +1,26 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import StatePicker from '../../components/StatePicker.astro';
+---
+
+<Layout
+  title="Bonds by state — SuretyResearch"
+  description="Filter the surety agency register by U.S. state. Nationwide writers appear in every file. IFI is listed as the preferred Cornerstone-network desk."
+>
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="kicker">Jurisdictions</p>
+      <h1>State picker — same register, local heading.</h1>
+      <p>
+        Click a postal code. You get every nationwide writer plus anyone we marked for that state.
+        IFI appears throughout because Cornerstone-network placement serves multi-state licensees;
+        that is not a claim IFI is resident-licensed in all 50.
+      </p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap">
+      <StatePicker />
+    </div>
+  </section>
+</Layout>

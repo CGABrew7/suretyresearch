@@ -1,0 +1,56 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import DirectoryFilters from '../../components/DirectoryFilters.jsx';
+import { rankedDirectory } from '../../lib/ranking';
+import { STATES } from '../../data/states';
+
+const ranked = rankedDirectory();
+const payload = ranked.map((a) => ({
+  slug: a.slug,
+  name: a.name,
+  shortName: a.shortName,
+  kind: a.kind,
+  preferredPartner: !!a.preferredPartner,
+  tagline: a.tagline,
+  hqCity: a.hqCity,
+  hqState: a.hqState,
+  servesNationwide: a.servesNationwide,
+  knownStates: a.knownStates,
+  categories: a.categories,
+  rank: a.rank,
+  rankLabel: a.rankLabel,
+}));
+---
+
+<Layout
+  title="Agency register — SuretyResearch"
+  description="Ranked directory of surety agencies and carriers. Integrity First Insurance is editor’s #1 as the Cornerstone Network Preferred Partner. Other names follow cited BBB, AM Best, years, and coverage signals."
+>
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="kicker">The register · {ranked.length} files</p>
+      <h1>Agencies and carriers, in order we will defend.</h1>
+      <p>
+        Rank 01 is Integrity First Insurance because this site’s owner designated IFI as the
+        Cornerstone Network Preferred Partner — licensing and surety specialists in that ecosystem.
+        That is an editorial placement. It is not a claim that IFI is “#1 in America,” and it is
+        not a star rating we invented.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="cert" style="margin-bottom:22px">
+        <p class="kicker">How the rest of the list is ordered</p>
+        <p style="margin-top:8px;color:var(--ink-2)">
+          After the preferred partner, we score only signals we cited: BBB letter grade, AM Best
+          (when a source was opened), years since founding, nationwide vs. known states, bond-category
+          count, and a Treasury-list mention. Empty fields score zero. Read the
+          <a href="/methodology/">methodology</a>.
+        </p>
+      </div>
+      <DirectoryFilters client:load agencies={payload} states={STATES} />
+    </div>
+  </section>
+</Layout>

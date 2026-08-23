@@ -1,33 +1,55 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { BOND_CATEGORIES } from '../../data/categories';
 import data from '../../data/bonds.json';
 ---
 
-<Layout title="Bond Types — SuretyResearch" description="Cost data and requirements for 10 surety bond types. Independent research, no sales pitch.">
+<Layout
+  title="Bond types — SuretyResearch"
+  description="License and permit, contract/performance, commercial, and court bonds — plus cost bands for common forms."
+>
   <section class="page-hero">
-    <div class="container">
-      <h1>Surety Bond Types</h1>
-      <p>Cost data, requirements, and plain-English explanations for every common bond type.</p>
+    <div class="wrap">
+      <p class="kicker">Bond ledgers</p>
+      <h1>Four series. Then the specific forms.</h1>
+      <p>
+        Use the series pages to understand the job of the bond. Use the form pages for typical face
+        amounts and premium bands. Placement still goes through a licensed desk — we introduce IFI first.
+      </p>
     </div>
   </section>
 
   <section class="section">
-    <div class="container">
-      <div class="bond-list">
-        {data.types.map(t => (
-          <a href={`/bonds/${t.id}`} class="bond-row">
-            <div class="br-info">
+    <div class="wrap">
+      <div class="grid-2" style="margin-bottom:36px">
+        {BOND_CATEGORIES.map((cat) => (
+          <a class="tile" href={`/bonds/${cat.id}/`}>
+            <p class="kicker">{cat.ledger}</p>
+            <h3>{cat.name}</h3>
+            <p>{cat.headline}. {cat.summary}</p>
+          </a>
+        ))}
+      </div>
+
+      <div class="section-head">
+        <div>
+          <p class="kicker">Common forms</p>
+          <h2>Cost bands we already researched</h2>
+        </div>
+      </div>
+      <div class="ledger">
+        {data.types.map((t) => (
+          <a class="agency-card" href={`/bonds/${t.id}/`}>
+            <div class="rank-plate">
+              <strong>B</strong>
+              <span>Form</span>
+            </div>
+            <div class="card-body">
               <h3>{t.name}</h3>
               <p>{t.description}</p>
-            </div>
-            <div class="br-stats">
-              <div class="br-stat">
-                <div class="br-stat-label">Bond Range</div>
-                <div class="br-stat-value">{t.bondRange}</div>
-              </div>
-              <div class="br-stat">
-                <div class="br-stat-label">Typical Cost</div>
-                <div class="br-stat-value">{t.typical}</div>
+              <div class="signals">
+                <span>Typical {t.typical}</span>
+                <span>Face {t.bondRange}</span>
               </div>
             </div>
           </a>
@@ -35,42 +57,4 @@ import data from '../../data/bonds.json';
       </div>
     </div>
   </section>
-
-  <section class="cta-band">
-    <div class="container">
-      <h2>Estimate Your Bond Cost</h2>
-      <p>Pick your bond type, amount, and credit range. See your estimated premium in 30 seconds.</p>
-      <a href="/#calculator">Cost Calculator</a>
-    </div>
-  </section>
 </Layout>
-
-<style>
-  .bond-list { display: flex; flex-direction: column; gap: 14px; }
-  .bond-row {
-    display: flex;
-    gap: 24px;
-    align-items: center;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 24px;
-    text-decoration: none;
-    color: var(--text);
-    transition: border-color 0.2s, box-shadow 0.2s;
-  }
-  .bond-row:hover { border-color: var(--primary-border); box-shadow: var(--shadow); text-decoration: none; }
-  .br-info { flex: 1; }
-  .br-info h3 { font-size: 1.05rem; margin-bottom: 4px; }
-  .br-info p { font-size: 0.85rem; color: var(--text-secondary); margin: 0; }
-  .br-stats { display: flex; gap: 20px; flex-shrink: 0; }
-  .br-stat { text-align: right; }
-  .br-stat-label { font-size: 0.7rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.3px; }
-  .br-stat-value { font-size: 0.92rem; font-weight: 700; }
-
-  @media (max-width: 768px) {
-    .bond-row { flex-direction: column; align-items: flex-start; }
-    .br-stats { flex-direction: row; gap: 16px; }
-    .br-stat { text-align: left; }
-  }
-</style>
