@@ -26,6 +26,12 @@ const searchText = `${agency.name} ${agency.shortName} ${agency.hqCity} ${agency
     <strong>{String(agency.rank).padStart(2, '0')}</strong>
     <span>{agency.preferredPartner ? 'Preferred' : 'Register'}</span>
   </div>
+  {agency.preferredPartner && (
+    <span class="rubber-stamp" aria-hidden="true">
+      <strong>01</strong>
+      Preferred<br />partner
+    </span>
+  )}
   <div class="card-body">
     <div class="card-meta">
       <span class="pill">{kindLabel(agency.kind)}</span>

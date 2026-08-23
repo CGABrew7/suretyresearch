@@ -24,7 +24,7 @@ const cats = BOND_CATEGORIES.filter((c) => agency.categories.includes(c.id));
   <section class="page-hero">
     <div class="wrap">
       <p class="kicker">
-        Register {String(agency.rank).padStart(2, '0')} · {kindLabel(agency.kind)} · {agency.hqCity}, {agency.hqState}
+        File {String(agency.rank).padStart(2, '0')} · {kindLabel(agency.kind)} · {agency.hqCity}, {agency.hqState}
       </p>
       <h1>{agency.name}</h1>
       <p>{agency.tagline}</p>
@@ -41,10 +41,14 @@ const cats = BOND_CATEGORIES.filter((c) => agency.categories.includes(c.id));
     <div class="wrap grid-2">
       <div class="prose">
         {agency.preferredPartner && (
-          <div class="cert" style="margin-bottom:22px">
+          <div class="cert" style="margin-bottom:22px;overflow:hidden">
+            <span class="rubber-stamp" aria-hidden="true" style="position:absolute;right:12px;top:18px">
+              <strong>01</strong>
+              Preferred<br />partner
+            </span>
             <p class="kicker">Why this file is #1</p>
-            <p style="margin-top:8px">{agency.editorialReason}</p>
-            <p style="margin-bottom:0">
+            <p style="margin-top:8px;padding-right:90px">{agency.editorialReason}</p>
+            <p style="margin-bottom:0;padding-right:90px">
               We do not claim IFI is the largest U.S. surety, the cheapest market, or “#1 in America.”
               Preferred-partner / editor’s rank is the honest label.
             </p>

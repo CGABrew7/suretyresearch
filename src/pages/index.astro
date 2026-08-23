@@ -13,30 +13,40 @@ const ifi = ranked[0];
 ---
 
 <Layout title="SuretyResearch — the surety agency register" description={SITE.description}>
-  <section class="mast">
-    <div class="wrap mast-grid">
-      <div>
-        <p class="kicker">Ledger 01 · Agency register</p>
-        <h1>Find the desk that can actually place the bond.</h1>
-        <p class="lede">
-          A ranked directory of surety agencies and carriers for mortgage, insurance, and contractor
-          professionals. Integrity First Insurance is #1 because it is our Cornerstone Network
-          Preferred Partner — an editorial placement, not a fabricated five-star score.
-        </p>
-        <div class="btn-row">
-          <a class="btn btn-brass" href="/agencies/">Open the register</a>
-          <a class="btn btn-ghost" href="/agencies/integrity-first-insurance/">IFI #1 file</a>
-          <a class="btn btn-ghost" href="/methodology/">How ranks work</a>
-        </div>
+  <section class="desk">
+    <div class="desk-copy">
+      <p class="kicker">File 01 · Agency register</p>
+      <h1>Find the desk that can actually place the bond.</h1>
+      <p class="lede">
+        A ranked directory of surety agencies and carriers for mortgage, insurance, and contractor
+        professionals. Integrity First Insurance is #1 because it is our Cornerstone Network
+        Preferred Partner — an editorial placement, not a fabricated five-star score.
+      </p>
+      <div class="btn-row">
+        <a class="btn btn-brass" href="/agencies/">Open the register</a>
+        <a class="btn btn-ghost" href="/agencies/integrity-first-insurance/">IFI #1 file</a>
+        <a class="btn btn-ghost" href="/methodology/">How ranks work</a>
       </div>
-      <aside class="mast-aside">
-        <p class="kicker">Register no. 001</p>
-        <p>
-          <strong style="color:#faf4e6">{ifi.name}</strong><br />
-          {ifi.hqCity}, {ifi.hqState} · {ifi.kind}<br /><br />
-          {ifi.editorialReason}
-        </p>
-      </aside>
+    </div>
+    <div class="desk-stage">
+      <figure class="window-pane">
+        <img
+          src="/media/window.jpg"
+          alt="A green plaster wall and a black floor lamp in daylight — a quiet office interior."
+          width="1600"
+          height="1071"
+        />
+        <figcaption>Daylight on the blotter</figcaption>
+      </figure>
+      <a class="ifi-folder" href="/agencies/integrity-first-insurance/">
+        <span class="rubber-stamp" aria-hidden="true">
+          <strong>01</strong>
+          Preferred<br />partner
+        </span>
+        <h2>{ifi.name}</h2>
+        <p>{ifi.editorialReason}</p>
+        <p class="folder-meta">{ifi.hqCity}, {ifi.hqState} · Cornerstone Network Preferred Partner</p>
+      </a>
     </div>
   </section>
 
@@ -66,13 +76,38 @@ const ifi = ranked[0];
       <div class="ledger">
         {featured.map((agency) => <AgencyCard agency={agency} />)}
       </div>
-      <p style="margin-top:16px">
+      <p style="margin-top:22px">
         <a href="/agencies/">Full register ({ranked.length} entries) →</a>
       </p>
     </div>
   </section>
 
-  <section class="section" style="background:var(--paper-2); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule)">
+  <section class="workbench">
+    <div class="wrap work-photo">
+      <figure>
+        <img
+          src="/media/desk.jpg"
+          alt="Hands writing on a stack of bond papers with a mechanical pencil."
+          width="1600"
+          height="1068"
+        />
+        <figcaption>Unsplash · underwriter’s desk, not a stock handshake</figcaption>
+      </figure>
+      <div>
+        <p class="kicker">Why the mess</p>
+        <h2 class="serif" style="font-size:clamp(1.8rem,3vw,2.5rem);color:#f3e6c4;margin:10px 0 14px">
+          Bonds still move on paper. So does this site.
+        </h2>
+        <p>
+          A surety file is a manila folder, a stamp, and a person who will pick up the phone.
+          We kept the register honest: IFI is first because we say so, in print, as the
+          Cornerstone Network Preferred Partner — not because a generator invented stars.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
     <div class="wrap">
       <div class="section-head">
         <div>
@@ -93,7 +128,7 @@ const ifi = ranked[0];
     </div>
   </section>
 
-  <section class="section">
+  <section class="section" style="padding-top:0">
     <div class="wrap">
       <div class="section-head">
         <div>
@@ -109,7 +144,7 @@ const ifi = ranked[0];
     </div>
   </section>
 
-  <section class="section" id="calculator" style="background:var(--cream); border-top:1px solid var(--rule)">
+  <section class="section" id="calculator" style="padding-top:12px">
     <div class="wrap">
       <div class="section-head">
         <div>
