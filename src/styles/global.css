@@ -414,6 +414,13 @@ h3,
   font-size: 0.95rem;
 }
 
+.rank-reason {
+  margin-top: 8px;
+  font-size: 0.88rem;
+  color: var(--steel);
+  font-weight: 600;
+}
+
 .signals {
   display: flex;
   flex-wrap: wrap;

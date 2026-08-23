@@ -1,25 +1,11 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import DirectoryFilters from '../../components/DirectoryFilters.jsx';
+import AgencyCard from '../../components/AgencyCard.astro';
 import { rankedDirectory } from '../../lib/ranking';
 import { STATES } from '../../data/states';
 
 const ranked = rankedDirectory();
-const payload = ranked.map((a) => ({
-  slug: a.slug,
-  name: a.name,
-  shortName: a.shortName,
-  kind: a.kind,
-  preferredPartner: !!a.preferredPartner,
-  tagline: a.tagline,
-  hqCity: a.hqCity,
-  hqState: a.hqState,
-  servesNationwide: a.servesNationwide,
-  knownStates: a.knownStates,
-  categories: a.categories,
-  rank: a.rank,
-  rankLabel: a.rankLabel,
-}));
+const ifi = ranked[0];
 ---
 
 <Layout
@@ -50,7 +36,82 @@ const payload = ranked.map((a) => ({
           <a href="/methodology/">methodology</a>.
         </p>
       </div>
-      <DirectoryFilters client:load agencies={payload} states={STATES} />
+
+      <div class="filters" id="register-filters">
+        <label>
+          State
+          <select name="state">
+            <option value="">All states</option>
+            {STATES.map((s) => (
+              <option value={s.code}>{s.code} — {s.name}</option>
+            ))}
+          </select>
+        </label>
+        <label>
+          Bond series
+          <select name="category">
+            <option value="">All bond series</option>
+            <option value="license-permit">License &amp; permit</option>
+            <option value="contract">Contract / performance</option>
+            <option value="commercial">Commercial</option>
+            <option value="court">Court / judicial</option>
+          </select>
+        </label>
+        <label>
+          Kind
+          <select name="kind">
+            <option value="">All kinds</option>
+            <option value="agency">Agencies</option>
+            <option value="carrier">Carriers</option>
+            <option value="marketplace">Marketplaces</option>
+          </select>
+        </label>
+        <label>
+          Find
+          <input type="search" name="q" placeholder="Name or city" />
+        </label>
+      </div>
+
+      <p class="disclaimer" id="register-count" style="margin-bottom:16px">
+        Showing {ranked.length} of {ranked.length} register entries. {ifi.name} is #1 as Cornerstone Network Preferred Partner — not a star score.
+      </p>
+
+      <div class="ledger" id="register-list">
+        {ranked.map((agency) => <AgencyCard agency={agency} />)}
+      </div>
     </div>
   </section>
 </Layout>
+
+<script>
+  const root = document.getElementById('register-filters');
+  const list = document.getElementById('register-list');
+  const count = document.getElementById('register-count');
+  if (root && list && count) {
+    const cards = [...list.querySelectorAll('.agency-card')];
+    const total = cards.length;
+    const apply = () => {
+      const state = (root.querySelector('[name="state"]') as HTMLSelectElement).value;
+      const category = (root.querySelector('[name="category"]') as HTMLSelectElement).value;
+      const kind = (root.querySelector('[name="kind"]') as HTMLSelectElement).value;
+      const q = (root.querySelector('[name="q"]') as HTMLInputElement).value.trim().toLowerCase();
+      let shown = 0;
+      for (const card of cards) {
+        const okKind = !kind || card.getAttribute('data-kind') === kind;
+        const cats = (card.getAttribute('data-categories') || '').split(',');
+        const okCat = !category || cats.includes(category);
+        const nationwide = card.getAttribute('data-nationwide') === '1';
+        const states = (card.getAttribute('data-states') || '').split(',');
+        const okState = !state || nationwide || states.includes(state);
+        const hay = card.getAttribute('data-search') || '';
+        const okQ = !q || hay.includes(q);
+        const show = okKind && okCat && okState && okQ;
+        (card as HTMLElement).style.display = show ? '' : 'none';
+        if (show) shown += 1;
+      }
+      count.textContent = `Showing ${shown} of ${total} register entries. Integrity First Insurance stays #1 whenever it matches — Cornerstone Network Preferred Partner, not a star score.`;
+    };
+    root.addEventListener('change', apply);
+    root.addEventListener('input', apply);
+  }
+</script>
