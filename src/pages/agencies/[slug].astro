@@ -55,7 +55,9 @@ const cats = BOND_CATEGORIES.filter((c) => agency.categories.includes(c.id));
           </div>
         )}
         <p>{agency.summary}</p>
-        {agency.detail.map((p) => <p>{p}</p>)}
+        {agency.detail.map((p) => (
+          p.includes('<a href') ? <p set:html={p} /> : <p>{p}</p>
+        ))}
 
         {agency.notes.length > 0 && (
           <>
