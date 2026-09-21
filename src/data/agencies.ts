@@ -249,7 +249,7 @@ export const AGENCIES: AgencyRecord[] = [
     summary:
       "Lance Surety Bonds is a Pennsylvania agency (Doylestown) with a BBB A+ accredited file. BBB lists a 1 May 2010 start date, accreditation since 9 February 2012, and Pennsylvania license 683386.",
     detail: [
-      "BBB’s public description names license bonds, auto dealer, freight broker, mortgage broker, contract, court, appeal, fiduciary, probate, and fidelity bonds.",
+      "BBB’s public description names license bonds, <a href=\"/bonds/auto-dealer/\">auto dealer</a>, <a href=\"/bonds/freight-broker/\">freight broker</a>, <a href=\"/bonds/mortgage-broker/\">mortgage broker</a>, contract, court, appeal, fiduciary, probate, and fidelity bonds.",
       "We show the BBB letter grade only. We do not invent a star average.",
     ],
     hqCity: "Doylestown",
