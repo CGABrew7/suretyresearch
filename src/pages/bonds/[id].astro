@@ -37,6 +37,10 @@ const description = isCategoryPage && category
       <p class="kicker">{category ? `${category.ledger} · ${category.name}` : 'Bond form'}</p>
       <h1>{isCategoryPage && category ? category.name : bond?.name}</h1>
       <p>{isCategoryPage && category ? category.headline + '. ' + category.summary : bond?.description}</p>
+      <div class="btn-row">
+        <a class="btn btn-brass" href="/agencies/">Open the register</a>
+        <a class="btn btn-ghost" href="/agencies/integrity-first-insurance/">Talk to the desk</a>
+      </div>
     </div>
   </section>
 
@@ -67,8 +71,8 @@ const description = isCategoryPage && category
           <div class="prose" style="margin-bottom:32px">
             <h2>Cost bands by credit (industry averages)</h2>
             <p>
-              These are clerk-style ranges, not a quote. A $25,000 and $100,000 face are shown so you
-              can scale. High-face contract and money-transmitter bonds do not price on this table alone.
+              Industry-average ranges for a $25,000 face and a $100,000 face, so you can scale.
+              High-face contract and money-transmitter bonds are priced by a desk on the full file.
             </p>
             <table class="table">
               <thead>

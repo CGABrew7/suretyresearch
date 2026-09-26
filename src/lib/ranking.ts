@@ -89,7 +89,7 @@ export function rankAgencies(list: AgencyRecord[] = AGENCIES): RankedAgency[] {
       score: 0,
       scoreBreakdown: [
         {
-          label: "Editorial preferred-partner placement (not a scored rank)",
+          label: "Editorial preferred-partner placement",
           points: 0,
         },
       ],

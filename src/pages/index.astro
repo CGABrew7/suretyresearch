@@ -3,157 +3,265 @@ import Layout from '../layouts/Layout.astro';
 import AgencyCard from '../components/AgencyCard.astro';
 import StatePicker from '../components/StatePicker.astro';
 import BondCalculator from '../components/BondCalculator.jsx';
-import { rankedDirectory } from '../lib/ranking';
+import { rankedDirectory, kindLabel } from '../lib/ranking';
 import { BOND_CATEGORIES } from '../data/categories';
-import { SITE } from '../data/site';
+import { HOME_FAQS } from '../data/faqs';
 
 const ranked = rankedDirectory();
 const featured = ranked.slice(0, 6);
+const excerpt = ranked.slice(0, 4);
 const ifi = ranked[0];
 ---
 
-<Layout title="SuretyResearch — the surety agency register" description={SITE.description}>
-  <section class="desk">
-    <div class="desk-copy">
-      <p class="kicker">File 01 · Agency register</p>
-      <h1>Find the desk that can actually place the bond.</h1>
-      <p class="lede">
-        A ranked directory of surety agencies and carriers for mortgage, insurance, and contractor
-        professionals. Integrity First Insurance is #1 because it is our Cornerstone Network
-        Preferred Partner — an editorial placement, not a fabricated five-star score.
-      </p>
-      <div class="btn-row">
-        <a class="btn btn-brass" href="/agencies/">Open the register</a>
-        <a class="btn btn-ghost" href="/agencies/integrity-first-insurance/">IFI #1 file</a>
-        <a class="btn btn-ghost" href="/methodology/">How ranks work</a>
+<Layout
+  title="SuretyResearch — the surety agency register"
+  description="A ranked surety agency register for mortgage, insurance, and contractor professionals. Sources sit on every card. Integrity First Insurance is the Cornerstone Network Preferred Partner."
+>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="kicker">Surety research desk</p>
+        <h1>Find the desk that can place the bond.</h1>
+        <p class="lede">
+          A ranked register for mortgage, insurance, and contractor professionals.
+          Sources sit on every card. {ifi.name} is the Cornerstone Network Preferred Partner —
+          the desk this file opens first.
+        </p>
+        <div class="btn-row">
+          <a class="btn btn-brass" href="/agencies/">Open the register</a>
+          <a class="btn btn-ghost" href="#calculator">Sketch a premium</a>
+        </div>
+        <p class="hero-note">
+          <a href={`/agencies/${ifi.slug}/`}>{ifi.hqCity}, {ifi.hqState} · Preferred partner file</a>
+          <span aria-hidden="true"> · </span>
+          <a href="/methodology/">How the order is built</a>
+        </p>
       </div>
-    </div>
-    <div class="desk-stage">
-      <figure class="window-pane">
-        <img
-          src="/media/window.jpg"
-          alt="A green plaster wall and a black floor lamp in daylight — a quiet office interior."
-          width="1600"
-          height="1071"
-        />
-        <figcaption>Daylight on the blotter</figcaption>
-      </figure>
-      <a class="ifi-folder" href="/agencies/integrity-first-insurance/">
-        <span class="rubber-stamp" aria-hidden="true">
-          <strong>01</strong>
-          Preferred<br />partner
-        </span>
-        <h2>{ifi.name}</h2>
-        <p>{ifi.editorialReason}</p>
-        <p class="folder-meta">{ifi.hqCity}, {ifi.hqState} · Cornerstone Network Preferred Partner</p>
-      </a>
+
+      <aside class="register-slip" aria-label="Opening lines of the register">
+        <header class="slip-head">
+          <p class="kicker">Opening lines</p>
+          <p>{ranked.length} desks on file</p>
+        </header>
+        <ol>
+          {excerpt.map((agency) => (
+            <li>
+              <a href={`/agencies/${agency.slug}/`}>
+                <span class="slip-rank">{String(agency.rank).padStart(2, '0')}</span>
+                <span class="slip-name">
+                  <strong>{agency.name}</strong>
+                  <em>
+                    {agency.preferredPartner
+                      ? 'Preferred partner'
+                      : `${kindLabel(agency.kind)} · ${agency.hqCity}, ${agency.hqState}`}
+                  </em>
+                </span>
+              </a>
+            </li>
+          ))}
+        </ol>
+        <a class="slip-more" href="/agencies/">Open the register</a>
+      </aside>
     </div>
   </section>
 
-  <section class="section">
+  <section class="stat-band" aria-label="What the register contains">
     <div class="wrap">
       <div class="stat-row">
-        <div><strong>{ranked.length}</strong><span>Agencies &amp; carriers on the register</span></div>
-        <div><strong>01</strong><span>IFI — preferred partner, labeled</span></div>
-        <div><strong>4</strong><span>Bond series: license, contract, commercial, court</span></div>
-        <div><strong>50</strong><span>State picker — filter the same cards</span></div>
+        <div><strong>{ranked.length}</strong><span>Agencies and carriers on the register</span></div>
+        <div><strong>01</strong><span>IFI, labeled preferred partner</span></div>
+        <div><strong>4</strong><span>Series: license, contract, commercial, court</span></div>
+        <div><strong>50</strong><span>State files on the same cards</span></div>
       </div>
     </div>
   </section>
 
-  <section class="section" style="padding-top:0">
+  <section class="section" id="problem">
     <div class="wrap">
       <div class="section-head">
         <div>
-          <p class="kicker">The register</p>
-          <h2>Ranked desks, sources on the card</h2>
+          <p class="kicker">The stall</p>
+          <h2>The form has a name. The desk often does not.</h2>
         </div>
         <p>
-          After IFI, order follows live-cited public signals: BBB letter grades, AM Best (when we
-          opened a source), years, coverage, and bond-category breadth. Missing data is omitted — never invented.
+          License, contract, and court bonds move when a specific writer will take the file.
+          Most public pages skip that name.
+        </p>
+      </div>
+      <div class="point-grid">
+        <article>
+          <span>01</span>
+          <h3>Carrier pages describe capacity.</h3>
+          <p>They rarely name the licensed desk that will pick up a mortgage-broker or contractor file this week.</p>
+        </article>
+        <article>
+          <span>02</span>
+          <h3>Lists arrive without a method.</h3>
+          <p>An order without a source is a brochure. This register prints the signal, the date, and the link.</p>
+        </article>
+        <article>
+          <span>03</span>
+          <h3>The call should come after the file.</h3>
+          <p>A state filter and a premium band sit in front of the phone number, so the conversation starts with the form.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="kicker">The file</p>
+          <h2>One register for the path you are already on.</h2>
+        </div>
+        <p>Built for people who already know they need a bond and need the desk that can write it.</p>
+      </div>
+      <div class="point-grid">
+        <article>
+          <span>Agencies</span>
+          <h3>{ranked.length} desks, in an order you can read.</h3>
+          <p>
+            Preferred partner first. Every other name follows cited public signals: BBB letter grade,
+            AM Best when a source was opened, years, coverage, and bond-series breadth.
+          </p>
+        </article>
+        <article>
+          <span>Series</span>
+          <h3>License, contract, commercial, court.</h3>
+          <p>Four series written the way a compliance officer or a contractor’s office actually asks the question.</p>
+        </article>
+        <article>
+          <span>Before the call</span>
+          <h3>State filter and a premium band.</h3>
+          <p>Nationwide writers appear in every state file. The sketch is an industry-average range a desk can confirm.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="register">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="kicker">Proof</p>
+          <h2>The first six files, sources on the card.</h2>
+        </div>
+        <p>
+          {ifi.name} leads as Cornerstone Network Preferred Partner.
+          The names under it carry the public signals we opened.
         </p>
       </div>
       <div class="ledger">
         {featured.map((agency) => <AgencyCard agency={agency} />)}
       </div>
-      <p style="margin-top:22px">
-        <a href="/agencies/">Full register ({ranked.length} entries) →</a>
-      </p>
-    </div>
-  </section>
-
-  <section class="workbench">
-    <div class="wrap work-photo">
-      <figure>
-        <img
-          src="/media/desk.jpg"
-          alt="Hands writing on a stack of bond papers with a mechanical pencil."
-          width="1600"
-          height="1068"
-        />
-        <figcaption>Unsplash · underwriter’s desk, not a stock handshake</figcaption>
-      </figure>
-      <div>
-        <p class="kicker">Why the mess</p>
-        <h2 class="serif" style="font-size:clamp(1.8rem,3vw,2.5rem);color:#f3e6c4;margin:10px 0 14px">
-          Bonds still move on paper. So does this site.
-        </h2>
-        <p>
-          A surety file is a manila folder, a stamp, and a person who will pick up the phone.
-          We kept the register honest: IFI is first because we say so, in print, as the
-          Cornerstone Network Preferred Partner — not because a generator invented stars.
-        </p>
+      <div class="btn-row">
+        <a class="btn btn-brass" href="/agencies/">Open the register</a>
+        <a class="btn btn-ghost" href={`/agencies/${ifi.slug}/`}>Preferred partner file</a>
       </div>
     </div>
   </section>
 
-  <section class="section">
+  <section class="section section-tight" id="how">
     <div class="wrap">
       <div class="section-head">
         <div>
-          <p class="kicker">Series A–D</p>
-          <h2>Bond types, written like a clerk would</h2>
+          <p class="kicker">How it works</p>
+          <h2>Three moves. Then a person.</h2>
         </div>
-        <p>SuretyBonds.com-style clarity on what the bond is for. We remain a directory, not a clone of their brand.</p>
       </div>
-      <div class="grid-2">
+      <ol class="steps">
+        <li>
+          <span>01</span>
+          <h3>Name the series</h3>
+          <p>License and permit, contract, commercial, or court. The series page says who posts the bond and the usual money.</p>
+        </li>
+        <li>
+          <span>02</span>
+          <h3>Open the register</h3>
+          <p>Filter by state and kind. Read the card — letter grade, appointment, years — before you leave the site.</p>
+        </li>
+        <li>
+          <span>03</span>
+          <h3>Talk to the desk</h3>
+          <p>
+            {ifi.name} in {ifi.hqCity} is the preferred path. Every other file links to its own site.
+          </p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" id="series">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="kicker">Bond series</p>
+          <h2>Four paths. One desk at the end of each.</h2>
+        </div>
+        <p>Read the series, then talk to the preferred desk with the form already named.</p>
+      </div>
+      <div class="series-grid">
         {BOND_CATEGORIES.map((cat) => (
-          <a class="tile" href={`/bonds/${cat.id}/`}>
-            <p class="kicker">{cat.ledger}</p>
-            <h3>{cat.name}</h3>
-            <p>{cat.headline}. {cat.summary}</p>
-          </a>
+          <article class="series-card">
+            <a class="series-main" href={`/bonds/${cat.id}/`}>
+              <p class="kicker">{cat.ledger}</p>
+              <h3>{cat.name}</h3>
+              <p>{cat.headline}.</p>
+              <p class="series-who">{cat.whoNeeds}</p>
+            </a>
+            <a class="series-desk" href="/agencies/integrity-first-insurance/">Talk to the desk</a>
+          </article>
         ))}
       </div>
     </div>
   </section>
 
-  <section class="section" style="padding-top:0">
+  <section class="section section-tight" id="states">
     <div class="wrap">
       <div class="section-head">
         <div>
           <p class="kicker">Jurisdictions</p>
-          <h2>Pick a state. Same register, filtered.</h2>
+          <h2>Pick a state. Same register, local file.</h2>
         </div>
         <p>
-          Nationwide writers appear in every state file. IFI appears because Cornerstone-network
-          placement covers multi-state licensees — we do not claim IFI holds a resident license in all 50.
+          Nationwide writers appear in every state file, including the preferred partner through
+          Cornerstone-network placement. Resident appointments are on each agency file.
         </p>
       </div>
       <StatePicker />
     </div>
   </section>
 
-  <section class="section" id="calculator" style="padding-top:12px">
+  <section class="section" id="calculator">
     <div class="wrap">
       <div class="section-head">
         <div>
           <p class="kicker">Premium sketch</p>
-          <h2>A range before you call the desk</h2>
+          <h2>A range before you call the desk.</h2>
         </div>
-        <p>Industry-average bands only. Your actual rate is underwritten. After the estimate, talk to IFI / Cornerstone.</p>
+        <p>Industry-average bands from the forms we already researched. Your rate is underwritten.</p>
       </div>
       <BondCalculator client:load />
+    </div>
+  </section>
+
+  <section class="section section-tight" id="faq">
+    <div class="wrap faq-layout">
+      <div>
+        <p class="kicker">Questions</p>
+        <h2>Short answers before the longer files.</h2>
+        <p class="faq-intro">The ranking rulebook, including how the preferred-partner label works, lives on the methodology page.</p>
+        <a class="text-link" href="/faq/">All questions</a>
+      </div>
+      <div>
+        {HOME_FAQS.map((f) => (
+          <details class="faq-item">
+            <summary class="faq-q">{f.q}<span aria-hidden="true">+</span></summary>
+            <div class="faq-a" set:html={f.a} />
+          </details>
+        ))}
+      </div>
     </div>
   </section>
 </Layout>

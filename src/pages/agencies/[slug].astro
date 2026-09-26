@@ -41,17 +41,10 @@ const cats = BOND_CATEGORIES.filter((c) => agency.categories.includes(c.id));
     <div class="wrap grid-2">
       <div class="prose">
         {agency.preferredPartner && (
-          <div class="cert" style="margin-bottom:22px;overflow:hidden">
-            <span class="rubber-stamp" aria-hidden="true" style="position:absolute;right:12px;top:18px">
-              <strong>01</strong>
-              Preferred<br />partner
-            </span>
+          <div class="cert" style="margin-bottom:22px">
             <p class="kicker">Why this file is #1</p>
-            <p style="margin-top:8px;padding-right:90px">{agency.editorialReason}</p>
-            <p style="margin-bottom:0;padding-right:90px">
-              We do not claim IFI is the largest U.S. surety, the cheapest market, or “#1 in America.”
-              Preferred-partner / editor’s rank is the honest label.
-            </p>
+            <p style="margin-top:8px">{agency.editorialReason}</p>
+            <p style="margin-bottom:0"><a href="/methodology/">How this rank is labeled</a></p>
           </div>
         )}
         <p>{agency.summary}</p>
@@ -110,13 +103,13 @@ const cats = BOND_CATEGORIES.filter((c) => agency.categories.includes(c.id));
             {agency.preferredPartner ? (
               <>
                 <a class="btn btn-brass" href={`tel:${SITE.ifi.phone.replace(/-/g, '')}`}>{SITE.ifi.phone}</a>
-                <a class="btn" href={agency.website} target="_blank" rel="noopener">IFI website</a>
-                <a class="btn" href={SITE.ifi.cornerstoneSurety} target="_blank" rel="noopener">Cornerstone Surety</a>
+                <a class="btn btn-ghost" href={agency.website} target="_blank" rel="noopener">IFI website</a>
+                <a class="btn btn-ghost" href={SITE.ifi.cornerstoneSurety} target="_blank" rel="noopener">Cornerstone Surety</a>
               </>
             ) : (
               <>
-                <a class="btn btn-brass" href="/agencies/integrity-first-insurance/">Talk to IFI</a>
-                <a class="btn" href={agency.website} target="_blank" rel="noopener">Their site</a>
+                <a class="btn btn-brass" href="/agencies/integrity-first-insurance/">Talk to the desk</a>
+                <a class="btn btn-ghost" href={agency.website} target="_blank" rel="noopener">Their site</a>
               </>
             )}
           </div>

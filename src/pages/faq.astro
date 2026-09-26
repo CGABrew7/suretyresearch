@@ -1,33 +1,30 @@
 ---
 import Layout from '../layouts/Layout.astro';
-
-const faqs = [
-  { q: "What is a surety bond?", a: "A three-party guarantee: you (principal), the obligee (usually a regulator, owner, or court), and the surety. If you fail the obligation, the surety pays, then comes to you for reimbursement." },
-  { q: "Why is Integrity First Insurance #1?", a: "Editorial preferred-partner placement. IFI is the Cornerstone network agency this register introduces first. It is not a claim that IFI is #1 in America, and it is not a star score. <a href='/methodology/'>Methodology</a>." },
-  { q: "How much does a bond cost?", a: "An annual premium, often 1–15% of face amount, driven by credit, form, and underwriting. Use the <a href='/#calculator'>premium sketch</a> for a band, then call a desk." },
-  { q: "Is a bond insurance?", a: "No. Insurance pays you. A bond pays someone else if you fail, and you indemnify the surety. <a href='/guides/bond-vs-insurance/'>Comparison</a>." },
-  { q: "Does applying hurt my credit?", a: "Most license-bond applications use a soft pull. Contract surety is a different underwriting file." },
-  { q: "Can I get a bond with weak credit?", a: "Often yes, at a higher rate, sometimes with collateral. <a href='/guides/credit-score-impact/'>Credit guide</a>." },
-  { q: "How long does issuance take?", a: "Many license and permit bonds: one to three business days. Heavy contract or money-transmitter files: weeks." },
-  { q: "Who actually issues the paper?", a: "An admitted surety, through a licensed agent or a direct-writing carrier. This site is a directory. IFI / Cornerstone is the preferred placement path." },
-];
+import { FAQS } from '../data/faqs';
 ---
 
-<Layout title="FAQ — SuretyResearch" description="Surety bond FAQ plus how the IFI preferred-partner rank works.">
+<Layout
+  title="FAQ — SuretyResearch"
+  description="Surety bond questions, plus how the Integrity First Insurance preferred-partner rank is labeled."
+>
   <section class="page-hero">
     <div class="wrap">
       <p class="kicker">Questions</p>
-      <h1>Short answers. Longer files live on the register.</h1>
+      <h1>Short answers. The longer files live on the register.</h1>
+      <p>Ranking rules, including the preferred-partner label, are written out on the methodology page.</p>
     </div>
   </section>
   <section class="section">
-    <div class="wrap" style="max-width:720px">
-      {faqs.map((f) => (
+    <div class="wrap faq-stack">
+      {FAQS.map((f) => (
         <details class="faq-item">
-          <summary class="faq-q">{f.q}<span>+</span></summary>
+          <summary class="faq-q">{f.q}<span aria-hidden="true">+</span></summary>
           <div class="faq-a" set:html={f.a} />
         </details>
       ))}
+      <p class="faq-foot">
+        <a class="btn btn-brass" href="/agencies/">Open the register</a>
+      </p>
     </div>
   </section>
 </Layout>
