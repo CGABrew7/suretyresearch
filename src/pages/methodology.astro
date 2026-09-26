@@ -13,7 +13,7 @@ const scored = ranked.filter((a) => !a.preferredPartner);
   <section class="page-hero">
     <div class="wrap">
       <p class="kicker">House rules</p>
-      <h1>How the register is ranked — and what we refuse to invent.</h1>
+      <h1>How the register is ranked.</h1>
       <p>
         This is a directory with an honest thumb on the scale for one partner. Everything else is
         arithmetic on sources we actually opened.
@@ -53,6 +53,7 @@ const scored = ranked.filter((a) => !a.preferredPartner);
       <p>Ties break by older founding year, then A–Z. Scores are printed on each file.</p>
 
       <h2>3. Current scored order (after IFI)</h2>
+      <div class="table-scroll">
       <table class="table">
         <thead>
           <tr><th>#</th><th>Name</th><th>Score</th><th>Kind</th></tr>
@@ -68,6 +69,7 @@ const scored = ranked.filter((a) => !a.preferredPartner);
           ))}
         </tbody>
       </table>
+      </div>
 
       <h2>4. What a listing is not</h2>
       <ul>

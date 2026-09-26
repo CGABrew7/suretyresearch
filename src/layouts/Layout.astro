@@ -17,6 +17,8 @@ const {
 const canonicalUrl = canonical
   ? new URL(canonical, SITE.url).toString()
   : new URL(Astro.url.pathname, SITE.url).toString();
+
+const phoneHref = `tel:${SITE.ifi.phone.replace(/-/g, '')}`;
 ---
 
 <!DOCTYPE html>
@@ -25,14 +27,14 @@ const canonicalUrl = canonical
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#1c3324" />
+    <meta name="theme-color" content="#0c1424" />
     <link rel="canonical" href={canonicalUrl} />
     <title>{title}</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,600&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;1,6..72,500&display=swap"
       rel="stylesheet"
     />
     <meta property="og:title" content={title} />
@@ -42,15 +44,12 @@ const canonicalUrl = canonical
     <meta name="twitter:card" content="summary" />
   </head>
   <body>
-    <a class="skip" href="#main">Skip to register</a>
+    <a class="skip" href="#main">Skip to content</a>
     <header class="site-header" id="site-header">
       <div class="wrap header-bar">
         <a class="brand" href="/">
-          <span class="brand-mark">SR</span>
-          <span class="brand-name">
-            SuretyResearch
-            <span>The working file · nationwide</span>
-          </span>
+          <span class="brand-name">SuretyResearch</span>
+          <span class="brand-kicker">Agency register</span>
         </a>
         <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
         <nav class="nav-links" id="nav-links">
@@ -59,7 +58,7 @@ const canonicalUrl = canonical
           <a href="/states/">States</a>
           <a href="/methodology/">Methodology</a>
           <a href="/guides/">Guides</a>
-          <a class="nav-cta" href="/agencies/integrity-first-insurance/">Contact IFI</a>
+          <a class="nav-cta" href="/agencies/">Open the register</a>
         </nav>
       </div>
     </header>
@@ -71,15 +70,15 @@ const canonicalUrl = canonical
     <section class="cta-band">
       <div class="wrap">
         <p class="kicker">Preferred desk</p>
-        <h2>Need a bond placed — not another sales form?</h2>
+        <h2>The register is open. The Alpharetta desk answers.</h2>
         <p>
-          Integrity First Insurance is our Cornerstone Network Preferred Partner. Call the
-          Georgia desk or open a Cornerstone surety request. Licensed placement. Not legal advice.
+          Integrity First Insurance is the Cornerstone Network Preferred Partner. Open the full
+          file, or call {SITE.ifi.phone}.
         </p>
         <div class="btn-row">
-          <a class="btn btn-brass" href={`tel:${SITE.ifi.phone.replace(/-/g, '')}`}>Call {SITE.ifi.phone}</a>
+          <a class="btn btn-brass" href="/agencies/">Open the register</a>
+          <a class="btn btn-ghost" href={phoneHref}>Call {SITE.ifi.phone}</a>
           <a class="btn btn-ghost" href={SITE.ifi.cornerstoneSurety} target="_blank" rel="noopener">Cornerstone Surety</a>
-          <a class="btn btn-ghost" href="/agencies/integrity-first-insurance/">IFI register page</a>
         </div>
       </div>
     </section>
@@ -88,31 +87,33 @@ const canonicalUrl = canonical
       <div class="wrap">
         <div class="footer-grid">
           <div>
-            <a class="brand" href="/" style="margin-bottom:10px">
-              <span class="brand-mark">SR</span>
-              <span class="brand-name">SuretyResearch<span>Directory + research</span></span>
+            <a class="brand" href="/">
+              <span class="brand-name">SuretyResearch</span>
+              <span class="brand-kicker">Directory and research</span>
             </a>
-            <p>
+            <p class="footer-note">
               A ranked register of surety agencies and carriers for mortgage, insurance, and
-              contractor professionals. Editorial rank #1 is IFI — labeled, not a fake star score.
+              contractor professionals. Rank 01 is an editorial Cornerstone Network Preferred
+              Partner placement. It is not a fabricated star score, and it is not a claim that
+              Integrity First Insurance is the largest U.S. surety.
             </p>
           </div>
-          <div>
-            <h4>Register</h4>
+          <div class="footer-links">
+            <p class="footer-label">Register</p>
             <a href="/agencies/">All agencies</a>
             <a href="/agencies/integrity-first-insurance/">Integrity First Insurance</a>
             <a href="/states/">By state</a>
             <a href="/methodology/">How ranking works</a>
           </div>
-          <div>
-            <h4>Bond series</h4>
+          <div class="footer-links">
+            <p class="footer-label">Bond series</p>
             <a href="/bonds/license-permit/">License &amp; permit</a>
             <a href="/bonds/contract/">Contract / performance</a>
             <a href="/bonds/commercial/">Commercial</a>
             <a href="/bonds/court/">Court / judicial</a>
           </div>
-          <div>
-            <h4>House</h4>
+          <div class="footer-links">
+            <p class="footer-label">House</p>
             <a href="/about/">About</a>
             <a href="/guides/">Guides</a>
             <a href="/faq/">FAQ</a>
@@ -127,12 +128,17 @@ const canonicalUrl = canonical
       </div>
     </footer>
 
+    <div class="mobile-cta">
+      <a class="btn btn-brass" href="/agencies/">Open the register</a>
+    </div>
+
     <script>
       const header = document.getElementById('site-header');
       const toggle = header?.querySelector('.nav-toggle');
       toggle?.addEventListener('click', () => {
         const open = header?.classList.toggle('is-open');
         toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        toggle.textContent = open ? 'Close' : 'Menu';
       });
     </script>
   </body>

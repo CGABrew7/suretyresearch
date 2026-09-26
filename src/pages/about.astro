@@ -3,34 +3,92 @@ import Layout from '../layouts/Layout.astro';
 import { SITE } from '../data/site';
 ---
 
-<Layout title="About — SuretyResearch" description="SuretyResearch is a surety agency directory and research desk. Owner: Jeff Brewer / Hanok. Preferred partner: Integrity First Insurance.">
+<Layout
+  title="About — SuretyResearch"
+  description="SuretyResearch is the surety register kept by Jeff Brewer for mortgage, insurance, and contractor files. The preferred desk is Integrity First Insurance in Alpharetta."
+>
   <section class="page-hero">
     <div class="wrap">
-      <p class="kicker">The house</p>
-      <h1>A working file, not a quote mill.</h1>
-      <p>SuretyResearch publishes a ranked directory of surety agencies and carriers, plus the bond-type notes licensed professionals actually need.</p>
+      <p class="kicker">About the desk</p>
+      <h1>Built for the person who has to place the bond.</h1>
+      <p>
+        SuretyResearch is the register Jeff Brewer keeps for mortgage, insurance, and contractor
+        files. The phone number at the top of it is his own agency.
+      </p>
     </div>
   </section>
+
   <section class="section">
-    <div class="wrap prose">
-      <h2>Who owns this</h2>
-      <p>
-        {SITE.owner}. The preferred surety desk is Integrity First Insurance — Jeff’s Georgia
-        insurance agency — working the Cornerstone network (licensing, insurance, surety).
-      </p>
-      <h2>What changed</h2>
-      <p>
-        The first version of this site was a green calculator landing page. The product is now the
-        register: per-agency files, state filters, bond-series explainers, and a methodology page
-        that admits the IFI thumb on the scale.
-      </p>
-      <h2>Independence, labeled</h2>
-      <p>
-        Cost bands and explainers are industry research. The #1 slot is an editorial preferred-partner
-        placement. Other names are ordered on cited BBB, AM Best, years, and coverage signals.
-        We do not write fake testimonials.
-      </p>
-      <p><a href="/methodology/">Read the ranking rules →</a></p>
+    <div class="wrap story-grid">
+      <div class="prose">
+        <h2>The question that started the file</h2>
+        <p>
+          When a license, a bid, or a court order needs a bond, the search usually ends in a quote
+          form. The useful fact is smaller, and harder to find: which desk will write this form,
+          in this state, with sources you can open.
+        </p>
+        <p class="pull">
+          The first slot is labeled because the owner of the site is the owner of the desk.
+        </p>
+        <h2>Alpharetta, on purpose</h2>
+        <p>
+          {SITE.owner} owns SuretyResearch and Integrity First Insurance, the Georgia agency inside
+          the Cornerstone network. The public address is 925 North Point Parkway, Suite 475,
+          Alpharetta. Cornerstone Licensing sits in Suite 470 on the same campus. Andrea runs IFI
+          day to day. Jody is a producing agent.
+        </p>
+        <p>
+          Travelers’ public agent directory lists surety among the lines at that address. A 2017
+          Insurance Business America profile described Integrity First as the in-house agency of
+          Cornerstone Support, focused on regulated operators. Bond work for licensed professionals
+          is coordinated with Covered by Cornerstone and Cornerstone Surety Bonds.
+        </p>
+        <h2>Why the calculator became a register</h2>
+        <p>
+          The first version of this site was a premium calculator on a green page. The work people
+          actually needed was a file: named agencies, a preferred partner labeled in print, and a
+          method for everyone else. That file is the register. The calculator stayed, as a sketch
+          you run before the call.
+        </p>
+        <p>
+          After IFI, the order is arithmetic on signals we opened — BBB letter grades, AM Best when
+          a page was in hand, years, coverage, series breadth. The rulebook is public.
+        </p>
+        <p>
+          <a href="/methodology/">Read how the register is ranked</a>
+        </p>
+        <div class="btn-row">
+          <a class="btn btn-brass" href="/agencies/">Open the register</a>
+          <a class="btn btn-ghost" href={`tel:${SITE.ifi.phone.replace(/-/g, '')}`}>Call {SITE.ifi.phone}</a>
+        </div>
+      </div>
+
+      <aside class="story-aside">
+        <div class="cert">
+          <p class="kicker">The preferred desk</p>
+          <h2>Integrity First Insurance</h2>
+          <p>Cornerstone Network Preferred Partner</p>
+          <dl>
+            <div>
+              <dt>Where</dt>
+              <dd>925 North Point Parkway, Suite 475, Alpharetta, GA 30005</dd>
+            </div>
+            <div>
+              <dt>Who</dt>
+              <dd>Andrea runs the agency day to day. Jody produces. Jeff Brewer owns the desk.</dd>
+            </div>
+            <div>
+              <dt>Phone</dt>
+              <dd><a href={`tel:${SITE.ifi.phone.replace(/-/g, '')}`}>{SITE.ifi.phone}</a></dd>
+            </div>
+            <div>
+              <dt>Hours</dt>
+              <dd>Monday–Friday, 8am–6pm ET, as published on the Cornerstone sites.</dd>
+            </div>
+          </dl>
+          <a class="text-link" href="/agencies/integrity-first-insurance/">Open the IFI file</a>
+        </div>
+      </aside>
     </div>
   </section>
 </Layout>

@@ -31,7 +31,7 @@ export default function BondCalculator() {
     <div className="calc-wrap" id="calculator">
       <div className="calc-card">
         <h3>Premium sketch</h3>
-        <p className="calc-sub">Three questions. A band — not a bindable quote.</p>
+        <p className="calc-sub">Three questions. An industry-average band a licensed desk can confirm.</p>
 
         <form onSubmit={handleSubmit}>
           <div className="form-group">
@@ -122,11 +122,11 @@ export default function BondCalculator() {
                 </div>
               </div>
             </div>
-            <p style={{ fontSize: '0.85rem', color: '#3f372c', marginBottom: 14 }}>
-              Industry-average sketch only. Underwriting, state form, and financials move the number.
+            <p style={{ fontSize: '0.92rem', color: '#3c4452', marginBottom: 14 }}>
+              Industry-average sketch. Underwriting, the state form, and financials set the final figure.
             </p>
             <a className="btn btn-brass" href="/agencies/integrity-first-insurance/">
-              Ask IFI / Cornerstone for a real quote
+              Talk to the desk
             </a>
           </div>
         )}

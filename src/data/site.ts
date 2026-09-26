@@ -4,7 +4,7 @@ export const SITE = {
   url: "https://suretyresearch.com",
   tagline: "The surety agency register",
   description:
-    "A ranked directory of surety and bond agencies and carriers for licensed professionals. Integrity First Insurance is our Cornerstone Network Preferred Partner — labeled as an editorial rank, not a fabricated star score.",
+    "A ranked surety agency register for mortgage, insurance, and contractor professionals. Sources sit on every card. Integrity First Insurance is the Cornerstone Network Preferred Partner.",
   phone: "770-587-4595",
   email: "bonds@suretyresearch.com",
   ifi: {
