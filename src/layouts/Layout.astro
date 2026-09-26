@@ -140,6 +140,24 @@ const phoneHref = `tel:${SITE.ifi.phone.replace(/-/g, '')}`;
         toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
         toggle.textContent = open ? 'Close' : 'Menu';
       });
+
+      const bar = document.querySelector('.mobile-cta');
+      const watch = [
+        document.getElementById('calculator'),
+        document.querySelector('.cta-band'),
+        document.querySelector('.site-footer'),
+      ].filter(Boolean);
+      if (bar && watch.length && 'IntersectionObserver' in window) {
+        const visible = new Set();
+        const io = new IntersectionObserver((entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting) visible.add(entry.target);
+            else visible.delete(entry.target);
+          }
+          bar.classList.toggle('is-hidden', visible.size > 0);
+        }, { threshold: 0.2 });
+        watch.forEach((el) => io.observe(el));
+      }
     </script>
   </body>
 </html>

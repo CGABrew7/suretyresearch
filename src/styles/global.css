@@ -28,6 +28,8 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 84px;
+  scroll-padding-bottom: 96px;
 }
 
 body {
@@ -169,6 +171,9 @@ h3,
   text-decoration: none;
   font-size: 0.92rem;
   font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
 }
 
 .nav-links a:hover {
@@ -1214,6 +1219,12 @@ a.pill:hover {
 
 .mobile-cta {
   display: none;
+  transition: transform 0.2s ease;
+}
+
+.mobile-cta.is-hidden {
+  transform: translateY(120%);
+  pointer-events: none;
 }
 
 @media (max-width: 1024px) {
@@ -1341,7 +1352,14 @@ a.pill:hover {
   }
 
   body {
-    padding-bottom: 76px;
+    padding-bottom: 84px;
+  }
+
+  .site-footer .footer-links a {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
   }
 
   .site-footer {
@@ -1394,7 +1412,8 @@ a.pill:hover {
 
   .agency-card,
   .btn,
-  .faq-q span {
+  .faq-q span,
+  .mobile-cta {
     transition: none;
   }
 }
