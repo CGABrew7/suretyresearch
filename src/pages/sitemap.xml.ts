@@ -10,6 +10,7 @@ const staticPaths = [
   "/bonds/",
   "/states/",
   "/guides/",
+  "/guides/how-to-find-a-surety-bond-agency/",
   "/guides/how-surety-bonds-work/",
   "/guides/credit-score-impact/",
   "/guides/bond-vs-insurance/",
