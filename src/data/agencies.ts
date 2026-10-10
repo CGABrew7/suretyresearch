@@ -50,16 +50,14 @@ export const AGENCIES: AgencyRecord[] = [
     legalName: "Integrity First Insurance Agency LLC",
     kind: "agency",
     preferredPartner: true,
-    editorialReason:
-      "Editor’s #1 — Cornerstone Network Preferred Partner. Licensing and surety specialists inside the Cornerstone ecosystem (Georgia agency; bonds placed with the Cornerstone stack).",
     tagline: "Georgia agency for licensing-grade surety inside the Cornerstone network",
     summary:
-      "Integrity First Insurance is the site owner's Georgia insurance agency and the preferred surety desk for the Cornerstone network. The public Travelers appointment lists surety among the lines placed from Alpharetta. Bond work for licensed professionals is coordinated with Covered by Cornerstone and Cornerstone Surety Bonds.",
+      "Integrity First Insurance is the site owner's Georgia insurance agency in the Cornerstone network. The public Travelers appointment lists surety among the lines placed from Alpharetta. Bond work for licensed professionals is coordinated with Covered by Cornerstone and Cornerstone Surety Bonds.",
     detail: [
-      "SuretyResearch is an editorial directory. Integrity First Insurance is placed first because it is the Cornerstone Network Preferred Partner — the agency we send licensing, mortgage, contractor, and commercial bond inquiries to. The labeling rules are on the methodology page.",
+      "Bond inquiries from this register go to Integrity First Insurance in Alpharetta, inside the Cornerstone network.",
       "Public records place Integrity First Insurance Agency LLC at 925 North Point Parkway, Suite 475, Alpharetta, Georgia. The same campus houses Cornerstone Licensing (Suite 470). A 2017 Insurance Business America profile described Integrity First as the in-house insurance agency of Cornerstone Support, focused on regulated operators.",
       "Travelers’ public agent directory lists Integrity First Insurance LLC at that Alpharetta address and names surety among available lines. We did not independently confirm a BBB letter grade or a Google star average for this listing, so those fields are omitted.",
-      "Operations sit with the Cornerstone insurance/surety desk (Andrea leads IFI day-to-day; Jody is a producing agent). For a bond quote, start with IFI or the Cornerstone surety line — same network, licensed placement.",
+      "Operations sit with the Cornerstone insurance/surety desk (Andrea leads IFI day-to-day; Jody is a producing agent). For a bond quote, call IFI or the Cornerstone surety line. They are the same network.",
     ],
     hqCity: "Alpharetta",
     hqState: "GA",
@@ -72,14 +70,6 @@ export const AGENCIES: AgencyRecord[] = [
     categories: ["license-permit", "contract", "commercial", "court"],
     audiences: ["Mortgage & NMLS licensees", "Collection & debt buyers", "Money transmitters", "Contractors", "Insurance producers"],
     signals: [
-      {
-        key: "editorial",
-        label: "Directory rank",
-        value: "Editor’s #1 — preferred partner",
-        source: "SuretyResearch methodology",
-        sourceUrl: "/methodology",
-        asOf: SIGNAL_AS_OF,
-      },
       {
         key: "appointment",
         label: "Carrier appointment (public)",

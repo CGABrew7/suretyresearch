@@ -2,7 +2,7 @@
 
 A **surety-bond agency directory** for licensed professionals (mortgage, insurance, contractors), plus bond-type research. Static Astro site. Built for Cloudflare Pages.
 
-Integrity First Insurance (IFI) is **always rank #1**. That is an editorial **Cornerstone Network Preferred Partner** placement — not a fabricated star score and not a claim that IFI is “#1 in America.” Other agencies and carriers are ordered by cited public signals (BBB letter grade, AM Best when sourced, years, coverage, bond-category breadth, Treasury-list mention). Missing data is omitted.
+SuretyResearch is affiliated with Cornerstone Licensing and Integrity First. Names are listed A to Z. Cards show cited public signals (BBB letter grade, AM Best when sourced, years, coverage, bond-category breadth, Treasury-list mention). Missing data is omitted. The site does not publish a score or a rank.
 
 Owner: Hanok Ventures.
 
@@ -33,19 +33,11 @@ Node 20+ recommended.
 
 No environment variables are required for the static register.
 
-## How ranking works
+## How the register is built
 
 Implemented in `src/lib/ranking.ts`, disclosed on `/methodology/`.
 
-1. **Preferred partner.** Any record with `preferredPartner: true` (IFI) is forced to rank 01 with the printed editorial reason.
-2. **Scored names.** Points from verified-or-cited signals only:
-   - BBB letter grade (A+ / A / A− / B-band)
-   - AM Best (only if we cited a page)
-   - Years since founding (capped)
-   - Nationwide vs. known states
-   - Number of bond series listed
-   - Treasury / Circular 570 mention
-3. **Honesty.** No invented Google or BBB numbers. No fake testimonials. Carriers usually need an appointed agent — IFI is the desk this site introduces first.
+Names are sorted A to Z. A card shows a signal only when the file cites a source. Carriers usually need an appointed agent. Integrity First Insurance is the Alpharetta desk for this register.
 
 Agency source data lives in `src/data/agencies.ts`. Bond cost bands remain in `src/data/bonds.json`.
 
@@ -54,11 +46,11 @@ Agency source data lives in `src/data/agencies.ts`. Bond cost bands remain in `s
 | Path | What |
 | --- | --- |
 | `/` | Register hero, IFI #1, series, state picker, premium sketch |
-| `/agencies/` | Full ranked list + filters |
+| `/agencies/` | Full A to Z list + filters |
 | `/agencies/[slug]/` | Per-desk file, signals, sources, CTA |
 | `/bonds/` and `/bonds/[id]/` | Series explainers + form cost bands |
 | `/states/[slug]/` | Same register, state heading |
-| `/methodology/` | Ranking disclosure |
+| `/methodology/` | How the files are built |
 
 ## Compliance line
 

@@ -5,6 +5,7 @@ import StatePicker from '../../components/StatePicker.astro';
 import { STATES, getStateBySlug } from '../../data/states';
 import { filterAgencies } from '../../lib/ranking';
 import { BOND_CATEGORIES } from '../../data/categories';
+import { SITE } from '../../data/site';
 
 export function getStaticPaths() {
   return STATES.map((s) => ({ params: { state: s.slug } }));
@@ -17,15 +18,14 @@ const agencies = filterAgencies({ state: rec.slug });
 
 <Layout
   title={`Surety agencies in ${rec.name} — SuretyResearch`}
-  description={`Ranked surety agencies and carriers that list ${rec.name} coverage. Integrity First Insurance is the editorial preferred partner.`}
+  description={`Surety agencies and carriers that list ${rec.name} coverage. Names are listed A to Z.`}
 >
   <section class="page-hero">
     <div class="wrap">
       <p class="kicker">{rec.code} · {rec.name}</p>
       <h1>Register files that serve {rec.name}.</h1>
       <p>
-        {agencies.length} entries. Rank 01 is still Integrity First Insurance when the preferred
-        partner matches — which it does, as a nationwide Cornerstone-network placement desk.
+        {agencies.length} entries, listed A to Z. {SITE.affiliation}
       </p>
     </div>
   </section>
