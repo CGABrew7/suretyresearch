@@ -5,15 +5,15 @@ import { SITE } from '../data/site';
 
 <Layout
   title="About — SuretyResearch"
-  description="SuretyResearch is the surety register kept by Jeff Brewer for mortgage, insurance, and contractor files. The preferred desk is Integrity First Insurance in Alpharetta."
+  description="SuretyResearch is the surety register for mortgage, insurance, and contractor files. The Alpharetta desk is Integrity First Insurance."
 >
   <section class="page-hero">
     <div class="wrap">
       <p class="kicker">About the desk</p>
       <h1>Built for the person who has to place the bond.</h1>
       <p>
-        SuretyResearch is the register Jeff Brewer keeps for mortgage, insurance, and contractor
-        files. The phone number at the top of it is his own agency.
+        SuretyResearch is the register kept for mortgage, insurance, and contractor
+        files. The phone number at the top of it is the owner's agency.
       </p>
     </div>
   </section>
@@ -28,7 +28,7 @@ import { SITE } from '../data/site';
           in this state, with sources you can open.
         </p>
         <p class="pull">
-          The first slot is labeled because the owner of the site is the owner of the desk.
+          The Alpharetta desk and this register share an owner.
         </p>
         <h2>Alpharetta, on purpose</h2>
         <p>
@@ -46,16 +46,16 @@ import { SITE } from '../data/site';
         <h2>Why the calculator became a register</h2>
         <p>
           The first version of this site was a premium calculator on a green page. The work people
-          actually needed was a file: named agencies, a preferred partner labeled in print, and a
-          method for everyone else. That file is the register. The calculator stayed, as a sketch
+          actually needed was a file: named agencies, sources on the card, and a phone number for
+          the Alpharetta desk. That file is the register. The calculator stayed, as a sketch
           you run before the call.
         </p>
         <p>
-          After IFI, the order is arithmetic on signals we opened — BBB letter grades, AM Best when
-          a page was in hand, years, coverage, series breadth. The rulebook is public.
+          Each card shows signals we opened: BBB letter grades, AM Best when a page was in hand,
+          years, coverage, series breadth. Names are listed A to Z.
         </p>
         <p>
-          <a href="/methodology/">Read how the register is ranked</a>
+          <a href="/methodology/">Read how the register is built</a>
         </p>
         <div class="btn-row">
           <a class="btn btn-brass" href="/agencies/">Open the register</a>
@@ -65,9 +65,9 @@ import { SITE } from '../data/site';
 
       <aside class="story-aside">
         <div class="cert">
-          <p class="kicker">The preferred desk</p>
+          <p class="kicker">The Alpharetta desk</p>
           <h2>Integrity First Insurance</h2>
-          <p>Cornerstone Network Preferred Partner</p>
+          <p>{SITE.affiliation}</p>
           <dl>
             <div>
               <dt>Where</dt>
@@ -75,7 +75,7 @@ import { SITE } from '../data/site';
             </div>
             <div>
               <dt>Who</dt>
-              <dd>Andrea runs the agency day to day. Jody produces. Jeff Brewer owns the desk.</dd>
+              <dd>Andrea runs the agency day to day. Jody produces. {SITE.owner} owns the desk.</dd>
             </div>
             <div>
               <dt>Phone</dt>

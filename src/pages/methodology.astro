@@ -1,91 +1,63 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { rankedDirectory } from '../lib/ranking';
+import { directory, kindLabel } from '../lib/ranking';
+import { SITE } from '../data/site';
 
-const ranked = rankedDirectory();
-const scored = ranked.filter((a) => !a.preferredPartner);
+const agencies = directory();
 ---
 
 <Layout
   title="Methodology — SuretyResearch"
-  description="How SuretyResearch ranks surety agencies and carriers. Integrity First Insurance is an editorial preferred-partner #1. Other names are ordered by cited public signals only."
+  description="How SuretyResearch files are built. Names are listed A to Z. Each card shows cited public signals."
 >
   <section class="page-hero">
     <div class="wrap">
       <p class="kicker">House rules</p>
-      <h1>How the register is ranked.</h1>
+      <h1>How the register is built.</h1>
       <p>
-        This is a directory with an honest thumb on the scale for one partner. Everything else is
-        arithmetic on sources we actually opened.
+        Each file shows public signals we opened, with the date and the source.
+        {SITE.affiliation}
       </p>
     </div>
   </section>
 
   <section class="section">
     <div class="wrap prose">
-      <h2>1. Integrity First Insurance is always rank 01</h2>
-      <p>
-        SuretyResearch is owned by Jeff Brewer / Hanok. Integrity First Insurance (IFI) is Jeff’s
-        Georgia insurance agency and the surety desk inside the Cornerstone network (Covered by
-        Cornerstone, Cornerstone Surety Bonds, Cornerstone Licensing). Andrea runs IFI day-to-day;
-        Jody is a producing agent.
-      </p>
-      <p>
-        We place IFI first with an explicit label: <strong>Cornerstone Network Preferred Partner</strong>
-        / <strong>Editor’s #1 — licensing &amp; surety specialists in the Cornerstone ecosystem</strong>.
-      </p>
-      <p>
-        That is not a claim that IFI is “#1 in America,” the largest writer, or the cheapest market.
-        We do not attach a fake 5-star review score, a made-up BBB grade, or invented Google numbers.
-        If we could not verify a public signal, the field is blank.
-      </p>
-
-      <h2>2. Everyone else is scored, then sorted</h2>
-      <p>Non-preferred entries receive points from cited signals only:</p>
+      <h2>What a card can show</h2>
       <ul>
-        <li>BBB letter grade: A+ 22, A 18, A− 14, B-band 8 (grade only — not BBB customer-review stars).</li>
-        <li>AM Best, when we have a company page or AM Best snippet: A++ 20, A+ 16, A 13, A− 10.</li>
-        <li>Years since founding (capped): 0.35 points per year, max 24.</li>
-        <li>Nationwide placement listed: 18. Otherwise 2 points per known state, max 18.</li>
-        <li>Bond-category breadth: 4 points per series (license, contract, commercial, court).</li>
-        <li>Treasury / Circular 570 mention we cited: 8.</li>
+        <li>BBB letter grade, when a BBB page was opened.</li>
+        <li>AM Best, when a company page or snippet was opened.</li>
+        <li>Year founded, when we have it.</li>
+        <li>Nationwide placement, or the states we can show.</li>
+        <li>Bond series listed on the file: license, contract, commercial, court.</li>
+        <li>A Treasury or Circular 570 mention, when we cited one.</li>
       </ul>
-      <p>Ties break by older founding year, then A–Z. Scores are printed on each file.</p>
+      <p>A blank field means that signal is not in the file.</p>
 
-      <h2>3. Current scored order (after IFI)</h2>
+      <h2>How names are listed</h2>
+      <p>Names run A to Z. {agencies.length} files are in this build.</p>
+
       <div class="table-scroll">
-      <table class="table">
-        <thead>
-          <tr><th>#</th><th>Name</th><th>Score</th><th>Kind</th></tr>
-        </thead>
-        <tbody>
-          {ranked.map((a) => (
-            <tr>
-              <td>{String(a.rank).padStart(2, '0')}</td>
-              <td><a href={`/agencies/${a.slug}/`}>{a.name}</a></td>
-              <td>{a.preferredPartner ? 'editorial' : a.score}</td>
-              <td>{a.kind}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+        <table class="table">
+          <thead>
+            <tr><th>Name</th><th>Kind</th><th>City</th></tr>
+          </thead>
+          <tbody>
+            {agencies.map((a) => (
+              <tr>
+                <td><a href={`/agencies/${a.slug}/`}>{a.name}</a></td>
+                <td>{kindLabel(a.kind)}</td>
+                <td>{a.hqCity}, {a.hqState}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
 
-      <h2>4. What a listing is not</h2>
-      <ul>
-        <li>Not an endorsement of fitness, price, or capacity for your risk.</li>
-        <li>Not a representation that we used the firm or audited their books.</li>
-        <li>Not legal, tax, or insurance advice. Bonds are issued by licensed producers and admitted sureties.</li>
-        <li>Carriers on this list usually require an appointed agent. IFI is the agent we introduce first.</li>
-      </ul>
-
-      <h2>5. Refresh rule</h2>
+      <h2>Signal dates</h2>
       <p>
-        Signal dates are stamped <code>2026-08-23</code> for this build. Ratings move. Follow the
+        Signal dates are stamped <code>2026-08-23</code> for this build. Follow the
         source URL on each card before you bid a job or file a license.
-      </p>
-      <p>
-        Scored names in this build: {scored.length}. Preferred names: 1.
       </p>
     </div>
   </section>

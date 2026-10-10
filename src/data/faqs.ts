@@ -3,19 +3,18 @@ export interface Faq {
   a: string;
 }
 
-/** Trust answers. Rank boundaries that need a negative live on /methodology/, not in these lines. */
 export const FAQS: Faq[] = [
   {
     q: "What is a surety bond?",
     a: "A three-party guarantee: you (the principal), the obligee (usually a regulator, owner, or court), and the surety. If you fail the obligation, the surety pays, then seeks reimbursement from you.",
   },
   {
-    q: "Why is Integrity First Insurance first?",
-    a: "IFI is the Cornerstone Network Preferred Partner — the Alpharetta desk this register introduces first for licensing and surety inside that ecosystem. The label is printed on the card. Scoring rules for every other name are on the <a href='/methodology/'>methodology</a> page.",
+    q: "How is SuretyResearch related to Integrity First Insurance?",
+    a: "SuretyResearch is affiliated with Cornerstone Licensing and Integrity First. The Alpharetta file is Integrity First Insurance. Andrea runs the agency day to day. Jody produces.",
   },
   {
-    q: "How is the rest of the register ordered?",
-    a: "After the preferred partner, names are scored from cited public signals only: BBB letter grade, AM Best when a source was opened, years since founding, geographic coverage, bond-series breadth, and a Treasury-list mention. Each file shows the signal, the date, and the link.",
+    q: "How are the files listed?",
+    a: "A to Z by name. Each file shows the signal, the date, and the link: BBB letter grade, AM Best when a source was opened, years since founding, geographic coverage, and bond series.",
   },
   {
     q: "How much does a bond cost?",
@@ -39,7 +38,7 @@ export const FAQS: Faq[] = [
   },
   {
     q: "Who issues the paper?",
-    a: "An admitted surety, through a licensed agent or a direct-writing carrier. This site is the register. Integrity First Insurance and the Cornerstone surety line are the preferred placement path.",
+    a: "An admitted surety, through a licensed agent or a direct-writing carrier. This site is the register. Integrity First Insurance and the Cornerstone surety line place bonds from it.",
   },
 ];
 

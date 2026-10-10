@@ -4,6 +4,7 @@ import AgencyCard from '../../components/AgencyCard.astro';
 import data from '../../data/bonds.json';
 import { BOND_CATEGORIES, getCategory } from '../../data/categories';
 import { filterAgencies } from '../../lib/ranking';
+import { SITE } from '../../data/site';
 
 const categoryIds = new Set(BOND_CATEGORIES.map((c) => c.id));
 const typeIds = new Set(data.types.map((t) => t.id));
@@ -123,10 +124,10 @@ const description = isCategoryPage && category
           <p class="kicker">Desks on this series</p>
           <h2>Register entries that list this category</h2>
         </div>
-        <p>IFI remains first. Carriers still need an appointed agent.</p>
+        <p>{SITE.affiliation} Names are listed A to Z. Carriers on this list usually require an appointed agent.</p>
       </div>
       <div class="ledger">
-        {agencies.slice(0, 8).map((agency) => <AgencyCard agency={agency} />)}
+        {agencies.map((agency) => <AgencyCard agency={agency} />)}
       </div>
       <p style="margin-top:16px">
         <a href={`/agencies/?`}>See the full register</a>

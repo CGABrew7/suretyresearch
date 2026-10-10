@@ -1,7 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { AGENCIES } from '../../data/agencies';
-import { rankedDirectory, kindLabel } from '../../lib/ranking';
+import { directory, kindLabel } from '../../lib/ranking';
 import { BOND_CATEGORIES } from '../../data/categories';
 import { SITE } from '../../data/site';
 
@@ -10,26 +10,24 @@ export function getStaticPaths() {
 }
 
 const { slug } = Astro.params;
-const ranked = rankedDirectory();
-const agency = ranked.find((a) => a.slug === slug);
+const agency = directory().find((a) => a.slug === slug);
 if (!agency) throw new Error(`Missing agency ${slug}`);
 
 const cats = BOND_CATEGORIES.filter((c) => agency.categories.includes(c.id));
 ---
 
 <Layout
-  title={`${agency.name} — SuretyResearch register #${String(agency.rank).padStart(2, '0')}`}
+  title={`${agency.name} — SuretyResearch`}
   description={agency.summary}
 >
   <section class="page-hero">
     <div class="wrap">
       <p class="kicker">
-        File {String(agency.rank).padStart(2, '0')} · {kindLabel(agency.kind)} · {agency.hqCity}, {agency.hqState}
+        {kindLabel(agency.kind)} · {agency.hqCity}, {agency.hqState}
       </p>
       <h1>{agency.name}</h1>
       <p>{agency.tagline}</p>
       <div class="card-meta" style="margin-top:14px">
-        {agency.preferredPartner && <span class="pill seal">Cornerstone Network Preferred Partner</span>}
         <span class="pill">{kindLabel(agency.kind)}</span>
         {agency.foundedYear && <span class="pill">Founded {agency.foundedYear}</span>}
         {agency.servesNationwide && <span class="pill">Nationwide placement listed</span>}
@@ -40,13 +38,7 @@ const cats = BOND_CATEGORIES.filter((c) => agency.categories.includes(c.id));
   <section class="section">
     <div class="wrap grid-2">
       <div class="prose">
-        {agency.preferredPartner && (
-          <div class="cert" style="margin-bottom:22px">
-            <p class="kicker">Why this file is #1</p>
-            <p style="margin-top:8px">{agency.editorialReason}</p>
-            <p style="margin-bottom:0"><a href="/methodology/">How this rank is labeled</a></p>
-          </div>
-        )}
+        {agency.preferredPartner && <p>{SITE.affiliation}</p>}
         <p>{agency.summary}</p>
         {agency.detail.map((p) => (
           p.includes('<a href') ? <p set:html={p} /> : <p>{p}</p>
@@ -54,7 +46,7 @@ const cats = BOND_CATEGORIES.filter((c) => agency.categories.includes(c.id));
 
         {agency.notes.length > 0 && (
           <>
-            <h2>What we will not stretch</h2>
+            <h2>Notes</h2>
             <ul>
               {agency.notes.map((n) => <li>{n}</li>)}
             </ul>
@@ -84,20 +76,14 @@ const cats = BOND_CATEGORIES.filter((c) => agency.categories.includes(c.id));
               ))}
             </tbody>
           </table>
-          {!agency.preferredPartner && (
-            <p style="font-size:0.85rem;color:var(--ink-3);margin-top:12px">
-              Public-signal score {agency.score}. Breakdown:
-              {agency.scoreBreakdown.map((row) => ` ${row.label} ${row.points};`)}
-            </p>
-          )}
         </div>
 
         <div class="cert" style="margin-top:18px">
           <p class="kicker">{agency.preferredPartner ? 'Call this desk' : 'Need a bond placed?'}</p>
           <p style="margin:10px 0 14px;color:var(--ink-2)">
             {agency.preferredPartner
-              ? 'IFI / Cornerstone is the preferred path from this register.'
-              : 'This listing is research. For placement through our preferred partner, use IFI / Cornerstone.'}
+              ? `Call ${agency.name} in ${agency.hqCity}.`
+              : 'Call Integrity First Insurance, or open their file.'}
           </p>
           <div class="btn-row" style="margin-top:0">
             {agency.preferredPartner ? (

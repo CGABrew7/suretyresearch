@@ -1,9 +1,9 @@
 ---
-import type { RankedAgency } from '../lib/ranking';
+import type { AgencyRecord } from '../data/agencies';
 import { kindLabel } from '../lib/ranking';
 
 interface Props {
-  agency: RankedAgency;
+  agency: AgencyRecord;
 }
 
 const { agency } = Astro.props;
@@ -14,7 +14,7 @@ const searchText = `${agency.name} ${agency.shortName} ${agency.hqCity} ${agency
 ---
 
 <a
-  class:list={['agency-card', { preferred: agency.preferredPartner }]}
+  class="agency-card"
   href={`/agencies/${agency.slug}/`}
   data-kind={agency.kind}
   data-categories={agency.categories.join(',')}
@@ -23,24 +23,18 @@ const searchText = `${agency.name} ${agency.shortName} ${agency.hqCity} ${agency
   data-search={searchText}
 >
   <div class="rank-plate">
-    <strong>{String(agency.rank).padStart(2, '0')}</strong>
-    <span>{agency.preferredPartner ? 'Preferred' : 'Register'}</span>
+    <strong>{agency.hqState}</strong>
+    <span>{kindLabel(agency.kind)}</span>
   </div>
   <div class="card-body">
     <div class="card-meta">
       <span class="pill">{kindLabel(agency.kind)}</span>
       <span class="pill">{agency.hqCity}, {agency.hqState}</span>
-      {agency.preferredPartner && <span class="pill seal">Cornerstone Network Preferred Partner</span>}
       {agency.servesNationwide && <span class="pill">Nationwide placement</span>}
     </div>
     <h3>{agency.name}</h3>
     <p>{agency.tagline}</p>
-    {agency.preferredPartner && (
-      <p class="rank-reason">Cornerstone Network Preferred Partner</p>
-    )}
     <div class="signals">
-      {agency.preferredPartner && <span>Editor’s preferred partner</span>}
-      {!agency.preferredPartner && <span>{agency.rankLabel}</span>}
       {bbb && <span>BBB {bbb.value} · {bbb.source}</span>}
       {amBest && <span>AM Best {amBest.value}</span>}
       {years && <span>Founded {agency.foundedYear} ({years})</span>}

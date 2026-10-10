@@ -1,40 +1,30 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AgencyCard from '../../components/AgencyCard.astro';
-import { rankedDirectory } from '../../lib/ranking';
+import { directory } from '../../lib/ranking';
 import { STATES } from '../../data/states';
+import { SITE } from '../../data/site';
 
-const ranked = rankedDirectory();
-const ifi = ranked[0];
+const agencies = directory();
 ---
 
 <Layout
   title="Agency register — SuretyResearch"
-  description="Ranked directory of surety agencies and carriers. Integrity First Insurance is editor’s #1 as the Cornerstone Network Preferred Partner. Other names follow cited BBB, AM Best, years, and coverage signals."
+  description="Directory of surety agencies and carriers, listed A to Z. Each card shows cited BBB, AM Best, years, and coverage signals."
 >
   <section class="page-hero">
     <div class="wrap">
-      <p class="kicker">The register · {ranked.length} desks</p>
-      <h1>Agencies and carriers, in the order we will defend.</h1>
+      <p class="kicker">The register · {agencies.length} desks</p>
+      <h1>Agencies and carriers, listed A to Z.</h1>
       <p>
-        Rank 01 is Integrity First Insurance, the Cornerstone Network Preferred Partner —
-        licensing and surety specialists in that ecosystem. Every name after it follows cited
-        public signals. The labeling rules are on the <a href="/methodology/">methodology</a> page.
+        {SITE.affiliation}
+        Each card shows cited public signals. The method is on the <a href="/methodology/">methodology</a> page.
       </p>
     </div>
   </section>
 
   <section class="section">
     <div class="wrap">
-      <div class="cert" style="margin-bottom:22px">
-        <p class="kicker">How the rest of the list is ordered</p>
-        <p style="margin-top:8px;color:var(--ink-2)">
-          After the preferred partner, we score only signals we cited: BBB letter grade, AM Best
-          (when a source was opened), years since founding, nationwide vs. known states, bond-category
-          count, and a Treasury-list mention. Empty fields score zero. Read the
-          <a href="/methodology/">methodology</a>.
-        </p>
-      </div>
 
       <div class="filters" id="register-filters">
         <label>
@@ -72,11 +62,11 @@ const ifi = ranked[0];
       </div>
 
       <p class="disclaimer" id="register-count" style="margin-bottom:16px">
-        Showing {ranked.length} of {ranked.length} register entries. {ifi.name} leads as Cornerstone Network Preferred Partner.
+        Showing {agencies.length} of {agencies.length} register entries.
       </p>
 
       <div class="ledger" id="register-list">
-        {ranked.map((agency) => <AgencyCard agency={agency} />)}
+        {agencies.map((agency) => <AgencyCard agency={agency} />)}
       </div>
     </div>
   </section>
@@ -108,7 +98,7 @@ const ifi = ranked[0];
         (card as HTMLElement).style.display = show ? '' : 'none';
         if (show) shown += 1;
       }
-      count.textContent = `Showing ${shown} of ${total} register entries. Integrity First Insurance leads whenever it matches — Cornerstone Network Preferred Partner.`;
+      count.textContent = `Showing ${shown} of ${total} register entries.`;
     };
     root.addEventListener('change', apply);
     root.addEventListener('input', apply);

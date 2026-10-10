@@ -282,10 +282,6 @@ h3,
   color: var(--ink);
 }
 
-.register-slip li:first-child .slip-rank {
-  color: var(--signal);
-}
-
 .slip-name {
   display: flex;
   flex-direction: column;
@@ -1199,6 +1195,10 @@ a.pill:hover {
   width: 100%;
   border-collapse: collapse;
   font-size: 0.95rem;
+}
+
+.table-scroll .table {
+  table-layout: fixed;
 }
 
 .table th,
