@@ -16,5 +16,5 @@ export const SITE = {
     cornerstoneInsurance: "https://coveredbycornerstone.com/",
     cornerstoneLicensing: "https://cornerstonelicensing.com/",
   },
-  owner: "Jeff Brewer / Hanok",
+  owner: "Hanok Ventures",
 };

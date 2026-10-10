@@ -4,7 +4,7 @@ A **surety-bond agency directory** for licensed professionals (mortgage, insuran
 
 Integrity First Insurance (IFI) is **always rank #1**. That is an editorial **Cornerstone Network Preferred Partner** placement — not a fabricated star score and not a claim that IFI is “#1 in America.” Other agencies and carriers are ordered by cited public signals (BBB letter grade, AM Best when sourced, years, coverage, bond-category breadth, Treasury-list mention). Missing data is omitted.
 
-Owner: Jeff Brewer / Hanok.
+Owner: Hanok Ventures.
 
 ## Run locally
 

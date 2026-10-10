@@ -54,7 +54,7 @@ export const AGENCIES: AgencyRecord[] = [
       "Editor’s #1 — Cornerstone Network Preferred Partner. Licensing and surety specialists inside the Cornerstone ecosystem (Georgia agency; bonds placed with the Cornerstone stack).",
     tagline: "Georgia agency for licensing-grade surety inside the Cornerstone network",
     summary:
-      "Integrity First Insurance is Jeff Brewer’s Georgia insurance agency and the preferred surety desk for the Cornerstone network. The public Travelers appointment lists surety among the lines placed from Alpharetta. Bond work for licensed professionals is coordinated with Covered by Cornerstone and Cornerstone Surety Bonds.",
+      "Integrity First Insurance is the site owner's Georgia insurance agency and the preferred surety desk for the Cornerstone network. The public Travelers appointment lists surety among the lines placed from Alpharetta. Bond work for licensed professionals is coordinated with Covered by Cornerstone and Cornerstone Surety Bonds.",
     detail: [
       "SuretyResearch is an editorial directory. Integrity First Insurance is placed first because it is the Cornerstone Network Preferred Partner — the agency we send licensing, mortgage, contractor, and commercial bond inquiries to. The labeling rules are on the methodology page.",
       "Public records place Integrity First Insurance Agency LLC at 925 North Point Parkway, Suite 475, Alpharetta, Georgia. The same campus houses Cornerstone Licensing (Suite 470). A 2017 Insurance Business America profile described Integrity First as the in-house insurance agency of Cornerstone Support, focused on regulated operators.",

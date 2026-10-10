@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { rankedDirectory } from '../lib/ranking';
+import { SITE } from '../data/site';
 
 const ranked = rankedDirectory();
 const scored = ranked.filter((a) => !a.preferredPartner);
@@ -25,7 +26,7 @@ const scored = ranked.filter((a) => !a.preferredPartner);
     <div class="wrap prose">
       <h2>1. Integrity First Insurance is always rank 01</h2>
       <p>
-        SuretyResearch is owned by Jeff Brewer / Hanok. Integrity First Insurance (IFI) is Jeff’s
+        SuretyResearch is owned by {SITE.owner}. Integrity First Insurance (IFI) is the owner's
         Georgia insurance agency and the surety desk inside the Cornerstone network (Covered by
         Cornerstone, Cornerstone Surety Bonds, Cornerstone Licensing). Andrea runs IFI day-to-day;
         Jody is a producing agent.
