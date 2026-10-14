@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import AgencyCard from '../components/AgencyCard.astro';
+import AuthorBio from '../components/AuthorBio.astro';
 import StatePicker from '../components/StatePicker.astro';
 import BondCalculator from '../components/BondCalculator.jsx';
 import { rankedDirectory, kindLabel } from '../lib/ranking';
@@ -23,9 +24,7 @@ const ifi = ranked[0];
         <p class="kicker">Surety research desk</p>
         <h1>Find the desk that can place the bond.</h1>
         <p class="lede">
-          A ranked register for mortgage, insurance, and contractor professionals.
-          Sources sit on every card. {ifi.name} is the Cornerstone Network Preferred Partner —
-          the desk this file opens first.
+          Open the register, name the bond series, and call the desk that writes it. {ifi.name} is the Cornerstone Network Preferred Partner and the first file. Sources sit on every card.
         </p>
         <div class="btn-row">
           <a class="btn btn-brass" href="/agencies/">Open the register</a>
@@ -36,6 +35,7 @@ const ifi = ranked[0];
           <span aria-hidden="true"> · </span>
           <a href="/methodology/">How the order is built</a>
         </p>
+        <AuthorBio />
       </div>
 
       <aside class="register-slip" aria-label="Opening lines of the register">
@@ -84,8 +84,7 @@ const ifi = ranked[0];
           <h2>The form has a name. The desk often does not.</h2>
         </div>
         <p>
-          License, contract, and court bonds move when a specific writer will take the file.
-          Most public pages skip that name.
+          A bond gets placed when you name the form and open the desk that will write it. License, contract, and court files stall on pages that never name that desk.
         </p>
       </div>
       <div class="point-grid">
@@ -115,7 +114,7 @@ const ifi = ranked[0];
           <p class="kicker">The file</p>
           <h2>One register for the path you are already on.</h2>
         </div>
-        <p>Built for people who already know they need a bond and need the desk that can write it.</p>
+        <p>Use one register to name the desk, the series, and a premium band before the call.</p>
       </div>
       <div class="point-grid">
         <article>
@@ -148,8 +147,7 @@ const ifi = ranked[0];
           <h2>The first six files, sources on the card.</h2>
         </div>
         <p>
-          {ifi.name} leads as Cornerstone Network Preferred Partner.
-          The names under it carry the public signals we opened.
+          {ifi.name} is the first file, as Cornerstone Network Preferred Partner. The five cards under it show the public signals opened for this register.
         </p>
       </div>
       <div class="ledger">
@@ -169,6 +167,7 @@ const ifi = ranked[0];
           <p class="kicker">How it works</p>
           <h2>Three moves. Then a person.</h2>
         </div>
+        <p>Name the series, open the card, then call the desk.</p>
       </div>
       <ol class="steps">
         <li>
@@ -199,7 +198,7 @@ const ifi = ranked[0];
           <p class="kicker">Bond series</p>
           <h2>Four paths. One desk at the end of each.</h2>
         </div>
-        <p>Read the series, then talk to the preferred desk with the form already named.</p>
+        <p>License, contract, commercial, and court each end at the preferred desk once the form is named.</p>
       </div>
       <div class="series-grid">
         {BOND_CATEGORIES.map((cat) => (
@@ -225,8 +224,7 @@ const ifi = ranked[0];
           <h2>Pick a state. Same register, local file.</h2>
         </div>
         <p>
-          Nationwide writers appear in every state file, including the preferred partner through
-          Cornerstone-network placement. Resident appointments are on each agency file.
+          A state file is this same register, limited to desks that list that state. Nationwide writers, including the preferred partner, appear in every file.
         </p>
       </div>
       <StatePicker />
@@ -240,7 +238,7 @@ const ifi = ranked[0];
           <p class="kicker">Premium sketch</p>
           <h2>A range before you call the desk.</h2>
         </div>
-        <p>Industry-average bands from the forms we already researched. Your rate is underwritten.</p>
+        <p>Enter the form, the face, and a credit band. The sketch returns the annual premium range this site uses for that combination.</p>
       </div>
       <BondCalculator client:load />
     </div>
@@ -251,7 +249,7 @@ const ifi = ranked[0];
       <div>
         <p class="kicker">Questions</p>
         <h2>Short answers before the longer files.</h2>
-        <p class="faq-intro">The ranking rulebook, including how the preferred-partner label works, lives on the methodology page.</p>
+        <p class="faq-intro">A surety bond is a three-party guarantee, Integrity First Insurance is the first file, and the premium is an annual rate on the face amount. The ranking rulebook is on the methodology page.</p>
         <a class="text-link" href="/faq/">All questions</a>
       </div>
       <div>

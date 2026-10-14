@@ -1,17 +1,18 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import AuthorBio from '../components/AuthorBio.astro';
 import { SITE } from '../data/site';
 ---
 
-<Layout title="Contact — SuretyResearch" description="Contact Integrity First Insurance or the Cornerstone surety desk for bond placement.">
+<Layout title="Contact — SuretyResearch" description="Call Integrity First Insurance, the Cornerstone Network Preferred Partner, to place a bond.">
   <section class="page-hero">
     <div class="wrap">
       <p class="kicker">The desk</p>
-      <h1>Call the Alpharetta desk.</h1>
+      <h1>Call Integrity First Insurance.</h1>
       <p>
-        Bond placement goes to Integrity First Insurance and the Cornerstone surety line.
-        Directory questions can come to {SITE.email}.
+        Bond placement starts at {SITE.ifi.phone}. That line is Integrity First Insurance, the Cornerstone Network Preferred Partner. Directory questions go to {SITE.email}.
       </p>
+      <AuthorBio />
     </div>
   </section>
   <section class="section">
@@ -20,7 +21,7 @@ import { SITE } from '../data/site';
         <p class="kicker">Integrity First Insurance</p>
         <h2 class="serif" style="margin:8px 0 10px;font-size:1.4rem">Preferred partner</h2>
         <p style="color:var(--ink-2);margin-bottom:14px">
-          Alpharetta, Georgia. Cornerstone Network Preferred Partner. Andrea runs IFI; Jody produces.
+          Cornerstone Network Preferred Partner. The published address is 925 North Point Parkway, Suite 475, Alpharetta, GA 30005.
         </p>
         <div class="btn-row">
           <a class="btn btn-brass" href={`tel:${SITE.ifi.phone.replace(/-/g, '')}`}>{SITE.ifi.phone}</a>
@@ -30,14 +31,16 @@ import { SITE } from '../data/site';
       <div class="cert">
         <p class="kicker">Same network</p>
         <h2 class="serif" style="margin:8px 0 10px;font-size:1.4rem">Cornerstone stack</h2>
+        <p style="color:var(--ink-2);margin-bottom:12px">
+          The same network places surety, business insurance, and state licensing.
+        </p>
         <ul class="source-list">
           <li><a href={SITE.ifi.cornerstoneSurety} target="_blank" rel="noopener">Cornerstone Surety Bonds</a></li>
           <li><a href={SITE.ifi.cornerstoneInsurance} target="_blank" rel="noopener">Covered by Cornerstone</a></li>
           <li><a href={SITE.ifi.cornerstoneLicensing} target="_blank" rel="noopener">Cornerstone Licensing</a></li>
         </ul>
         <p style="color:var(--ink-2);margin-top:12px;font-size:0.92rem">
-          Hours published on those sites: Monday–Friday, 8am–6pm ET. Editorial mail:
-          {SITE.email} (directory questions, not binding).
+          Hours published on those sites: Monday–Friday, 8am–6pm ET. Editorial mail: {SITE.email}.
         </p>
       </div>
     </div>

@@ -1,0 +1,15 @@
+---
+import { EDITORIAL_BIO, EDITORIAL_BIO_SHORT } from "../data/site";
+
+interface Props {
+  full?: boolean;
+}
+
+const { full = false } = Astro.props;
+---
+
+<aside class="author-bio">
+  <p class="kicker">Editorial</p>
+  <p class="byline">By <a href="/about/">SuretyResearch</a></p>
+  <p>{full ? EDITORIAL_BIO : EDITORIAL_BIO_SHORT}</p>
+</aside>

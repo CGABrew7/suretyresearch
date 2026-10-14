@@ -1,48 +1,61 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AuthorBio from '../../components/AuthorBio.astro';
+import { PRIMARY_SOURCES } from '../../data/sources';
 ---
 
-<Layout title="How Surety Bonds Work — SuretyResearch" description="Complete guide to surety bonds: the three-party structure, claims process, types, costs, and when you need one.">
+<Layout title="How Surety Bonds Work — SuretyResearch" description="A surety bond is a three-party agreement. The surety pays the obligee if the principal fails, then the principal reimburses the surety.">
   <section class="page-hero">
     <div class="wrap">
       <p class="kicker">Primer</p>
       <h1>How Surety Bonds Work</h1>
-      <p>The complete primer, in plain English.</p>
+      <p>A surety bond is a three-party agreement: the principal promises the obligee, and the surety guarantees that promise.</p>
+      <AuthorBio />
     </div>
   </section>
 
   <section class="section">
     <div class="wrap prose">
       <h2>The Three Parties</h2>
-      <p>Every surety bond involves three parties:</p>
-      <p><strong>The Principal</strong> is you — the person or business required to get the bond. You're guaranteeing that you'll follow rules, complete a project, or act honestly.</p>
-      <p><strong>The Obligee</strong> is the entity requiring the bond, usually a government agency, court, or project owner. They're the one you're making the guarantee to.</p>
-      <p><strong>The Surety</strong> is the insurance company backing the bond. If you fail to meet your obligations, the surety pays the claim. Then the surety comes to you for reimbursement.</p>
+      <p>Every surety bond has three parties: the principal who needs the bond, the obligee who requires it, and the surety that guarantees the principal’s promise.</p>
+      <p>The <a href="https://surety.org/surety-fidelity/what-is-surety/">Surety &amp; Fidelity Association of America</a> describes a surety bond as a written agreement in which the surety guarantees the obligee that the principal will perform the bond, the statute, or the contract.</p>
+      <p><strong>The Principal</strong> is the person or business required to get the bond. The principal is promising to follow the license rules, finish the project, or meet the court order.</p>
+      <p><strong>The Obligee</strong> is the party requiring the bond, usually a government agency, a court, or a project owner.</p>
+      <p><strong>The Surety</strong> is the company that signs the bond. If the principal fails the obligation, the surety pays the obligee, then seeks reimbursement from the principal.</p>
 
-      <h2>How It's Different from Insurance</h2>
-      <p>This is the most common point of confusion. Insurance protects <em>you</em> from financial loss. If your office floods, your insurance pays to fix it. You don't repay them.</p>
-      <p>A surety bond protects <em>others</em> from you. If you violate your bond's terms, the surety pays the harmed party, then turns to you for the money. You're ultimately liable. That's why your credit score matters so much — it predicts how likely you are to repay.</p>
+      <h2>How a bond differs from insurance</h2>
+      <p>Insurance pays the policyholder for a covered loss. A surety bond pays the obligee, and the principal reimburses the surety.</p>
+      <p>That reimbursement is why underwriting looks at the principal. The <a href="/guides/bond-vs-insurance/">bonds versus insurance guide</a> walks through who gets paid.</p>
 
-      <h2>When You Need a Bond</h2>
-      <p>Most surety bonds are required by law or by contract. Common situations include licensing (states require bonds for contractors, auto dealers, collection agencies, money transmitters, and many other regulated businesses), construction (government projects require performance and payment bonds, and many private projects do too), and court proceedings (appeal bonds, injunction bonds).</p>
-      <p>You typically can't get the license, start the project, or proceed with the legal action without the bond in place.</p>
+      <h2>When a bond is required</h2>
+      <p>A bond is required when a statute, a license, or a contract says the work cannot start without it.</p>
+      <p>On federal construction, <a href="https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title40-section3131&num=0&edition=prelim">40 U.S.C. § 3131</a> requires a performance bond and a payment bond before a contract of more than $100,000 is awarded for construction, alteration, or repair of a public building or public work.</p>
+      <p>For a property broker, <a href="https://www.ecfr.gov/current/title-49/subtitle-B/chapter-III/subchapter-B/part-387/subpart-C/section-387.307">49 CFR § 387.307</a> requires a $75,000 surety bond or trust fund. The bond is filed on FMCSA Form BMC-84.</p>
+      <p>State license bonds are set by the statute for that license. The face amount lives in that statute or on the insurance department or licensing board that enforces it.</p>
 
-      <h2>What You Pay</h2>
-      <p>You pay an annual premium — a percentage of the bond amount. The bond amount is set by the obligee (the entity requiring it). Your premium rate is set by the surety based primarily on your credit score.</p>
-      <p>For example: a $25,000 <a href="/bonds/contractor/">contractor bond</a> at a 3% rate costs $750 per year. You're not putting up $25,000 — you're paying $750 for the surety to guarantee $25,000 on your behalf.</p>
-      <p>Rates range from about 1% for excellent credit to 15% for poor credit. Some high-risk applicants may need to post collateral in addition to paying a premium.</p>
+      <h2>What the premium is</h2>
+      <p>The premium is an annual percentage of the face amount. The obligee sets the face. The surety sets the rate.</p>
+      <p>On this site’s sketch, a $25,000 face at 3% is $750 a year. The principal pays the premium. The principal does not deposit the $25,000 face. The <a href="/#calculator">premium sketch</a> uses the bands published on the bond pages.</p>
 
-      <h2>The Claims Process</h2>
-      <p>If someone believes you've violated the terms of your bond, they can file a claim with the surety. The surety investigates. If the claim is valid, the surety pays the claimant up to the bond amount.</p>
-      <p>Then the surety exercises its right of "indemnity" — they come to you for reimbursement. This is the key difference from insurance. You're on the hook for the full amount of any valid claim.</p>
+      <h2>What happens on a claim</h2>
+      <p>If the obligee has a valid claim, the surety pays up to the bond amount, then the principal reimburses the surety.</p>
+      <p>That reimbursement right is the indemnity agreement signed with the bond. The surety investigates the claim before it pays.</p>
 
-      <h2>What Happens If You Don't Get One</h2>
-      <p>If a bond is required and you don't have one, you can't operate legally. Your license won't be issued. Your project can't start. Your legal action can't proceed. Operating without a required bond can result in fines, license revocation, and personal liability.</p>
+      <h2>What happens without the bond</h2>
+      <p>If the license, the contract, or the court requires the bond, the license is not issued, the project does not start, or the court step does not proceed until the bond is on file.</p>
 
-      <h2>Getting a Bond</h2>
-      <p>The process is straightforward for most bond types. You fill out an application, authorize a credit check (soft pull, doesn't affect your score), and receive a quote. Simple bonds can be issued in 1-3 days. Complex bonds with larger amounts may take longer due to financial underwriting.</p>
-      <p>Company-level ratings, Treasury limits, and bond types are compared on the <a href="/guides/best-surety-bond-companies/">best surety bond companies shortlist</a>.</p>
+      <h2>How to get the bond</h2>
+      <p>Name the form, run the sketch, and ask Integrity First Insurance to place it. Many license and permit bonds are issued in one to three business days. Larger contract files take longer because the surety reads financials.</p>
+      <p>Company ratings and Treasury Circular 570 limits are on the <a href="/guides/best-surety-bond-companies/">best surety bond companies shortlist</a>.</p>
       <p>Sketch a premium on the <a href="/#calculator">calculator</a>, then ask <a href="/agencies/integrity-first-insurance/">Integrity First Insurance</a> or <a href="https://cornerstonesuretybonds.com/" target="_blank" rel="noopener">Cornerstone Surety Bonds</a> to place it.</p>
+
+      <h2>Primary sources</h2>
+      <p>The thresholds in this guide are the figures stated in the sources below.</p>
+      <ul class="source-list">
+        {PRIMARY_SOURCES.map((source) => (
+          <li><a href={source.url} target="_blank" rel="noopener">{source.label}</a></li>
+        ))}
+      </ul>
     </div>
   </section>
 </Layout>

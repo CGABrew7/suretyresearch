@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AgencyCard from '../../components/AgencyCard.astro';
+import AuthorBio from '../../components/AuthorBio.astro';
 import { rankedDirectory } from '../../lib/ranking';
 import { STATES } from '../../data/states';
 
@@ -17,10 +18,9 @@ const ifi = ranked[0];
       <p class="kicker">The register · {ranked.length} desks</p>
       <h1>Agencies and carriers, in the order we will defend.</h1>
       <p>
-        Rank 01 is Integrity First Insurance, the Cornerstone Network Preferred Partner —
-        licensing and surety specialists in that ecosystem. Every name after it follows cited
-        public signals. The labeling rules are on the <a href="/methodology/">methodology</a> page.
+        Integrity First Insurance is rank 01, the Cornerstone Network Preferred Partner. Every name after it is sorted by the public-signal score printed on the card. The rules are on the <a href="/methodology/">methodology</a> page.
       </p>
+      <AuthorBio />
     </div>
   </section>
 
@@ -29,9 +29,7 @@ const ifi = ranked[0];
       <div class="cert" style="margin-bottom:22px">
         <p class="kicker">How the rest of the list is ordered</p>
         <p style="margin-top:8px;color:var(--ink-2)">
-          After the preferred partner, we score only signals we cited: BBB letter grade, AM Best
-          (when a source was opened), years since founding, nationwide vs. known states, bond-category
-          count, and a Treasury-list mention. Empty fields score zero. Read the
+          After the preferred partner, the score uses the BBB letter grade, AM Best when a source is cited, years since founding, coverage, bond-series count, and a Treasury Circular 570 mention. Read the
           <a href="/methodology/">methodology</a>.
         </p>
       </div>

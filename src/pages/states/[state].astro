@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AgencyCard from '../../components/AgencyCard.astro';
+import AuthorBio from '../../components/AuthorBio.astro';
 import StatePicker from '../../components/StatePicker.astro';
 import { STATES, getStateBySlug } from '../../data/states';
 import { filterAgencies } from '../../lib/ranking';
@@ -24,9 +25,9 @@ const agencies = filterAgencies({ state: rec.slug });
       <p class="kicker">{rec.code} · {rec.name}</p>
       <h1>Register files that serve {rec.name}.</h1>
       <p>
-        {agencies.length} entries. Rank 01 is still Integrity First Insurance when the preferred
-        partner matches — which it does, as a nationwide Cornerstone-network placement desk.
+        {agencies.length} entries serve {rec.name}. Integrity First Insurance is first, as the nationwide Cornerstone Network Preferred Partner.
       </p>
+      <AuthorBio />
     </div>
   </section>
 
@@ -37,6 +38,8 @@ const agencies = filterAgencies({ state: rec.slug });
           <a class="pill" href={`/bonds/${c.id}/`}>{c.name}</a>
         ))}
       </div>
+      <h2 class="serif" style="font-size:1.6rem;margin-bottom:14px">Desks on the {rec.name} file</h2>
+      <p style="margin-bottom:18px;color:var(--ink-2);max-width:40rem">The cards below are the register entries that list {rec.name} coverage.</p>
       <div class="ledger">
         {agencies.map((agency) => <AgencyCard agency={agency} />)}
       </div>

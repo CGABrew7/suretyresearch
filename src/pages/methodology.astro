@@ -1,6 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import AuthorBio from '../components/AuthorBio.astro';
 import { rankedDirectory } from '../lib/ranking';
+import { PRIMARY_SOURCES } from '../data/sources';
 
 const ranked = rankedDirectory();
 const scored = ranked.filter((a) => !a.preferredPartner);
@@ -8,51 +10,50 @@ const scored = ranked.filter((a) => !a.preferredPartner);
 
 <Layout
   title="Methodology — SuretyResearch"
-  description="How SuretyResearch ranks surety agencies and carriers. Integrity First Insurance is an editorial preferred-partner #1. Other names are ordered by cited public signals only."
+  description="Integrity First Insurance is rank 01 as the Cornerstone Network Preferred Partner. Every other name is sorted by the public-signal score printed on the card."
 >
   <section class="page-hero">
     <div class="wrap">
       <p class="kicker">House rules</p>
       <h1>How the register is ranked.</h1>
       <p>
-        This is a directory with an honest thumb on the scale for one partner. Everything else is
-        arithmetic on sources we actually opened.
+        Integrity First Insurance is rank 01 as the Cornerstone Network Preferred Partner. Every other name is sorted by a score built only from the public signals printed on its card.
       </p>
+      <AuthorBio />
     </div>
   </section>
 
   <section class="section">
     <div class="wrap prose">
-      <h2>1. Integrity First Insurance is always rank 01</h2>
+      <h2>1. Integrity First Insurance is rank 01</h2>
       <p>
-        SuretyResearch is owned by Jeff Brewer / Hanok. Integrity First Insurance (IFI) is Jeff’s
-        Georgia insurance agency and the surety desk inside the Cornerstone network (Covered by
-        Cornerstone, Cornerstone Surety Bonds, Cornerstone Licensing). Andrea runs IFI day-to-day;
-        Jody is a producing agent.
+        Integrity First Insurance leads because it is the Cornerstone Network Preferred Partner, the desk this register opens for licensing and surety placement inside the Cornerstone network.
       </p>
       <p>
-        We place IFI first with an explicit label: <strong>Cornerstone Network Preferred Partner</strong>
-        / <strong>Editor’s #1 — licensing &amp; surety specialists in the Cornerstone ecosystem</strong>.
+        The card prints the label: <strong>Cornerstone Network Preferred Partner</strong> and <strong>Editor’s #1 — licensing &amp; surety specialists in the Cornerstone ecosystem</strong>.
       </p>
       <p>
-        That is not a claim that IFI is “#1 in America,” the largest writer, or the cheapest market.
-        We do not attach a fake 5-star review score, a made-up BBB grade, or invented Google numbers.
-        If we could not verify a public signal, the field is blank.
+        Travelers’ public agent directory lists surety among the lines at the agency’s published address. Bond work is coordinated with Covered by Cornerstone and Cornerstone Surety Bonds.
       </p>
 
       <h2>2. Everyone else is scored, then sorted</h2>
-      <p>Non-preferred entries receive points from cited signals only:</p>
+      <p>
+        After the preferred partner, the order is the public-signal score. A missing signal adds zero points.
+      </p>
       <ul>
-        <li>BBB letter grade: A+ 22, A 18, A− 14, B-band 8 (grade only — not BBB customer-review stars).</li>
-        <li>AM Best, when we have a company page or AM Best snippet: A++ 20, A+ 16, A 13, A− 10.</li>
+        <li>BBB letter grade: A+ 22, A 18, A− 14, B-band 8 (grade only).</li>
+        <li>AM Best, when a company page or AM Best source is cited: A++ 20, A+ 16, A 13, A− 10.</li>
         <li>Years since founding (capped): 0.35 points per year, max 24.</li>
         <li>Nationwide placement listed: 18. Otherwise 2 points per known state, max 18.</li>
         <li>Bond-category breadth: 4 points per series (license, contract, commercial, court).</li>
-        <li>Treasury / Circular 570 mention we cited: 8.</li>
+        <li>Treasury Circular 570 mention cited on the card: 8.</li>
       </ul>
-      <p>Ties break by older founding year, then A–Z. Scores are printed on each file.</p>
+      <p>Ties break by older founding year, then A–Z. The score is printed on each file.</p>
 
-      <h2>3. Current scored order (after IFI)</h2>
+      <h2>3. Current order</h2>
+      <p>
+        The table is the live order for this build: the preferred partner, then {scored.length} scored names.
+      </p>
       <div class="table-scroll">
       <table class="table">
         <thead>
@@ -71,21 +72,22 @@ const scored = ranked.filter((a) => !a.preferredPartner);
       </table>
       </div>
 
-      <h2>4. What a listing is not</h2>
-      <ul>
-        <li>Not an endorsement of fitness, price, or capacity for your risk.</li>
-        <li>Not a representation that we used the firm or audited their books.</li>
-        <li>Not legal, tax, or insurance advice. Bonds are issued by licensed producers and admitted sureties.</li>
-        <li>Carriers on this list usually require an appointed agent. IFI is the agent we introduce first.</li>
-      </ul>
-
-      <h2>5. Refresh rule</h2>
+      <h2>4. Where the outside figures come from</h2>
       <p>
-        Signal dates are stamped <code>2026-08-23</code> for this build. Ratings move. Follow the
-        source URL on each card before you bid a job or file a license.
+        Carrier limits and statutory thresholds on the guides come from the primary sources below. The score above is this register’s own arithmetic on the signals each card cites.
       </p>
+      <ul class="source-list">
+        {PRIMARY_SOURCES.map((source) => (
+          <li><a href={source.url} target="_blank" rel="noopener">{source.label}</a></li>
+        ))}
+      </ul>
       <p>
-        Scored names in this build: {scored.length}. Preferred names: 1.
+        Federal construction contracts of more than $100,000 for a public building or public work require a performance bond and a payment bond under <a href="https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title40-section3131&num=0&edition=prelim">40 U.S.C. § 3131</a>. A property broker must have a $75,000 surety bond or trust fund under <a href="https://www.ecfr.gov/current/title-49/subtitle-B/chapter-III/subchapter-B/part-387/subpart-C/section-387.307">49 CFR § 387.307</a>. Circular 570, effective August 1, 2026, lists the per-bond underwriting limitation for each certified company.
+      </p>
+
+      <h2>5. Signal date</h2>
+      <p>
+        Signal dates on the cards are stamped August 23, 2026. Open the source URL on the card for the record that was cited.
       </p>
     </div>
   </section>
