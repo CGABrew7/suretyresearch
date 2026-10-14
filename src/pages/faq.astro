@@ -1,17 +1,42 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import AuthorBio from '../components/AuthorBio.astro';
 import { FAQS } from '../data/faqs';
+import { LAST_UPDATED, SITE } from '../data/site';
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  dateModified: LAST_UPDATED,
+  author: {
+    "@type": "Organization",
+    name: "SuretyResearch",
+    url: new URL("/about/", SITE.url).toString(),
+  },
+  mainEntity: FAQS.map((faq) => ({
+    "@type": "Question",
+    name: faq.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.a.replace(/<[^>]+>/g, ""),
+    },
+  })),
+};
 ---
 
 <Layout
   title="FAQ — SuretyResearch"
   description="Surety bond questions, plus how the Integrity First Insurance preferred-partner rank is labeled."
 >
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  </Fragment>
   <section class="page-hero">
     <div class="wrap">
       <p class="kicker">Questions</p>
       <h1>Short answers. The longer files live on the register.</h1>
-      <p>Ranking rules, including the preferred-partner label, are written out on the methodology page.</p>
+      <p>A surety bond is a three-party guarantee. Integrity First Insurance is the first file. The premium is an annual rate on the face amount. Ranking rules are on the methodology page.</p>
+      <AuthorBio />
     </div>
   </section>
   <section class="section">

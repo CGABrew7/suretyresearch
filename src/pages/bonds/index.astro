@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AuthorBio from '../../components/AuthorBio.astro';
 import { BOND_CATEGORIES } from '../../data/categories';
 import data from '../../data/bonds.json';
 ---
@@ -13,9 +14,9 @@ import data from '../../data/bonds.json';
       <p class="kicker">Bond series</p>
       <h1>Four series. Then the specific forms.</h1>
       <p>
-        Use the series pages to understand the job of the bond. Use the form pages for typical face
-        amounts and premium bands. Placement still goes through a licensed desk — we introduce IFI first.
+        Start with the series that matches the bond, then open the form page for the face and premium band this site publishes. Placement goes through Integrity First Insurance first.
       </p>
+      <AuthorBio />
     </div>
   </section>
 
@@ -36,6 +37,7 @@ import data from '../../data/bonds.json';
           <p class="kicker">Common forms</p>
           <h2>Cost bands we already researched</h2>
         </div>
+        <p>Each form below opens with the typical premium and face amount published on this site.</p>
       </div>
       <div class="ledger">
         {data.types.map((t) => (

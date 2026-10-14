@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { SITE } from '../../data/site';
+import AuthorBio from '../../components/AuthorBio.astro';
+import { LAST_UPDATED, SITE } from '../../data/site';
 
 const pageTitle = "Best Surety Bond Companies in 2026: the buyer's shortlist";
 const description =
@@ -78,15 +79,15 @@ const schema = {
       headline: pageTitle,
       description,
       datePublished: "2026-10-13",
-      dateModified: "2026-10-13",
+      dateModified: LAST_UPDATED,
       author: {
         "@type": "Organization",
-        name: "Surety Research Editorial Team",
+        name: "SuretyResearch",
         url: new URL("/about/", SITE.url).toString(),
       },
       publisher: {
         "@type": "Organization",
-        name: "Surety Research",
+        name: "SuretyResearch",
         url: SITE.url,
       },
       mainEntityOfPage: pageUrl,
@@ -119,10 +120,11 @@ const schema = {
 ---
 
 <Layout
-  title={`${pageTitle} | Surety Research`}
+  title={`${pageTitle} | SuretyResearch`}
   description={description}
   canonical={canonicalPath}
   feeder
+  includeSchema={false}
 >
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(schema)} />
@@ -136,10 +138,8 @@ const schema = {
     <div class="wrap">
       <p class="kicker">Buyer's shortlist</p>
       <h1>{pageTitle}</h1>
-      <p class="byline">
-        By <a href="/about/">Surety Research Editorial Team</a>
-      </p>
-      <p class="dates">Published October 13, 2026. Updated 2026-10-13.</p>
+      <p class="dates">Last updated October 14, 2026.</p>
+      <AuthorBio />
     </div>
   </section>
 
@@ -160,6 +160,7 @@ const schema = {
       </aside>
 
       <h2>Key Takeaways</h2>
+      <p>Travelers Casualty and Surety Company of America leads this file on an AM Best A++ (Superior) rating, affirmed August 21, 2026, and a Circular 570 per-bond limit of $237,089,000.</p>
       <ul>
         <li>Travelers Casualty and Surety Company of America is first because AM Best's A++ (Superior) rating, affirmed August 21, 2026, is the highest published financial strength rating in this file. Its Circular 570 per-bond underwriting limitation is $237,089,000. A higher letter outranks a larger Treasury limit when the letters differ.</li>
         <li>Western Surety Company is second. AM Best upgraded the financial strength rating to A+ (Superior) on December 3, 2025, and Circular 570 lists a per-bond limit of $148,124,000. CNA Surety publishes license and permit bonds on that paper, with instant issue for many forms through appointed agents on bONdLINE.</li>
@@ -168,10 +169,10 @@ const schema = {
         <li>Colonial Surety Company is the direct online writer in this file. The company says it was founded in 1930, publishes an A (Excellent) AM Best rating, and lets a buyer purchase many bonds online. Its Circular 570 per-bond limit is $8,830,000, so it sits sixth when the sort is rating letter, then Treasury limit.</li>
       </ul>
 
-      <h2>What a surety bond company actually is (and what it is not)</h2>
+      <h2>What a surety bond company is</h2>
       <div class="what-is">
-        <p>A surety bond company is the surety in a three-party contract. The principal is the business or person who needs the bond. The obligee is the party that requires it. The surety promises the obligee that the principal will do what the bond says. If the surety pays a valid claim, the principal still has to repay the surety. That repayment duty is why these companies underwrite the principal instead of selling a policy that simply absorbs the loss.</p>
-        <p>A surety bond company is not an insurance policy for the principal, and it is not a retail desk that only introduces the file. The company is the one that can sign the bond. This page ranks certified sureties that also have a financial strength rating we could open. It does not rank every business that sells a bond form, and a listing is not a promise that the company will write your form.</p>
+        <p>A surety bond company is the surety that signs the bond. The principal needs the bond, the obligee requires it, and the surety guarantees the principal’s promise. If the surety pays a valid claim, the principal reimburses the surety. The <a href="https://surety.org/surety-fidelity/what-is-surety/">Surety &amp; Fidelity Association of America</a> uses that three-party definition.</p>
+        <p>The company on this list is the one that can sign the bond. This page orders six certified sureties that also have a financial strength rating opened for this file.</p>
         <p>Treasury Circular 570, effective August 1, 2026, names companies acceptable as sureties on federal bonds and prints a per-bond underwriting limitation for each one. The Bureau of the Fiscal Service says that limitation does not cap the face amount when the excess is protected by reinsurance, coinsurance, or another method in 31 CFR 223.10 and 31 CFR 223.11. A state license is a separate record. When a company page and the Circular 570 license line disagree, both are printed and labeled.</p>
         <p>Online instant issue is separate from the rating. Some companies let a principal pay and print on the company site. Others issue only through an appointed agent's portal. If neither path is published, the cell says not published. Cost bands this site has already published sit on the bond-type pages, and any arithmetic from those bands is labeled as an example.</p>
       </div>
@@ -191,7 +192,7 @@ const schema = {
       </p>
 
       <h2>How We Ranked These Surety Bond Companies</h2>
-      <p>Five published facts decide the order. There is no point score. If a fact was not on a page we could cite, the cell says not published, and that blank does not get filled with a guess.</p>
+      <p>The order is the AM Best letter first, then the August 1, 2026 Circular 570 per-bond underwriting limitation. Five published facts fill the table.</p>
       <ol>
         <li>AM Best financial strength rating, using the company disclosure or the company's own rating statement, with the action date.</li>
         <li>Treasury Circular 570 listing and the per-bond underwriting limitation on the list effective August 1, 2026.</li>
@@ -203,7 +204,7 @@ const schema = {
       <p>The six companies below are the ones where both a rating and an August 1, 2026 Circular 570 entry were in hand. Premiums, consumer review counts, and several bond-type cells were not published in those sources. They stay marked not published.</p>
 
       <h2>The Best Surety Bond Companies in 2026</h2>
-      <p>Each company below is a certified surety on the August 1, 2026 Treasury list, with an AM Best financial strength rating we could cite. The number is the sort above, not a star rating and not a claim about who writes the most bonds. Read the use case in the heading, then the figures, then the "Best suited for" close. Open the source before you treat a limit as the largest bond that company can sign.</p>
+      <p>Each company below is a certified surety on the August 1, 2026 Treasury list and has an AM Best financial strength rating cited on this page. Read the use case, then the Circular 570 limit, then the bond types the company names.</p>
       <p>Face amounts above a per-bond limitation can still be written when the excess is reinsured or coinsured, which is the Treasury rule cited in the ranking section. A high rating does not mean the company has published a checkout, and a checkout does not mean the company has the highest rating. Match the form you need to the bond types the company names.</p>
       <p>Where a company page and Circular 570 disagree, both numbers are printed and labeled. Where a product is missing from the pages reviewed, the line says not published. That includes a flat price for every company in this file, and a consumer review count for every company in this file.</p>
 
@@ -264,7 +265,7 @@ const schema = {
   <section class="section section-tight">
     <div class="wrap prose prose-wide">
       <h2>Side-by-Side Comparison</h2>
-      <p>Criteria: AM Best financial strength rating, Treasury Circular 570 listing and per-bond underwriting limitation (August 1, 2026), states licensed, bond types written (license and permit, contract, court), and online instant-issue availability.</p>
+      <p>The table lines up the same five facts used to sort the list: AM Best rating, the August 1, 2026 Circular 570 per-bond limit, states licensed, bond types named, and instant issue.</p>
       <div class="table-scroll">
         <table class="table">
           <caption class="kicker" style="text-align:left;padding-bottom:8px">Published figures only. Cells say not published when a source did not give the figure.</caption>
@@ -333,6 +334,7 @@ const schema = {
       <p>Price and consumer review count are not columns because every company in this file left them unpublished. Flat premium: not published. Review count: not published.</p>
 
       <h2>Which surety company fits your bond type</h2>
+      <p>Use a cell when that company’s page names the bond. A blank cell means the pages reviewed for this file did not name it.</p>
       <div class="table-scroll">
         <table class="table">
           <caption class="kicker" style="text-align:left;padding-bottom:8px">A cell is filled only when that company page names the bond. Otherwise it says not published.</caption>
@@ -393,6 +395,7 @@ const schema = {
       </div>
 
       <h2>What results look like</h2>
+      <p>Company pages publish bond-size figures. This site’s bond pages publish the premium bands used in the examples below.</p>
       <div class="prose">
         <p>Three company pages publish dollar figures a buyer can compare without inventing a premium. Travelers' contract page says federal construction projects valued at $150,000 or more require contract surety bonds. CNA Surety's commercial page says qualified corporate commercial programs run from $1,000,000 to $500,000,000. Old Republic's company page says performance and payment support goes to $100 million on a single project and $150 million on an aggregate program. Those are bond-size statements from the companies. They are not quotes.</p>
         <p>This site already publishes cost bands on its bond pages. The license and permit page lists a face range of $5,000 to $50,000, a premium band of 1% to 5%, and a typical annual premium of $100 to $500. The mortgage broker page lists a face range of $25,000 to $500,000, a premium band of 1% to 10%, and a typical annual premium of $500 to $5,000. The worked lines below use only those published bands. They are examples, not a rate from any company on this shortlist.</p>
@@ -401,6 +404,7 @@ const schema = {
       </div>
 
       <h2>FAQ</h2>
+      <p>These answers cover how to compare a company, what Circular 570 measures, and which name on this list publishes an online checkout.</p>
       <div class="faq-stack">
         {faqs.map((faq) => (
           <details class="faq-item">
@@ -411,6 +415,7 @@ const schema = {
       </div>
 
       <h2>Sources</h2>
+      <p>The per-bond limits in the table are from U.S. Treasury Circular 570 effective August 1, 2026. AM Best dates are the actions linked under each company.</p>
       <ul class="source-list">
         <li><a href="https://fiscal.treasury.gov/about-us/doing-business-with-fiscal-service/surety-bonds/list-certified-companies" target="_blank" rel="noopener">Bureau of the Fiscal Service, List of Certified Companies, Circular 570 effective August 1, 2026</a></li>
         <li><a href="https://fiscal.treasury.gov/about-us/doing-business-with-fiscal-service/surety-bonds/circular-570" target="_blank" rel="noopener">Bureau of the Fiscal Service, Department Circular 570 notes, including the per-bond rule and 31 CFR 223.10 and 223.11</a></li>
@@ -438,13 +443,14 @@ const schema = {
         <li><a href="https://colonialsurety.com/about/" target="_blank" rel="noopener">Colonial Surety Company about</a></li>
         <li><a href="https://colonialsurety.com/surety-bonds/" target="_blank" rel="noopener">Colonial Surety bonds</a></li>
         <li><a href="https://colonialsurety.com/court-fiduciary-bonds/" target="_blank" rel="noopener">Colonial court and fiduciary bonds</a></li>
+        <li><a href="https://surety.org/surety-fidelity/what-is-surety/" target="_blank" rel="noopener">Surety &amp; Fidelity Association of America — What is a surety bond?</a></li>
         <li><a href="https://www.youtube.com/watch?v=3QDL7BDiUWA" target="_blank" rel="noopener">NASBP video, What is a surety bond?</a></li>
         <li><a href="/bonds/license-permit/">SuretyResearch license and permit bond bands</a></li>
         <li><a href="/bonds/mortgage-broker/">SuretyResearch mortgage broker bond bands</a></li>
       </ul>
 
       <h2>Get matched with the right bond</h2>
-      <p>Bring the bond name, the face amount, and the state that requires it. A surety company underwrites the file, and it does not publish one price for every buyer. Start with the <a href="/bonds/license-permit/">license and permit bond guide</a> if you need the published cost bands, or go to the <a href="/contact/">contact page</a> and ask for a match. The desk should name the legal entity that will sign. Ask for the current AM Best rating and the current Circular 570 limit before you accept paper. Then set those answers next to the table on this page.</p>
+      <p>Bring the bond name, the face amount, and the state. Start with the <a href="/bonds/license-permit/">license and permit bond guide</a> for this site’s cost bands, or use the <a href="/contact/">contact page</a> and ask which legal entity will sign. Set that company’s AM Best rating and Circular 570 limit next to the table on this page.</p>
       <p><a class="btn btn-brass" href="/contact/">Get matched with the right bond</a></p>
     </div>
   </section>

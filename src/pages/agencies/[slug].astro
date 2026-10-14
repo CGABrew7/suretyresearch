@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AuthorBio from '../../components/AuthorBio.astro';
 import { AGENCIES } from '../../data/agencies';
 import { rankedDirectory, kindLabel } from '../../lib/ranking';
 import { BOND_CATEGORIES } from '../../data/categories';
@@ -27,7 +28,8 @@ const cats = BOND_CATEGORIES.filter((c) => agency.categories.includes(c.id));
         File {String(agency.rank).padStart(2, '0')} · {kindLabel(agency.kind)} · {agency.hqCity}, {agency.hqState}
       </p>
       <h1>{agency.name}</h1>
-      <p>{agency.tagline}</p>
+      <p>{agency.summary}</p>
+      <AuthorBio />
       <div class="card-meta" style="margin-top:14px">
         {agency.preferredPartner && <span class="pill seal">Cornerstone Network Preferred Partner</span>}
         <span class="pill">{kindLabel(agency.kind)}</span>
@@ -47,19 +49,15 @@ const cats = BOND_CATEGORIES.filter((c) => agency.categories.includes(c.id));
             <p style="margin-bottom:0"><a href="/methodology/">How this rank is labeled</a></p>
           </div>
         )}
-        <p>{agency.summary}</p>
+        <h2>What this file shows</h2>
+        <p>
+          {agency.preferredPartner
+            ? `${agency.name} is the Cornerstone Network Preferred Partner and rank 01 on this register.`
+            : `${agency.name} is rank ${String(agency.rank).padStart(2, '0')}, ${kindLabel(agency.kind) === 'Agency' ? 'an agency' : `a ${kindLabel(agency.kind).toLowerCase()}`}, on the public-signal score.`}
+        </p>
         {agency.detail.map((p) => (
           p.includes('<a href') ? <p set:html={p} /> : <p>{p}</p>
         ))}
-
-        {agency.notes.length > 0 && (
-          <>
-            <h2>What we will not stretch</h2>
-            <ul>
-              {agency.notes.map((n) => <li>{n}</li>)}
-            </ul>
-          </>
-        )}
       </div>
 
       <aside>
@@ -96,8 +94,8 @@ const cats = BOND_CATEGORIES.filter((c) => agency.categories.includes(c.id));
           <p class="kicker">{agency.preferredPartner ? 'Call this desk' : 'Need a bond placed?'}</p>
           <p style="margin:10px 0 14px;color:var(--ink-2)">
             {agency.preferredPartner
-              ? 'IFI / Cornerstone is the preferred path from this register.'
-              : 'This listing is research. For placement through our preferred partner, use IFI / Cornerstone.'}
+              ? 'Call this number to place a bond through the preferred partner.'
+              : 'Placement from this register goes through Integrity First Insurance.'}
           </p>
           <div class="btn-row" style="margin-top:0">
             {agency.preferredPartner ? (
@@ -129,6 +127,7 @@ const cats = BOND_CATEGORIES.filter((c) => agency.categories.includes(c.id));
           <p class="kicker">Bond series on this file</p>
           <h2>What they claim to write</h2>
         </div>
+        <p>These are the bond series listed on this file.</p>
       </div>
       <div class="grid-2">
         {cats.map((cat) => (

@@ -1,9 +1,24 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AgencyCard from '../../components/AgencyCard.astro';
+import AuthorBio from '../../components/AuthorBio.astro';
 import data from '../../data/bonds.json';
 import { BOND_CATEGORIES, getCategory } from '../../data/categories';
 import { filterAgencies } from '../../lib/ranking';
+import { sourcesById, type PrimarySourceId } from '../../data/sources';
+
+const bondCitations: Record<string, { answer: string; sourceIds: PrimarySourceId[] }> = {
+  "freight-broker": {
+    answer:
+      "A property broker must have a $75,000 surety bond or trust fund in effect before FMCSA will register the broker. Evidence of the bond is filed on Form BMC-84.",
+    sourceIds: ["bmc"],
+  },
+  performance: {
+    answer:
+      "Before a federal contract of more than $100,000 is awarded for construction, alteration, or repair of a public building or public work, the contractor must furnish a performance bond and a payment bond.",
+    sourceIds: ["miller"],
+  },
+};
 
 const categoryIds = new Set(BOND_CATEGORIES.map((c) => c.id));
 const typeIds = new Set(data.types.map((t) => t.id));
@@ -29,6 +44,9 @@ const title = isCategoryPage && category
 const description = isCategoryPage && category
   ? category.summary
   : `${bond?.name} cost bands: typical ${bond?.typical}. Face ${bond?.bondRange}.`;
+
+const citation = bond ? bondCitations[bond.id] : undefined;
+const citationSources = citation ? sourcesById(citation.sourceIds) : [];
 ---
 
 <Layout title={title} description={description}>
@@ -36,7 +54,14 @@ const description = isCategoryPage && category
     <div class="wrap">
       <p class="kicker">{category ? `${category.ledger} · ${category.name}` : 'Bond form'}</p>
       <h1>{isCategoryPage && category ? category.name : bond?.name}</h1>
-      <p>{isCategoryPage && category ? category.headline + '. ' + category.summary : bond?.description}</p>
+      <p>
+        {citation
+          ? citation.answer
+          : isCategoryPage && category
+            ? category.summary
+            : bond?.description}
+      </p>
+      <AuthorBio />
       <div class="btn-row">
         <a class="btn btn-brass" href="/agencies/">Open the register</a>
         <a class="btn btn-ghost" href="/agencies/integrity-first-insurance/">Talk to the desk</a>
@@ -47,15 +72,11 @@ const description = isCategoryPage && category
   <section class="section">
     <div class="wrap">
       {isCategoryPage && category && (
-        <div class="grid-2" style="margin-bottom:32px">
-          <div class="cert">
-            <p class="kicker">Who posts these</p>
-            <p style="margin-top:8px;color:var(--ink-2)">{category.whoNeeds}</p>
-          </div>
-          <div class="cert">
-            <p class="kicker">Money, roughly</p>
-            <p style="margin-top:8px;color:var(--ink-2)">{category.typicalRange}</p>
-          </div>
+        <div class="prose" style="margin-bottom:28px">
+          <h2>Who posts these bonds</h2>
+          <p>{category.whoNeeds}</p>
+          <h2>What the face and premium look like on this site</h2>
+          <p>{category.typicalRange}. Those bands are the ranges published on this register. A licensed desk sets the rate on the file.</p>
         </div>
       )}
 
@@ -69,10 +90,20 @@ const description = isCategoryPage && category
           </div>
 
           <div class="prose" style="margin-bottom:32px">
-            <h2>Cost bands by credit (industry averages)</h2>
+            {citation && (
+              <>
+                <h2>What the primary source says</h2>
+                <p>{citation.answer}</p>
+                <ul class="source-list">
+                  {citationSources.map((source) => (
+                    <li><a href={source.url} target="_blank" rel="noopener">{source.label}</a></li>
+                  ))}
+                </ul>
+              </>
+            )}
+            <h2>Cost bands by credit</h2>
             <p>
-              Industry-average ranges for a $25,000 face and a $100,000 face, so you can scale.
-              High-face contract and money-transmitter bonds are priced by a desk on the full file.
+              The table is this site’s premium sketch for a $25,000 face and a $100,000 face. A licensed desk sets the rate on the full file.
             </p>
             <table class="table">
               <thead>
@@ -98,6 +129,7 @@ const description = isCategoryPage && category
       {isCategoryPage && category && (
         <div class="prose" style="margin-bottom:28px">
           <h2>Forms in this series</h2>
+          <p>These are the forms grouped under {category.name}.</p>
           <ul>
             {category.examples.map((ex) => <li>{ex}</li>)}
           </ul>
@@ -123,7 +155,7 @@ const description = isCategoryPage && category
           <p class="kicker">Desks on this series</p>
           <h2>Register entries that list this category</h2>
         </div>
-        <p>IFI remains first. Carriers still need an appointed agent.</p>
+        <p>Integrity First Insurance is first. The cards under it are the other desks and carriers that list this series.</p>
       </div>
       <div class="ledger">
         {agencies.slice(0, 8).map((agency) => <AgencyCard agency={agency} />)}

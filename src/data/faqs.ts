@@ -11,7 +11,7 @@ export const FAQS: Faq[] = [
   },
   {
     q: "Why is Integrity First Insurance first?",
-    a: "IFI is the Cornerstone Network Preferred Partner — the Alpharetta desk this register introduces first for licensing and surety inside that ecosystem. The label is printed on the card. Scoring rules for every other name are on the <a href='/methodology/'>methodology</a> page.",
+    a: "Integrity First Insurance is the Cornerstone Network Preferred Partner, the desk this register opens first for licensing and surety. The label is printed on the card. Scoring rules for every other name are on the <a href='/methodology/'>methodology</a> page.",
   },
   {
     q: "How is the rest of the register ordered?",

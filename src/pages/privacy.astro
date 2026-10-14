@@ -1,30 +1,33 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import AuthorBio from '../components/AuthorBio.astro';
 ---
 
-<Layout title="Privacy — SuretyResearch" description="SuretyResearch privacy notes.">
+<Layout title="Privacy — SuretyResearch" description="SuretyResearch keeps the premium sketch in your browser.">
   <section class="page-hero">
     <div class="wrap">
       <p class="kicker">Housekeeping</p>
-      <h1>Privacy</h1>
-      <p>Last updated August 2026.</p>
+      <h1>The premium sketch stays in your browser.</h1>
+      <p>
+        SuretyResearch is a static research site. The calculator runs on your device. A call to Integrity First Insurance or Cornerstone is handled under that firm’s own privacy notice.
+      </p>
+      <AuthorBio />
     </div>
   </section>
   <section class="section">
     <div class="wrap prose">
+      <h2>What this site stores</h2>
       <p>
-        This is a static research site. The premium sketch runs in your browser. We do not operate a
-        lead form that quietly sells your name.
+        The premium sketch does not send a lead form. Directory questions go to bonds@suretyresearch.com.
       </p>
+      <h2>What a call does</h2>
       <p>
-        If you call Integrity First Insurance or Cornerstone, you are dealing with those firms and
-        their privacy notices — not with a fake intermediary inbox.
+        Calling Integrity First Insurance or a Cornerstone site reaches that firm. Use the privacy notice on the site you reach.
       </p>
+      <h2>Hosting and fonts</h2>
       <p>
-        Hosting (Cloudflare Pages) and fonts (Google Fonts) may process standard request logs and
-        font requests. We do not run advertising pixels on this build.
+        Cloudflare Pages serves the site and Google Fonts serves the type. Those requests are ordinary page and font loads. This build does not run advertising pixels.
       </p>
-      <p>Directory questions: bonds@suretyresearch.com</p>
     </div>
   </section>
 </Layout>

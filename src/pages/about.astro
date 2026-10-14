@@ -1,58 +1,53 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import AuthorBio from '../components/AuthorBio.astro';
 import { SITE } from '../data/site';
+import { PRIMARY_SOURCES } from '../data/sources';
 ---
 
 <Layout
   title="About — SuretyResearch"
-  description="SuretyResearch is the surety register kept by Jeff Brewer for mortgage, insurance, and contractor files. The preferred desk is Integrity First Insurance in Alpharetta."
+  description="SuretyResearch is the editorial byline on this surety register. The preferred desk is Integrity First Insurance."
 >
   <section class="page-hero">
     <div class="wrap">
       <p class="kicker">About the desk</p>
-      <h1>Built for the person who has to place the bond.</h1>
+      <h1>SuretyResearch writes the register.</h1>
       <p>
-        SuretyResearch is the register Jeff Brewer keeps for mortgage, insurance, and contractor
-        files. The phone number at the top of it is his own agency.
+        SuretyResearch is the editorial byline on the agency files, bond guides, and carrier comparisons on this site. The first file is Integrity First Insurance, the Cornerstone Network Preferred Partner.
       </p>
+      <AuthorBio full />
     </div>
   </section>
 
   <section class="section">
     <div class="wrap story-grid">
       <div class="prose">
-        <h2>The question that started the file</h2>
+        <h2>What the register is for</h2>
         <p>
-          When a license, a bid, or a court order needs a bond, the search usually ends in a quote
-          form. The useful fact is smaller, and harder to find: which desk will write this form,
-          in this state, with sources you can open.
-        </p>
-        <p class="pull">
-          The first slot is labeled because the owner of the site is the owner of the desk.
-        </p>
-        <h2>Alpharetta, on purpose</h2>
-        <p>
-          {SITE.owner} owns SuretyResearch and Integrity First Insurance, the Georgia agency inside
-          the Cornerstone network. The public address is 925 North Point Parkway, Suite 475,
-          Alpharetta. Cornerstone Licensing sits in Suite 470 on the same campus. Andrea runs IFI
-          day to day. Jody is a producing agent.
+          The register names the desk that can place a license, contract, commercial, or court bond, and it prints the public signal used to order every file after the preferred partner.
         </p>
         <p>
-          Travelers’ public agent directory lists surety among the lines at that address. A 2017
-          Insurance Business America profile described Integrity First as the in-house agency of
-          Cornerstone Support, focused on regulated operators. Bond work for licensed professionals
-          is coordinated with Covered by Cornerstone and Cornerstone Surety Bonds.
+          When a license, a bid, or a court order needs a bond, the useful fact is which desk will write that form. Open the series, then the card, then call.
         </p>
-        <h2>Why the calculator became a register</h2>
+        <h2>Who signs the byline</h2>
         <p>
-          The first version of this site was a premium calculator on a green page. The work people
-          actually needed was a file: named agencies, a preferred partner labeled in print, and a
-          method for everyone else. That file is the register. The calculator stayed, as a sketch
-          you run before the call.
+          The byline is SuretyResearch. Guides and agency files are published under that name. The about page is the author bio for the register.
         </p>
         <p>
-          After IFI, the order is arithmetic on signals we opened — BBB letter grades, AM Best when
-          a page was in hand, years, coverage, series breadth. The rulebook is public.
+          Integrity First Insurance is the placement desk the register opens first. The phone on the contact page is the preferred-partner line.
+        </p>
+        <h2>Where a figure comes from</h2>
+        <p>
+          A dollar amount or a legal threshold on a guide is taken from the source linked beside it: a statute, an insurance department, U.S. Treasury Circular 570, or the Surety & Fidelity Association of America.
+        </p>
+        <ul class="source-list">
+          {PRIMARY_SOURCES.map((source) => (
+            <li><a href={source.url} target="_blank" rel="noopener">{source.label}</a></li>
+          ))}
+        </ul>
+        <p>
+          Premium sketches on the bond pages are this site’s published bands. A licensed desk sets the rate on the file.
         </p>
         <p>
           <a href="/methodology/">Read how the register is ranked</a>
@@ -67,26 +62,21 @@ import { SITE } from '../data/site';
         <div class="cert">
           <p class="kicker">The preferred desk</p>
           <h2>Integrity First Insurance</h2>
-          <p>Cornerstone Network Preferred Partner</p>
+          <p>Cornerstone Network Preferred Partner. This is the desk the register opens for placement.</p>
           <dl>
-            <div>
-              <dt>Where</dt>
-              <dd>925 North Point Parkway, Suite 475, Alpharetta, GA 30005</dd>
-            </div>
-            <div>
-              <dt>Who</dt>
-              <dd>Andrea runs the agency day to day. Jody produces. Jeff Brewer owns the desk.</dd>
-            </div>
             <div>
               <dt>Phone</dt>
               <dd><a href={`tel:${SITE.ifi.phone.replace(/-/g, '')}`}>{SITE.ifi.phone}</a></dd>
             </div>
             <div>
-              <dt>Hours</dt>
-              <dd>Monday–Friday, 8am–6pm ET, as published on the Cornerstone sites.</dd>
+              <dt>File</dt>
+              <dd><a href="/agencies/integrity-first-insurance/">Open the IFI file</a></dd>
+            </div>
+            <div>
+              <dt>Network</dt>
+              <dd>Cornerstone Surety Bonds, Covered by Cornerstone, and Cornerstone Licensing.</dd>
             </div>
           </dl>
-          <a class="text-link" href="/agencies/integrity-first-insurance/">Open the IFI file</a>
         </div>
       </aside>
     </div>

@@ -2,9 +2,9 @@
 
 A **surety-bond agency directory** for licensed professionals (mortgage, insurance, contractors), plus bond-type research. Static Astro site. Built for Cloudflare Pages.
 
-Integrity First Insurance (IFI) is **always rank #1**. That is an editorial **Cornerstone Network Preferred Partner** placement — not a fabricated star score and not a claim that IFI is “#1 in America.” Other agencies and carriers are ordered by cited public signals (BBB letter grade, AM Best when sourced, years, coverage, bond-category breadth, Treasury-list mention). Missing data is omitted.
+Integrity First Insurance (IFI) is **always rank #1** as the **Cornerstone Network Preferred Partner**. Other agencies and carriers are ordered by cited public signals (BBB letter grade, AM Best when sourced, years, coverage, bond-category breadth, Treasury Circular 570).
 
-Owner: Jeff Brewer / Hanok.
+Byline: SuretyResearch.
 
 ## Run locally
 
@@ -45,7 +45,7 @@ Implemented in `src/lib/ranking.ts`, disclosed on `/methodology/`.
    - Nationwide vs. known states
    - Number of bond series listed
    - Treasury / Circular 570 mention
-3. **Honesty.** No invented Google or BBB numbers. No fake testimonials. Carriers usually need an appointed agent — IFI is the desk this site introduces first.
+3. **Sources.** Figures that come from a statute, an insurance department, Treasury Circular 570, or the Surety & Fidelity Association of America are linked. Carriers usually need an appointed agent. Integrity First Insurance is the desk this site opens first.
 
 Agency source data lives in `src/data/agencies.ts`. Bond cost bands remain in `src/data/bonds.json`.
 
