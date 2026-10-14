@@ -1,0 +1,451 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { SITE } from '../../data/site';
+
+const pageTitle = "Best Surety Bond Companies in 2026: the buyer's shortlist";
+const description =
+  "Travelers Casualty and Surety Company of America leads this 2026 shortlist on an AM Best A++ rating, affirmed August 21, 2026, and a Treasury Circular 570 per-bond limit of $237,089,000.";
+const canonicalPath = "/guides/best-surety-bond-companies/";
+const pageUrl = new URL(canonicalPath, SITE.url).toString();
+
+const faqs = [
+  {
+    q: "How do I compare surety bond companies without a quote?",
+    a: "Compare the published AM Best financial strength rating, the Circular 570 per-bond underwriting limitation, the states on that license line, the bond types the company names, and whether instant issue is published. This page orders six companies by the rating letter, then by the August 1, 2026 Treasury limit. A quote still depends on the file, and none of these companies publish one premium for every applicant.",
+  },
+  {
+    q: "What does an AM Best financial strength rating measure?",
+    a: "AM Best's financial strength rating is an opinion of a company's ability to meet its ongoing insurance obligations. The ratings cited here run from A++ (Superior) for Travelers Casualty and Surety Company of America, affirmed August 21, 2026, to A (Excellent) for the three companies lower in the order. The rating is not a price, and it is not a promise that the company will write a particular bond.",
+  },
+  {
+    q: "What is a Treasury Circular 570 underwriting limitation?",
+    a: "Circular 570 lists companies that may act as sureties on federal bonds and prints an underwriting limitation for each one. That limitation is per bond, and the Bureau of the Fiscal Service says a company may write a larger bond when the excess is protected by reinsurance, coinsurance, or another method in 31 CFR 223.10 and 31 CFR 223.11. The limits in this file are from the list effective August 1, 2026.",
+  },
+  {
+    q: "How is a surety bond company different from an insurer?",
+    a: "A liability insurer pays covered losses for its policyholder, while a surety bond company guarantees the principal's promise to someone else and then seeks repayment if it pays a valid claim. A business can need both a bond and an insurance policy, and they are not substitutes. The <a href=\"/guides/bond-vs-insurance/\">bonds versus insurance guide</a> walks through who gets paid.",
+  },
+  {
+    q: "What company on this shortlist lets a buyer purchase online?",
+    a: "Colonial Surety Company publishes instant online purchase for many bonds, including court and fiduciary bonds, and says a buyer can obtain a bond in minutes. CNA Surety's bONdLINE and Old Republic Surety's BondStar are instant-issue tools for appointed agents, not a public checkout. Travelers, American Surety Company, and Merchants Bonding Company (Mutual) do not publish a principal instant-issue checkout in the sources used here.",
+  },
+  {
+    q: "How do performance and payment bonds differ from a license bond?",
+    a: "A license or permit bond is a condition of holding a license, and Travelers describes it as a guarantee tied to the rules of that license. A performance bond guarantees that a contractor will complete the contract, and a payment bond covers laborers, subcontractors, and suppliers. Travelers' contract page says federal construction projects valued at $150,000 or more require contract surety bonds.",
+  },
+  {
+    q: "What should a mortgage lender or broker check on a surety?",
+    a: "Travelers' commercial surety page names mortgage lender bonds and mortgage broker bonds, and the other five companies do not name mortgage bonds in the sources used here. Money transmitter bonds are not named by any company in this file. Use the <a href=\"/bonds/mortgage-broker/\">mortgage broker bond page</a> for this site's published face and premium bands, then confirm the signing company will write the state.",
+  },
+  {
+    q: "How current are the ratings and Treasury limits on this page?",
+    a: "The Treasury figures are from Circular 570 effective August 1, 2026, and the AM Best actions cited here were affirmed or upgraded from December 3, 2025 through October 8, 2026. Ratings and limits change. Open the linked AM Best disclosure and the Treasury list before you rely on a figure in a bid.",
+  },
+];
+
+const picks = [
+  {
+    name: "Travelers Casualty and Surety Company of America",
+    url: "https://www.travelers.com/surety-bond",
+  },
+  {
+    name: "Western Surety Company",
+    url: "https://www.cnasurety.com/products/commercial-bonds",
+  },
+  {
+    name: "Old Republic Surety Company",
+    url: "https://www.orsurety.com/about",
+  },
+  {
+    name: "American Surety Company",
+    url: "https://www.american-surety.com/faq/",
+  },
+  {
+    name: "Merchants Bonding Company (Mutual)",
+    url: "https://www.merchantsbonding.com/about",
+  },
+  {
+    name: "Colonial Surety Company",
+    url: "https://colonialsurety.com/about/",
+  },
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      headline: pageTitle,
+      description,
+      datePublished: "2026-10-13",
+      dateModified: "2026-10-13",
+      author: {
+        "@type": "Organization",
+        name: "Surety Research Editorial Team",
+        url: new URL("/about/", SITE.url).toString(),
+      },
+      publisher: {
+        "@type": "Organization",
+        name: "Surety Research",
+        url: SITE.url,
+      },
+      mainEntityOfPage: pageUrl,
+    },
+    {
+      "@type": "ItemList",
+      name: pageTitle,
+      itemListOrder: "https://schema.org/ItemListOrderAscending",
+      numberOfItems: picks.length,
+      itemListElement: picks.map((pick, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: pick.name,
+        url: pick.url,
+      })),
+    },
+    {
+      "@type": "FAQPage",
+      mainEntity: faqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.q,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: faq.a.replace(/<[^>]+>/g, ""),
+        },
+      })),
+    },
+  ],
+};
+---
+
+<Layout
+  title={`${pageTitle} | Surety Research`}
+  description={description}
+  canonical={canonicalPath}
+  feeder
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  </Fragment>
+
+  <div class="guide-sticky">
+    <a class="btn btn-brass" href="/contact/">Get matched with the right bond</a>
+  </div>
+
+  <section class="page-hero shortlist-hero">
+    <div class="wrap">
+      <p class="kicker">Buyer's shortlist</p>
+      <h1>{pageTitle}</h1>
+      <p class="byline">
+        By <a href="/about/">Surety Research Editorial Team</a>
+      </p>
+      <p class="dates">Published October 13, 2026. Updated 2026-10-13.</p>
+    </div>
+  </section>
+
+  <section class="section section-tight">
+    <div class="wrap prose">
+      <p class="intro">
+        Travelers Casualty and Surety Company of America leads this shortlist. AM Best affirmed its financial strength rating at A++ (Superior) on August 21, 2026, and Treasury Circular 570, effective August 1, 2026, lists a per-bond underwriting limitation of $237,089,000. The names under it follow those two published figures, rating letter first and Treasury limit second. Use the table before you ask for a quote. This file compares the best surety bond companies on rating, Treasury limit, state licenses, bond types, and online issue.
+      </p>
+      <p>
+        If you are pricing the bond before you pick the company, open the <a href="/bonds/license-permit/">license and permit bond guide</a> for this site's published face amounts and premium bands. Credit tiers that change the rate are on the <a href="/guides/credit-score-impact/">credit and premium guide</a>.
+      </p>
+
+      <aside class="cert guide-cta">
+        <p class="kicker">Placement</p>
+        <p class="serif" style="font-size:1.7rem;margin:8px 0 10px;line-height:1.15">Name the bond, then ask for a company that writes it.</p>
+        <p>Bring the form, the face amount, and the state that requires it. The contact page is where this guide sends the match.</p>
+        <a class="btn btn-brass" href="/contact/">Get matched with the right bond</a>
+      </aside>
+
+      <h2>Key Takeaways</h2>
+      <ul>
+        <li>Travelers Casualty and Surety Company of America is first because AM Best's A++ (Superior) rating, affirmed August 21, 2026, is the highest published financial strength rating in this file. Its Circular 570 per-bond underwriting limitation is $237,089,000. A higher letter outranks a larger Treasury limit when the letters differ.</li>
+        <li>Western Surety Company is second. AM Best upgraded the financial strength rating to A+ (Superior) on December 3, 2025, and Circular 570 lists a per-bond limit of $148,124,000. CNA Surety publishes license and permit bonds on that paper, with instant issue for many forms through appointed agents on bONdLINE.</li>
+        <li>A Treasury listing is not a price. Circular 570 prints a per-bond underwriting limitation and says a company may write a larger bond when the excess is protected by reinsurance or coinsurance. None of these companies publish one flat premium for every applicant.</li>
+        <li>Old Republic Surety's about page says it is licensed in all 50 states and has a Treasury listing in excess of $200,000,000. The August 1, 2026 Circular 570 entry for Old Republic Surety Company lists $9,088,000 and surety licenses in 36 states plus the District of Columbia. Both pairs of figures stay on this page because both are published.</li>
+        <li>Colonial Surety Company is the direct online writer in this file. The company says it was founded in 1930, publishes an A (Excellent) AM Best rating, and lets a buyer purchase many bonds online. Its Circular 570 per-bond limit is $8,830,000, so it sits sixth when the sort is rating letter, then Treasury limit.</li>
+      </ul>
+
+      <h2>What a surety bond company actually is (and what it is not)</h2>
+      <div class="what-is">
+        <p>A surety bond company is the surety in a three-party contract. The principal is the business or person who needs the bond. The obligee is the party that requires it. The surety promises the obligee that the principal will do what the bond says. If the surety pays a valid claim, the principal still has to repay the surety. That repayment duty is why these companies underwrite the principal instead of selling a policy that simply absorbs the loss.</p>
+        <p>A surety bond company is not an insurance policy for the principal, and it is not a retail desk that only introduces the file. The company is the one that can sign the bond. This page ranks certified sureties that also have a financial strength rating we could open. It does not rank every business that sells a bond form, and a listing is not a promise that the company will write your form.</p>
+        <p>Treasury Circular 570, effective August 1, 2026, names companies acceptable as sureties on federal bonds and prints a per-bond underwriting limitation for each one. The Bureau of the Fiscal Service says that limitation does not cap the face amount when the excess is protected by reinsurance, coinsurance, or another method in 31 CFR 223.10 and 31 CFR 223.11. A state license is a separate record. When a company page and the Circular 570 license line disagree, both are printed and labeled.</p>
+        <p>Online instant issue is separate from the rating. Some companies let a principal pay and print on the company site. Others issue only through an appointed agent's portal. If neither path is published, the cell says not published. Cost bands this site has already published sit on the bond-type pages, and any arithmetic from those bands is labeled as an example.</p>
+      </div>
+
+      <div class="video-frame">
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/3QDL7BDiUWA"
+          title="What is a surety bond? NASBP walks you through the bonding process."
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+      </div>
+      <p class="video-note">
+        National Association of Surety Bond Producers, "What is a surety bond? NASBP walks you through the bonding process."
+        <a href="https://www.youtube.com/watch?v=3QDL7BDiUWA" target="_blank" rel="noopener">youtube.com/watch?v=3QDL7BDiUWA</a>
+      </p>
+
+      <h2>How We Ranked These Surety Bond Companies</h2>
+      <p>Five published facts decide the order. There is no point score. If a fact was not on a page we could cite, the cell says not published, and that blank does not get filled with a guess.</p>
+      <ol>
+        <li>AM Best financial strength rating, using the company disclosure or the company's own rating statement, with the action date.</li>
+        <li>Treasury Circular 570 listing and the per-bond underwriting limitation on the list effective August 1, 2026.</li>
+        <li>States licensed, counted from that Circular 570 surety-license line, plus the company's own license claim when the two differ.</li>
+        <li>Bond types written, limited to license and permit, contract, and court or fiduciary forms the company actually names.</li>
+        <li>Online instant-issue availability, split into a public checkout and an appointed-agent portal.</li>
+      </ol>
+      <p>The sort is the rating letter first. A++ sits above A+. A+ sits above A. When two companies share a letter, the higher Circular 570 per-bond limitation comes first. Instant issue, bond-type breadth, and a company marketing claim do not jump a company over a higher cited rating. Old Republic Surety's about page still says its Treasury listing is in excess of $200,000,000. The sort uses the Circular 570 figure for Old Republic Surety Company, $9,088,000, because that is the criterion. The company figure is quoted in that company's section so the two records stay visible.</p>
+      <p>The six companies below are the ones where both a rating and an August 1, 2026 Circular 570 entry were in hand. Premiums, consumer review counts, and several bond-type cells were not published in those sources. They stay marked not published.</p>
+
+      <h2>The Best Surety Bond Companies in 2026</h2>
+      <p>Each company below is a certified surety on the August 1, 2026 Treasury list, with an AM Best financial strength rating we could cite. The number is the sort above, not a star rating and not a claim about who writes the most bonds. Read the use case in the heading, then the figures, then the "Best suited for" close. Open the source before you treat a limit as the largest bond that company can sign.</p>
+      <p>Face amounts above a per-bond limitation can still be written when the excess is reinsured or coinsured, which is the Treasury rule cited in the ranking section. A high rating does not mean the company has published a checkout, and a checkout does not mean the company has the highest rating. Match the form you need to the bond types the company names.</p>
+      <p>Where a company page and Circular 570 disagree, both numbers are printed and labeled. Where a product is missing from the pages reviewed, the line says not published. That includes a flat price for every company in this file, and a consumer review count for every company in this file.</p>
+
+      <h3>1. Travelers Casualty and Surety Company of America, best for large contract and commercial programs</h3>
+      <div class="pick">
+        <p>Travelers Casualty and Surety Company of America is first. AM Best's disclosure for NAIC 31194 shows a financial strength rating of A++ (Superior), financial size category XV (greater than or equal to $2 billion), outlook stable, affirmed August 21, 2026, plus a long-term issuer credit rating of aa+ (Superior). An AM Best release the same day names this company for that A++ affirmation.</p>
+        <p>Circular 570 effective August 1, 2026 sets a per-bond underwriting limitation of $237,089,000. The surety-license line covers all 50 states plus American Samoa, the District of Columbia, Guam, Puerto Rico, and the U.S. Virgin Islands. The surety page says Travelers has been a leader in surety for more than 100 years. A founding year, a flat premium, a consumer review count, and a principal instant-issue checkout are not published.</p>
+        <p>The surety menu names bid, performance, and payment bonds, court bonds (judicial, fiduciary, and probate), and license and permit bonds. The commercial page names mortgage lender and mortgage broker bonds, plus auto dealer, contractor license, customs, tax, and warehouse bonds. Court examples include appeal, attachment, injunction, and replevin. A money transmitter bond is not named. The contract page says federal construction projects valued at $150,000 or more require contract surety bonds.</p>
+        <p><strong>Best suited for:</strong> Ask for this company on a contract program or a commercial bond when the obligee wants an A++ rating beside a Circular 570 limit of $237,089,000. Confirm the signer is Travelers Casualty and Surety Company of America, because other Travelers companies have their own limits.</p>
+        <p>Source: <a href="https://www.travelers.com/surety-bond" target="_blank" rel="noopener">Travelers surety bonds</a>, <a href="https://www.travelers.com/surety-bond/commercial-surety" target="_blank" rel="noopener">commercial surety</a>, <a href="https://www.travelers.com/surety-bond/contract-surety" target="_blank" rel="noopener">contract surety</a>, <a href="https://ratings.ambest.com/DisclosurePDF.aspx?AMBNum=3609" target="_blank" rel="noopener">AM Best disclosure</a>, <a href="https://news.ambest.com/pr/PressContent.aspx?altsrc=2&refnum=37682" target="_blank" rel="noopener">AM Best August 21, 2026 release</a>, <a href="https://fiscal.treasury.gov/about-us/doing-business-with-fiscal-service/surety-bonds/list-certified-companies" target="_blank" rel="noopener">Circular 570</a>.</p>
+      </div>
+
+      <h3>2. Western Surety Company, best for license and permit bonds through appointed agents</h3>
+      <div class="pick">
+        <p>Western Surety Company, NAIC 13188, is second. AM Best shows A+ (Superior), financial size category XIV ($1.50 billion to less than $2.00 billion), outlook stable, upgraded December 3, 2025. The disclosure calls the group the fourth-largest U.S. surety carrier, writing from very small commercial bonds to large contract bonds, with facilities in all 50 states, Canada, and Puerto Rico. A founding year is not published on the CNA pages used here. AM Best's initial rating date of June 30, 1922 is a rating-history date, not a founding year.</p>
+        <p>Circular 570 lists a per-bond limit of $148,124,000 and surety licenses in all 50 states, the District of Columbia, and Puerto Rico. A 2011 CNA release said about 37,000 independent agencies and named Western Surety as the principal subsidiary. That count is from 2011. A current agency count, a flat premium, and a review count are not published.</p>
+        <p>CNA's commercial page says it is one of the largest writers of license and permit bonds and that appointed agents can instant-issue many of them on bONdLINE. The same page lists bid, performance, payment, and supply bonds, court bonds, and regulatory and tax bonds, and it supports qualified corporate commercial risks from $1,000,000 to $500,000,000. Form 10 also covers probate and fiduciary bonds. Money transmitter and mortgage bonds are not named. A public checkout is not published.</p>
+        <p><strong>Best suited for:</strong> Use Western Surety paper when an appointed agent needs license and permit bonds, or a contract bond, from an A+ company with a Circular 570 limit of $148,124,000. Plan on bONdLINE or a signed application, not a principal checkout.</p>
+        <p>Source: <a href="https://www.cnasurety.com/products/commercial-bonds" target="_blank" rel="noopener">CNA Surety commercial bonds</a>, <a href="https://www.cnasurety.com/agent-broker-services/bondline" target="_blank" rel="noopener">bONdLINE</a>, <a href="https://www.cnasurety.com/applications-downloads/bond-applications" target="_blank" rel="noopener">Form 10</a>, <a href="https://ratings.ambest.com/DisclosurePDF.aspx?AMBNum=974&PCA=0" target="_blank" rel="noopener">AM Best disclosure</a>, <a href="https://ratings.ambest.com/CompanyProfile.aspx?ambnum=974" target="_blank" rel="noopener">AM Best profile</a>, <a href="https://investor-relations.cna.com/news/news-details/2011/CNA-and-CNA-Surety-Sign-Definitive-Agreement-for-CNA-to-Acquire-Public-Minority-Stake-in-CNA-Surety-for-2655-Per-Share/default.aspx" target="_blank" rel="noopener">CNA 2011 release</a>, <a href="https://fiscal.treasury.gov/about-us/doing-business-with-fiscal-service/surety-bonds/list-certified-companies" target="_blank" rel="noopener">Circular 570</a>.</p>
+      </div>
+
+      <h3>3. Old Republic Surety Company, best for contractor performance and payment bonds</h3>
+      <div class="pick">
+        <p>Old Republic Surety Company, NAIC 40444, is third. AM Best shows a group financial strength rating of A+ (Superior), size category XV (greater than or equal to $2 billion), outlook stable, affirmed April 29, 2026. The about page also says A+ (Superior). It says the surety name dates to 1986, the parent was incorporated in 1923, and a bullet reads "Writing surety since 1923." It says the company is licensed in all 50 states, works through over 4,000 independent agencies, and has a Treasury listing in excess of $200,000,000.</p>
+        <p>Circular 570 lists a different limit for this entity: $9,088,000 per bond, with surety licenses in 36 states and the District of Columbia. The missing state codes are in the comparison table, which uses the Circular 570 figures. A flat premium and a review count are not published.</p>
+        <p>The company page says performance and payment bonds go to $100 million on a single project and $150 million in aggregate, and it lists bid, performance and payment, and maintenance bonds. FastBonds are up to $1.5 million on that page, while a ratings PDF says up to $1 million on credit or up to $2 million with financials. Both caps are published, so both stay. That PDF also names license and permit, probate and court, and federal bonds. BondStar is the agent portal, and the PDF says most bonds are instant issue. Money transmitter and mortgage bonds are not named. A public checkout is not published.</p>
+        <p><strong>Best suited for:</strong> Ask an Old Republic agent for performance and payment bonds when you want the published caps of $100 million single and $150 million aggregate next to an A+ rating. Read the Circular 570 limit of $9,088,000 beside the company's "in excess of $200,000,000" line before you treat either number as single-bond capacity.</p>
+        <p>Source: <a href="https://www.orsurety.com/about" target="_blank" rel="noopener">Old Republic Surety about</a>, <a href="https://oldrepublic.com/about/our-companies/old-republic-surety" target="_blank" rel="noopener">Old Republic company page</a>, <a href="https://orsurety.com/hubfs/Documents/At%20A%20Glance%20-%20AM%20Best%20and%20Treasury%20Ratings.pdf" target="_blank" rel="noopener">ratings PDF</a>, <a href="https://ratings.ambest.com/DisclosurePDF.aspx?AMBNum=2814" target="_blank" rel="noopener">AM Best disclosure</a>, <a href="https://fiscal.treasury.gov/about-us/doing-business-with-fiscal-service/surety-bonds/list-certified-companies" target="_blank" rel="noopener">Circular 570</a>.</p>
+      </div>
+
+      <h3>4. American Surety Company, best for commercial license, permit, and court bonds through independent agents</h3>
+      <div class="pick">
+        <p>American Surety Company, NAIC 31380, is fourth. The FAQ says the financial strength rating is A (Excellent), the long-term issuer credit rating is "A" (Excellent), commercial surety is written in all 50 states, and the company has been in business since 1993. AM Best's disclosure shows a group rating of A (Excellent), size category XIII ($1.25 billion to less than $1.50 billion), outlook stable, affirmed October 8, 2026. A bail-side about page says the company has been a division of Core Specialty Insurance Holdings, Inc. since May 31, 2024. This section uses the commercial license, permit, probate, and court pages.</p>
+        <p>Circular 570 lists a per-bond limit of $49,382,000 and surety licenses in all 50 states and the District of Columbia. Bonds are written through independent agents. The portfolio includes license and permit, notary, probate and court, and public official bonds. License examples include auto dealer, contractor license, and collection agency. Probate covers administrators and guardians. Plaintiff court bonds include replevin, attachment, and injunction. Contract performance capacity, money transmitter bonds, mortgage bonds, a principal checkout, a flat premium, and a review count are not published. The FAQ's "150+ years" line is combined team experience, not a second founding date.</p>
+        <p><strong>Best suited for:</strong> Use an appointed American Surety agent for a commercial license, permit, probate, or plaintiff court bond when you want a cited A rating and a Circular 570 limit of $49,382,000. Do not assume a performance and payment program, because that capacity is not published here.</p>
+        <p>Source: <a href="https://www.american-surety.com/faq/" target="_blank" rel="noopener">American Surety FAQ</a>, <a href="https://www.american-surety.com/surety-bonds/license-permit-bonds/" target="_blank" rel="noopener">license and permit</a>, <a href="https://www.american-surety.com/surety-bonds/probate-court-bonds/" target="_blank" rel="noopener">probate and court</a>, <a href="https://www.asc-usi.com/about-us/" target="_blank" rel="noopener">company about page</a>, <a href="https://ratings.ambest.com/DisclosurePDF.aspx?AMBNum=2557&PCA=0" target="_blank" rel="noopener">AM Best disclosure</a>, <a href="https://fiscal.treasury.gov/about-us/doing-business-with-fiscal-service/surety-bonds/list-certified-companies" target="_blank" rel="noopener">Circular 570</a>.</p>
+      </div>
+
+      <h3>5. Merchants Bonding Company (Mutual), best for contractor bid bonds with published instant approval</h3>
+      <div class="pick">
+        <p>Merchants Bonding Company (Mutual), NAIC 14494, is fifth. AM Best shows A (Excellent), size category IX ($250 million to less than $500 million), outlook positive, affirmed June 4, 2026. The about page says the rating has been A or better since 1958, the company was founded in 1933, it handles business in all 50 states, and it employs more than 230 associates. AM Best says approximately 96% of premium is surety, licenses cover 50 states and the District of Columbia, and distribution is exclusively through independent agents.</p>
+        <p>Circular 570 lists a per-bond limit of $35,603,000 for the mutual, with licenses in all 50 states and the District of Columbia. Affiliate Merchants National Bonding, Inc., NAIC 11595, has its own limit of $4,608,000. The table uses the mutual. A flat premium, a review count, and a public checkout are not published.</p>
+        <p>The about page calls the company a source for commercial and contract surety. A license and permit product list, court and fiduciary names, money transmitter bonds, and mortgage bonds are not published on the pages used here. The e-bid page says qualifying accounts can get instant approval in minutes without financial statements, and that those bonds are accepted on public work because the company is Treasury-listed. A performance or payment dollar cap is not published.</p>
+        <p><strong>Best suited for:</strong> Ask a Merchants agent for a contract account when you want published e-bid approval for qualifying bids, an A rating, and the mutual's Circular 570 limit of $35,603,000. Confirm whether the mutual or affiliate Merchants National Bonding will sign, because the Treasury limits differ.</p>
+        <p>Source: <a href="https://www.merchantsbonding.com/about" target="_blank" rel="noopener">Merchants about</a>, <a href="https://www.merchantsbonding.com/talk-surety-to-me/e-bid-bond-instant-approval" target="_blank" rel="noopener">e-bid instant approval</a>, <a href="https://ratings.ambest.com/DisclosurePDF.aspx?AMBNum=594&PCA=0" target="_blank" rel="noopener">AM Best disclosure</a>, <a href="https://fiscal.treasury.gov/about-us/doing-business-with-fiscal-service/surety-bonds/list-certified-companies" target="_blank" rel="noopener">Circular 570</a>.</p>
+      </div>
+
+      <h3>6. Colonial Surety Company, best for online instant-issue license, court, and fiduciary bonds</h3>
+      <div class="pick">
+        <p>Colonial Surety Company, NAIC 10758, is sixth on the rating-then-limit sort and the company that publishes a principal checkout. The about page says it was founded in 1930, that buyers can purchase bonds online, that it is licensed in all U.S. states and territories, and that it is rated "A" Excellent by AM Best and is Treasury listed. The direct book includes license and permit, court and fiduciary, and ERISA fidelity. A later AM Best action date was not opened, so the table uses the company-published A (Excellent). A flat premium and a review count are not published.</p>
+        <p>Circular 570 lists a per-bond limit of $8,830,000. The license line covers all 50 states plus the District of Columbia, Guam, the Northern Mariana Islands, Puerto Rico, and the U.S. Virgin Islands. The surety page says a buyer can pick a bond and obtain it in minutes, and its title includes contract bonds. A performance or payment cap is not published. The court and fiduciary page offers instant quote, purchase, and e-file, including appeal, estate, guardianship, and injunction bonds. Money transmitter and mortgage bonds are not named.</p>
+        <p><strong>Best suited for:</strong> Use Colonial when you want to buy a license, permit, court, or fiduciary bond online under a company-published A rating and a Circular 570 limit of $8,830,000. Do not treat it as the file for a large performance program, because that capacity figure is not published.</p>
+        <p>Source: <a href="https://colonialsurety.com/about/" target="_blank" rel="noopener">Colonial about</a>, <a href="https://colonialsurety.com/surety-bonds/" target="_blank" rel="noopener">surety bonds</a>, <a href="https://colonialsurety.com/court-fiduciary-bonds/" target="_blank" rel="noopener">court and fiduciary</a>, <a href="https://fiscal.treasury.gov/about-us/doing-business-with-fiscal-service/surety-bonds/list-certified-companies" target="_blank" rel="noopener">Circular 570</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-tight">
+    <div class="wrap prose prose-wide">
+      <h2>Side-by-Side Comparison</h2>
+      <p>Criteria: AM Best financial strength rating, Treasury Circular 570 listing and per-bond underwriting limitation (August 1, 2026), states licensed, bond types written (license and permit, contract, court), and online instant-issue availability.</p>
+      <div class="table-scroll">
+        <table class="table">
+          <caption class="kicker" style="text-align:left;padding-bottom:8px">Published figures only. Cells say not published when a source did not give the figure.</caption>
+          <thead>
+            <tr>
+              <th scope="col">Company</th>
+              <th scope="col">AM Best financial strength</th>
+              <th scope="col">Circular 570 limit</th>
+              <th scope="col">States licensed</th>
+              <th scope="col">Bond types written</th>
+              <th scope="col">Online instant issue</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Travelers Casualty and Surety Company of America</th>
+              <td>A++ (Superior), stable, affirmed August 21, 2026</td>
+              <td>$237,089,000 per bond</td>
+              <td>50 states, plus AS, DC, GU, PR, VI</td>
+              <td>License and permit (including mortgage lender and mortgage broker), contract (bid, performance, payment), court, judicial, and fiduciary</td>
+              <td>not published</td>
+            </tr>
+            <tr>
+              <th scope="row">Western Surety Company</th>
+              <td>A+ (Superior), stable, upgraded December 3, 2025</td>
+              <td>$148,124,000 per bond</td>
+              <td>50 states, DC, and PR. AM Best also names Canada.</td>
+              <td>License and permit, contract (bid, performance, payment, supply), court, probate and fiduciary, regulatory and tax</td>
+              <td>bONdLINE instant issue for many bonds, appointed agents only</td>
+            </tr>
+            <tr>
+              <th scope="row">Old Republic Surety Company</th>
+              <td>A+ (Superior), group rating, stable, affirmed April 29, 2026. Company page also says A+ (Superior).</td>
+              <td>$9,088,000 per bond. Company about page says in excess of $200,000,000.</td>
+              <td>Circular 570: 36 states and DC, missing AK, CT, DE, HI, KY, LA, ME, MA, MI, NH, NJ, NY, RI, VT. Company about page: all 50 states.</td>
+              <td>License and permit, performance and payment, probate and court, federal. Single project up to $100 million and aggregate up to $150 million on the company page.</td>
+              <td>BondStar agent portal: instant issue for most bonds. Public checkout: not published.</td>
+            </tr>
+            <tr>
+              <th scope="row">American Surety Company</th>
+              <td>A (Excellent). Company FAQ. AM Best group rating A (Excellent), stable, affirmed October 8, 2026.</td>
+              <td>$49,382,000 per bond</td>
+              <td>50 states and DC. Company: all 50 states.</td>
+              <td>License and permit, probate and court. Contract performance and payment: not published.</td>
+              <td>not published</td>
+            </tr>
+            <tr>
+              <th scope="row">Merchants Bonding Company (Mutual)</th>
+              <td>A (Excellent), positive outlook, affirmed June 4, 2026. Company: A or better since 1958.</td>
+              <td>$35,603,000 per bond. Affiliate Merchants National Bonding, Inc.: $4,608,000.</td>
+              <td>50 states and DC. Company: all 50 states.</td>
+              <td>Commercial and contract surety, plus e-bid bonds. License and permit product list: not published. Court: not published.</td>
+              <td>E-bid instant approval for qualifying accounts. Public checkout: not published.</td>
+            </tr>
+            <tr>
+              <th scope="row">Colonial Surety Company</th>
+              <td>A (Excellent), company-published. A later AM Best action date: not published in this file.</td>
+              <td>$8,830,000 per bond</td>
+              <td>50 states, plus DC, GU, MP, PR, VI. Company: all U.S. states and territories.</td>
+              <td>License and permit, court, and fiduciary, with instant purchase. Contract: named in the page title. Performance capacity: not published.</td>
+              <td>Instant online purchase for principals, including court and fiduciary bonds</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Price and consumer review count are not columns because every company in this file left them unpublished. Flat premium: not published. Review count: not published.</p>
+
+      <h2>Which surety company fits your bond type</h2>
+      <div class="table-scroll">
+        <table class="table">
+          <caption class="kicker" style="text-align:left;padding-bottom:8px">A cell is filled only when that company page names the bond. Otherwise it says not published.</caption>
+          <thead>
+            <tr>
+              <th scope="col">Company</th>
+              <th scope="col">License and permit, small business</th>
+              <th scope="col">Contractor performance and payment</th>
+              <th scope="col">Court and fiduciary</th>
+              <th scope="col">Regulated financial licenses</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Travelers Casualty and Surety Company of America</th>
+              <td>Named, including contractor license and auto dealer bonds</td>
+              <td>Bid, performance, and payment named. Federal projects of $150,000 or more cited on the contract page.</td>
+              <td>Judicial, fiduciary, probate, appeal, attachment, injunction, and replevin named</td>
+              <td>Mortgage lender and mortgage broker bonds named. Money transmitter: not published.</td>
+            </tr>
+            <tr>
+              <th scope="row">Western Surety Company</th>
+              <td>Named. Company calls itself one of the largest writers of these bonds. Many are instant issue for appointed agents.</td>
+              <td>Bid, performance, payment, and supply named. Corporate commercial programs of $1,000,000 to $500,000,000 for qualified risks.</td>
+              <td>Court and probate or fiduciary named on the Form 10 list</td>
+              <td>Regulatory and tax bonds named. Money transmitter and mortgage: not published.</td>
+            </tr>
+            <tr>
+              <th scope="row">Old Republic Surety Company</th>
+              <td>License and permit named on the company ratings PDF</td>
+              <td>Performance and payment named. Single projects up to $100 million. Aggregate programs up to $150 million.</td>
+              <td>Probate and court named</td>
+              <td>Federal bonds named. Money transmitter and mortgage: not published.</td>
+            </tr>
+            <tr>
+              <th scope="row">American Surety Company</th>
+              <td>Named, including contractor license, auto dealer, and collection agency</td>
+              <td>not published</td>
+              <td>Probate and plaintiff court bonds named, including replevin, attachment, and injunction</td>
+              <td>not published</td>
+            </tr>
+            <tr>
+              <th scope="row">Merchants Bonding Company (Mutual)</th>
+              <td>not published</td>
+              <td>Contract surety named. E-bid instant approval for qualifying accounts. A performance dollar cap: not published.</td>
+              <td>not published</td>
+              <td>not published</td>
+            </tr>
+            <tr>
+              <th scope="row">Colonial Surety Company</th>
+              <td>Named, with online purchase in minutes</td>
+              <td>Contract bonds named in the page title. A performance capacity figure: not published.</td>
+              <td>Named, with instant quote, purchase, and e-file</td>
+              <td>not published</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>What results look like</h2>
+      <div class="prose">
+        <p>Three company pages publish dollar figures a buyer can compare without inventing a premium. Travelers' contract page says federal construction projects valued at $150,000 or more require contract surety bonds. CNA Surety's commercial page says qualified corporate commercial programs run from $1,000,000 to $500,000,000. Old Republic's company page says performance and payment support goes to $100 million on a single project and $150 million on an aggregate program. Those are bond-size statements from the companies. They are not quotes.</p>
+        <p>This site already publishes cost bands on its bond pages. The license and permit page lists a face range of $5,000 to $50,000, a premium band of 1% to 5%, and a typical annual premium of $100 to $500. The mortgage broker page lists a face range of $25,000 to $500,000, a premium band of 1% to 10%, and a typical annual premium of $500 to $5,000. The worked lines below use only those published bands. They are examples, not a rate from any company on this shortlist.</p>
+        <p>Example, license and permit: a $10,000 face at the published 1% end of the band is $100 a year. The same $10,000 face at the published 5% end is $500 a year. That $500 figure is also the top of the page's typical annual range. Example, mortgage broker: a $25,000 face at the published 1% end is $250 a year. The same $25,000 face at the published 10% end is $2,500 a year, which sits inside the page's typical range of $500 to $5,000. A money transmitter example is not built here, because no company on this shortlist published a money transmitter bond.</p>
+        <p>Put the company limit next to the face before you celebrate a rating. A $100 million single project, the Old Republic company-page cap, is above Old Republic Surety Company's Circular 570 per-bond limitation of $9,088,000. Treasury allows the excess when it is protected by reinsurance or coinsurance. Ask the agent which company signs, what the current Circular 570 limitation is, and how the excess is protected. The same question applies to a CNA corporate program at the $500,000,000 end of that published range, which is above Western Surety Company's $148,124,000 per-bond limitation.</p>
+      </div>
+
+      <h2>FAQ</h2>
+      <div class="faq-stack">
+        {faqs.map((faq) => (
+          <details class="faq-item">
+            <summary class="faq-q">{faq.q}<span aria-hidden="true">+</span></summary>
+            <div class="faq-a" set:html={faq.a} />
+          </details>
+        ))}
+      </div>
+
+      <h2>Sources</h2>
+      <ul class="source-list">
+        <li><a href="https://fiscal.treasury.gov/about-us/doing-business-with-fiscal-service/surety-bonds/list-certified-companies" target="_blank" rel="noopener">Bureau of the Fiscal Service, List of Certified Companies, Circular 570 effective August 1, 2026</a></li>
+        <li><a href="https://fiscal.treasury.gov/about-us/doing-business-with-fiscal-service/surety-bonds/circular-570" target="_blank" rel="noopener">Bureau of the Fiscal Service, Department Circular 570 notes, including the per-bond rule and 31 CFR 223.10 and 223.11</a></li>
+        <li><a href="https://www.travelers.com/surety-bond" target="_blank" rel="noopener">Travelers surety bonds</a></li>
+        <li><a href="https://www.travelers.com/surety-bond/commercial-surety" target="_blank" rel="noopener">Travelers commercial surety</a></li>
+        <li><a href="https://www.travelers.com/surety-bond/contract-surety" target="_blank" rel="noopener">Travelers contract surety</a></li>
+        <li><a href="https://ratings.ambest.com/DisclosurePDF.aspx?AMBNum=3609" target="_blank" rel="noopener">AM Best disclosure, Travelers Casualty and Surety Company of America</a></li>
+        <li><a href="https://news.ambest.com/pr/PressContent.aspx?altsrc=2&refnum=37682" target="_blank" rel="noopener">AM Best press release, August 21, 2026</a></li>
+        <li><a href="https://www.cnasurety.com/products/commercial-bonds" target="_blank" rel="noopener">CNA Surety commercial bonds</a></li>
+        <li><a href="https://www.cnasurety.com/agent-broker-services/bondline" target="_blank" rel="noopener">CNA Surety bONdLINE</a></li>
+        <li><a href="https://www.cnasurety.com/applications-downloads/bond-applications" target="_blank" rel="noopener">CNA Surety Form 10</a></li>
+        <li><a href="https://ratings.ambest.com/DisclosurePDF.aspx?AMBNum=974&PCA=0" target="_blank" rel="noopener">AM Best disclosure, Western Surety Company</a></li>
+        <li><a href="https://investor-relations.cna.com/news/news-details/2011/CNA-and-CNA-Surety-Sign-Definitive-Agreement-for-CNA-to-Acquire-Public-Minority-Stake-in-CNA-Surety-for-2655-Per-Share/default.aspx" target="_blank" rel="noopener">CNA release, 2011, agency count and 50-state statement</a></li>
+        <li><a href="https://www.orsurety.com/about" target="_blank" rel="noopener">Old Republic Surety about</a></li>
+        <li><a href="https://oldrepublic.com/about/our-companies/old-republic-surety" target="_blank" rel="noopener">Old Republic company page, project caps</a></li>
+        <li><a href="https://orsurety.com/hubfs/Documents/At%20A%20Glance%20-%20AM%20Best%20and%20Treasury%20Ratings.pdf" target="_blank" rel="noopener">Old Republic ratings PDF, BondStar and FastBond caps</a></li>
+        <li><a href="https://ratings.ambest.com/DisclosurePDF.aspx?AMBNum=2814" target="_blank" rel="noopener">AM Best disclosure, Old Republic Surety Company</a></li>
+        <li><a href="https://www.american-surety.com/faq/" target="_blank" rel="noopener">American Surety Company FAQ</a></li>
+        <li><a href="https://www.american-surety.com/surety-bonds/license-permit-bonds/" target="_blank" rel="noopener">American Surety license and permit bonds</a></li>
+        <li><a href="https://www.american-surety.com/surety-bonds/probate-court-bonds/" target="_blank" rel="noopener">American Surety probate and court bonds</a></li>
+        <li><a href="https://ratings.ambest.com/DisclosurePDF.aspx?AMBNum=2557&PCA=0" target="_blank" rel="noopener">AM Best disclosure, American Surety Company</a></li>
+        <li><a href="https://www.merchantsbonding.com/about" target="_blank" rel="noopener">Merchants Bonding Company about</a></li>
+        <li><a href="https://www.merchantsbonding.com/talk-surety-to-me/e-bid-bond-instant-approval" target="_blank" rel="noopener">Merchants e-bid instant approval</a></li>
+        <li><a href="https://ratings.ambest.com/DisclosurePDF.aspx?AMBNum=594&PCA=0" target="_blank" rel="noopener">AM Best disclosure, Merchants Bonding Company (Mutual)</a></li>
+        <li><a href="https://colonialsurety.com/about/" target="_blank" rel="noopener">Colonial Surety Company about</a></li>
+        <li><a href="https://colonialsurety.com/surety-bonds/" target="_blank" rel="noopener">Colonial Surety bonds</a></li>
+        <li><a href="https://colonialsurety.com/court-fiduciary-bonds/" target="_blank" rel="noopener">Colonial court and fiduciary bonds</a></li>
+        <li><a href="https://www.youtube.com/watch?v=3QDL7BDiUWA" target="_blank" rel="noopener">NASBP video, What is a surety bond?</a></li>
+        <li><a href="/bonds/license-permit/">SuretyResearch license and permit bond bands</a></li>
+        <li><a href="/bonds/mortgage-broker/">SuretyResearch mortgage broker bond bands</a></li>
+      </ul>
+
+      <h2>Get matched with the right bond</h2>
+      <p>Bring the bond name, the face amount, and the state that requires it. A surety company underwrites the file, and it does not publish one price for every buyer. Start with the <a href="/bonds/license-permit/">license and permit bond guide</a> if you need the published cost bands, or go to the <a href="/contact/">contact page</a> and ask for a match. The desk should name the legal entity that will sign. Ask for the current AM Best rating and the current Circular 570 limit before you accept paper. Then set those answers next to the table on this page.</p>
+      <p><a class="btn btn-brass" href="/contact/">Get matched with the right bond</a></p>
+    </div>
+  </section>
+</Layout>
