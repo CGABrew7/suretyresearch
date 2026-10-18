@@ -2,7 +2,7 @@
 
 A **surety-bond agency directory** for licensed professionals (mortgage, insurance, contractors), plus bond-type research. Static Astro site. Built for Cloudflare Pages.
 
-Integrity First Insurance (IFI) is **always rank #1** as the **Cornerstone Network Preferred Partner**. Other agencies and carriers are ordered by cited public signals (BBB letter grade, AM Best when sourced, years, coverage, bond-category breadth, Treasury Circular 570).
+Every agency and carrier, including Integrity First Insurance (the Cornerstone Network Preferred Partner), is ordered by the public-signal score: BBB letter grade, AM Best when sourced, years, coverage, bond-category breadth, and Treasury Circular 570. The partner label stays on the card. The score sets the rank.
 
 Byline: SuretyResearch.
 
@@ -37,15 +37,15 @@ No environment variables are required for the static register.
 
 Implemented in `src/lib/ranking.ts`, disclosed on `/methodology/`.
 
-1. **Preferred partner.** Any record with `preferredPartner: true` (IFI) is forced to rank 01 with the printed editorial reason.
-2. **Scored names.** Points from verified-or-cited signals only:
+1. **One score.** Every record, including `preferredPartner: true` (IFI), is scored from cited public signals and sorted by that score. Ties break by older founding year, then name. The partner is labeled, not pinned.
+2. **Points.** Points from verified-or-cited signals only:
    - BBB letter grade (A+ / A / A− / B-band)
    - AM Best (only if we cited a page)
    - Years since founding (capped)
    - Nationwide vs. known states
    - Number of bond series listed
    - Treasury / Circular 570 mention
-3. **Sources.** Figures that come from a statute, an insurance department, Treasury Circular 570, or the Surety & Fidelity Association of America are linked. Carriers usually need an appointed agent. Integrity First Insurance is the desk this site opens first.
+3. **Sources.** Figures that come from a statute, an insurance department, Treasury Circular 570, or the Surety & Fidelity Association of America are linked. Carriers usually need an appointed agent. Integrity First Insurance is the Cornerstone network placement desk, and its rank is that same public-signal score.
 
 Agency source data lives in `src/data/agencies.ts`. Bond cost bands remain in `src/data/bonds.json`.
 
@@ -53,7 +53,7 @@ Agency source data lives in `src/data/agencies.ts`. Bond cost bands remain in `s
 
 | Path | What |
 | --- | --- |
-| `/` | Register hero, IFI #1, series, state picker, premium sketch |
+| `/` | Register hero, scored files, series, state picker, premium sketch |
 | `/agencies/` | Full ranked list + filters |
 | `/agencies/[slug]/` | Per-desk file, signals, sources, CTA |
 | `/bonds/` and `/bonds/[id]/` | Series explainers + form cost bands |
@@ -63,3 +63,5 @@ Agency source data lives in `src/data/agencies.ts`. Bond cost bands remain in `s
 ## Compliance line
 
 Informational only. Bonds are issued by licensed agents and admitted sureties. Not legal advice.
+
+Content rules for every new or edited page: [CONTENT_RULES.md](CONTENT_RULES.md).

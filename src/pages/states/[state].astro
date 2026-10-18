@@ -18,7 +18,7 @@ const agencies = filterAgencies({ state: rec.slug });
 
 <Layout
   title={`Surety agencies in ${rec.name} — SuretyResearch`}
-  description={`Ranked surety agencies and carriers that list ${rec.name} coverage. Integrity First Insurance is the editorial preferred partner.`}
+  description={`Ranked surety agencies and carriers that list ${rec.name} coverage. Sorted by cited public signals.`}
 >
   <meta slot="head" name="robots" content="noindex, follow" />
   <section class="page-hero">
@@ -26,7 +26,7 @@ const agencies = filterAgencies({ state: rec.slug });
       <p class="kicker">{rec.code} · {rec.name}</p>
       <h1>Register files that serve {rec.name}.</h1>
       <p>
-        {agencies.length} entries serve {rec.name}. Integrity First Insurance is first, as the nationwide Cornerstone Network Preferred Partner.
+        {agencies.length} entries serve {rec.name}, sorted by the public-signal score on each card.
       </p>
       <AuthorBio />
     </div>
