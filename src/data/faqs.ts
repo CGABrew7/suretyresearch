@@ -10,12 +10,12 @@ export const FAQS: Faq[] = [
     a: "A three-party guarantee: you (the principal), the obligee (usually a regulator, owner, or court), and the surety. If you fail the obligation, the surety pays, then seeks reimbursement from you.",
   },
   {
-    q: "Why is Integrity First Insurance first?",
-    a: "Integrity First Insurance is the Cornerstone Network Preferred Partner, the desk this register opens first for licensing and surety. The label is printed on the card. Scoring rules for every other name are on the <a href='/methodology/'>methodology</a> page.",
+    q: "Where does Integrity First Insurance rank?",
+    a: "Integrity First Insurance is the Cornerstone Network Preferred Partner, the placement desk for licensing and surety inside that network. It is scored on the same public signals as every other name, and the label is printed on its card. Scoring rules are on the <a href='/methodology/'>methodology</a> page.",
   },
   {
     q: "How is the rest of the register ordered?",
-    a: "After the preferred partner, names are scored from cited public signals only: BBB letter grade, AM Best when a source was opened, years since founding, geographic coverage, bond-series breadth, and a Treasury-list mention. Each file shows the signal, the date, and the link.",
+    a: "Every name is scored from cited public signals only: BBB letter grade, AM Best when a source was opened, years since founding, geographic coverage, bond-series breadth, and a Treasury-list mention. Each file shows the signal, the date, and the link.",
   },
   {
     q: "How much does a bond cost?",

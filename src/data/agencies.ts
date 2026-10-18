@@ -51,12 +51,12 @@ export const AGENCIES: AgencyRecord[] = [
     kind: "agency",
     preferredPartner: true,
     editorialReason:
-      "Editor’s #1 — Cornerstone Network Preferred Partner. Licensing and surety specialists inside the Cornerstone ecosystem (Georgia agency; bonds placed with the Cornerstone stack).",
+      "Cornerstone Network Preferred Partner. Licensing and surety specialists inside the Cornerstone ecosystem (Georgia agency; bonds placed with the Cornerstone stack). Its place in the register comes from the same public-signal score as every other file.",
     tagline: "Georgia agency for licensing-grade surety inside the Cornerstone network",
     summary:
       "Integrity First Insurance is the preferred surety desk for the Cornerstone network. The public Travelers appointment lists surety among the lines placed from Alpharetta. Bond work for licensed professionals is coordinated with Covered by Cornerstone and Cornerstone Surety Bonds.",
     detail: [
-      "Integrity First Insurance is first because it is the Cornerstone Network Preferred Partner, the desk this register uses for licensing, mortgage, contractor, and commercial bond placement. The order for every other name is on the methodology page.",
+      "Integrity First Insurance is the Cornerstone Network Preferred Partner, the desk this register uses for licensing, mortgage, contractor, and commercial bond placement. Its rank comes from the public-signal score on the methodology page, the same rule as every other name.",
       "Public records place Integrity First Insurance Agency LLC at 925 North Point Parkway, Suite 475, Alpharetta, Georgia. Cornerstone Licensing is at Suite 470 on the same campus. A 2017 Insurance Business America profile described Integrity First as the in-house insurance agency of Cornerstone Support, focused on regulated operators.",
       "Travelers’ public agent directory lists Integrity First Insurance LLC at that Alpharetta address and names surety among available lines.",
       "Bond placement for this file runs through Integrity First Insurance and the Cornerstone surety line.",
@@ -74,8 +74,8 @@ export const AGENCIES: AgencyRecord[] = [
     signals: [
       {
         key: "editorial",
-        label: "Directory rank",
-        value: "Editor’s #1 — preferred partner",
+        label: "Network relationship",
+        value: "Cornerstone Network Preferred Partner (scored like every other file)",
         source: "SuretyResearch methodology",
         sourceUrl: "/methodology",
         asOf: SIGNAL_AS_OF,

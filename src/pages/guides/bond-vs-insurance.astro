@@ -1,9 +1,38 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
+import { LAST_UPDATED, SITE } from '../../data/site';
+
+const pageTitle = "Surety Bonds vs. Insurance";
+const description = "Insurance pays the policyholder. A surety bond pays the obligee, and the principal reimburses the surety.";
+const canonicalPath = "/guides/bond-vs-insurance/";
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: pageTitle,
+  description,
+  datePublished: "2026-08-09",
+  dateModified: LAST_UPDATED,
+  author: {
+    "@type": "Organization",
+    name: "SuretyResearch",
+    url: new URL("/about/", SITE.url).toString(),
+  },
+  publisher: {
+    "@type": "Organization",
+    name: "SuretyResearch",
+    url: SITE.url,
+    logo: new URL("/logo-lockup.png", SITE.url).toString(),
+    email: SITE.email,
+  },
+  mainEntityOfPage: new URL(canonicalPath, SITE.url).toString(),
+};
 ---
 
-<Layout title="Surety Bonds vs. Insurance — SuretyResearch" description="Insurance pays the policyholder. A surety bond pays the obligee, and the principal reimburses the surety.">
+<Layout title="Surety Bonds vs. Insurance - SuretyResearch" description={description} canonical={canonicalPath}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+  </Fragment>
   <section class="page-hero">
     <div class="wrap">
       <p class="kicker">Distinction</p>

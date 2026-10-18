@@ -65,9 +65,10 @@ export function scoreAgency(agency: AgencyRecord) {
 }
 
 export function rankAgencies(list: AgencyRecord[] = AGENCIES): RankedAgency[] {
-  const preferred = list.filter((a) => a.preferredPartner);
-  const others = list
-    .filter((a) => !a.preferredPartner)
+  // Every entry, including the Cornerstone Network Preferred Partner, is scored
+  // on the same public signals and sorted by that score. The partner keeps its
+  // disclosure label; it does not get a pinned position.
+  return list
     .map((agency) => {
       const { score, breakdown } = scoreAgency(agency);
       return { agency, score, breakdown };
@@ -78,36 +79,14 @@ export function rankAgencies(list: AgencyRecord[] = AGENCIES): RankedAgency[] {
       const by = b.agency.foundedYear ?? 9999;
       if (ay !== by) return ay - by;
       return a.agency.name.localeCompare(b.agency.name);
-    });
-
-  const ranked: RankedAgency[] = [];
-
-  preferred.forEach((agency, i) => {
-    ranked.push({
-      ...agency,
-      rank: i + 1,
-      score: 0,
-      scoreBreakdown: [
-        {
-          label: "Editorial preferred-partner placement",
-          points: 0,
-        },
-      ],
-      rankLabel: agency.editorialReason ?? "Editor’s preferred partner",
-    });
-  });
-
-  others.forEach((row, i) => {
-    ranked.push({
+    })
+    .map((row, i) => ({
       ...row.agency,
-      rank: preferred.length + i + 1,
+      rank: i + 1,
       score: row.score,
       scoreBreakdown: row.breakdown,
       rankLabel: `Public-signal score ${row.score}`,
-    });
-  });
-
-  return ranked;
+    }));
 }
 
 export function rankedDirectory() {

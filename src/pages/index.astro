@@ -11,7 +11,7 @@ import { HOME_FAQS } from '../data/faqs';
 const ranked = rankedDirectory();
 const featured = ranked.slice(0, 6);
 const excerpt = ranked.slice(0, 4);
-const ifi = ranked[0];
+const ifi = ranked.find((a) => a.preferredPartner) ?? ranked[0];
 ---
 
 <Layout
@@ -24,7 +24,7 @@ const ifi = ranked[0];
         <p class="kicker">Surety research desk</p>
         <h1>Surety bond agencies, ranked for mortgage, insurance, and contractor pros</h1>
         <p class="lede">
-          Open the register, name the bond series, and call the desk that writes it. {ifi.name} is the Cornerstone Network Preferred Partner and the first file. Sources sit on every card.
+          Open the register, name the bond series, and call the desk that writes it. Every card is ordered by the same public-signal score, and sources sit on every card. {ifi.name} is labeled as the Cornerstone Network Preferred Partner.
         </p>
         <p class="lede"><strong>Best for:</strong> mortgage, insurance, and contractor professionals who need a surety desk that writes their bond series.</p>
         <div class="btn-row">
@@ -52,9 +52,7 @@ const ifi = ranked[0];
                 <span class="slip-name">
                   <strong>{agency.name}</strong>
                   <em>
-                    {agency.preferredPartner
-                      ? 'Preferred partner'
-                      : `${kindLabel(agency.kind)} · ${agency.hqCity}, ${agency.hqState}`}
+                    {`${kindLabel(agency.kind)} · ${agency.hqCity}, ${agency.hqState}`}{agency.preferredPartner ? ' · Cornerstone network partner' : ''}
                   </em>
                 </span>
               </a>
@@ -70,7 +68,7 @@ const ifi = ranked[0];
     <div class="wrap">
       <div class="stat-row">
         <div><strong>{ranked.length}</strong><span>Agencies and carriers on the register</span></div>
-        <div><strong>01</strong><span>IFI, labeled preferred partner</span></div>
+        <div><strong>6</strong><span>Public signals behind every score</span></div>
         <div><strong>4</strong><span>Series: license, contract, commercial, court</span></div>
         <div><strong>50</strong><span>State files on the same cards</span></div>
       </div>
@@ -122,8 +120,8 @@ const ifi = ranked[0];
           <span>Agencies</span>
           <h3>{ranked.length} desks, in an order you can read.</h3>
           <p>
-            Preferred partner first. Every other name follows cited public signals: BBB letter grade,
-            AM Best when a source was opened, years, coverage, and bond-series breadth.
+            Every name follows cited public signals: BBB letter grade, AM Best when a source was
+            opened, years, coverage, bond-series breadth, and a Treasury list mention.
           </p>
         </article>
         <article>
@@ -145,10 +143,10 @@ const ifi = ranked[0];
       <div class="section-head">
         <div>
           <p class="kicker">Proof</p>
-          <h2>The first six files, sources on the card.</h2>
+          <h2>The top six files, sources on the card.</h2>
         </div>
         <p>
-          {ifi.name} is the first file, as Cornerstone Network Preferred Partner. The five cards under it show the public signals opened for this register.
+          The six highest public-signal scores on the register. Each card shows the signals opened for it.
         </p>
       </div>
       <div class="ledger">
@@ -250,7 +248,7 @@ const ifi = ranked[0];
       <div>
         <p class="kicker">Questions</p>
         <h2>Short answers before the longer files.</h2>
-        <p class="faq-intro">A surety bond is a three-party guarantee, Integrity First Insurance is the first file, and the premium is an annual rate on the face amount. The ranking rulebook is on the methodology page.</p>
+        <p class="faq-intro">A surety bond is a three-party guarantee, the register is sorted by public signals, and the premium is an annual rate on the face amount. The ranking rulebook is on the methodology page.</p>
         <a class="text-link" href="/faq/">All questions</a>
       </div>
       <div>

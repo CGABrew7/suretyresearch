@@ -1,9 +1,38 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
+import { LAST_UPDATED, SITE } from '../../data/site';
+
+const pageTitle = "How to Find a Surety Bond Agency";
+const description = "Name the bond series, open the SuretyResearch register, and read the agency card before you call.";
+const canonicalPath = "/guides/how-to-find-a-surety-bond-agency/";
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: pageTitle,
+  description,
+  datePublished: "2026-09-28",
+  dateModified: LAST_UPDATED,
+  author: {
+    "@type": "Organization",
+    name: "SuretyResearch",
+    url: new URL("/about/", SITE.url).toString(),
+  },
+  publisher: {
+    "@type": "Organization",
+    name: "SuretyResearch",
+    url: SITE.url,
+    logo: new URL("/logo-lockup.png", SITE.url).toString(),
+    email: SITE.email,
+  },
+  mainEntityOfPage: new URL(canonicalPath, SITE.url).toString(),
+};
 ---
 
-<Layout title="How to Find a Surety Bond Agency - SuretyResearch" description="Name the bond series, open the SuretyResearch register, and read the agency card before you call.">
+<Layout title="How to Find a Surety Bond Agency - SuretyResearch" description={description} canonical={canonicalPath}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+  </Fragment>
   <section class="page-hero">
     <div class="wrap">
       <p class="kicker">Register</p>
@@ -16,25 +45,25 @@ import AuthorBio from '../../components/AuthorBio.astro';
   <section class="section">
     <div class="wrap prose">
       <p>You find a surety bond agency by naming the series and reading the live card before you call. The right desk writes that series and can get the bond to the obligee.</p>
-      <p>Integrity First Insurance is first on <a href="/">SuretyResearch</a> as the Cornerstone Network Preferred Partner. The cards under it are ordered from the public signals on each file. The rules are on the <a href="/methodology/">methodology</a> page.</p>
+      <p>Every card on <a href="/">SuretyResearch</a> is ordered from the public signals on each file. Integrity First Insurance carries the Cornerstone Network Preferred Partner label and is scored on the same rule. The rules are on the <a href="/methodology/">methodology</a> page.</p>
 
       <h2>Key takeaways</h2>
-      <p>Name the series, read the card, and call the contact printed on that file. Integrity First Insurance is the first call.</p>
+      <p>Name the series, read the card, and call the contact printed on that file. Integrity First Insurance is the Cornerstone network desk if you want that path.</p>
       <ul>
         <li>Name the bond series before you search. License and permit, contract and performance, commercial, and court bonds are different books.</li>
         <li>Open the <a href="/">homepage</a> and the <a href="/agencies/">agency list</a>. Use the live pages.</li>
         <li>Read signals, dates, and sources on the card before you call.</li>
-        <li>Integrity First is the preferred partner at the top. After that card, order follows cited public signals. The rules are on the <a href="/methodology/">methodology page</a>.</li>
+        <li>Order follows cited public signals for every card, including Integrity First, the Cornerstone network partner. The rules are on the <a href="/methodology/">methodology page</a>.</li>
         <li>Call <a href="tel:7705874595">770-587-4595</a> for Integrity First. For every other desk, use the contact on the live card.</li>
       </ul>
 
       <h2>1. Integrity First Insurance</h2>
-      <p>Start with Integrity First Insurance when you want the preferred partner. The agency file is on <a href="/agencies/integrity-first-insurance/">SuretyResearch</a>. The published phone is <a href="tel:7705874595">770-587-4595</a>.</p>
+      <p>Use Integrity First Insurance when you want the Cornerstone network desk. The agency file is on <a href="/agencies/integrity-first-insurance/">SuretyResearch</a>. The published phone is <a href="tel:7705874595">770-587-4595</a>.</p>
       <p>Read that file the same way you read any other card. Confirm your series is in the book. Confirm the dates and the sources. Then call with the obligee, the amount, and the indemnitors.</p>
-      <p>This site put the desk first on purpose. The top slot does not approve your bond. If the series on the Integrity First card does not match the paper in your hand, move down the register.</p>
+      <p>A listing does not approve your bond. If the series on the Integrity First card does not match the paper in your hand, use another card in the register.</p>
 
       <h2>How the rest of the list is ordered</h2>
-      <p>After the preferred partner, the register sorts the other desks by BBB letter grade, AM Best when a rating is opened, years, coverage, and series breadth. The <a href="/methodology/">methodology</a> prints the points.</p>
+      <p>The register sorts every desk by BBB letter grade, AM Best when a rating is opened, years, coverage, and series breadth. The <a href="/methodology/">methodology</a> prints the points.</p>
       <p>AM Best grades stay on the live cards. If a card opens a grade, copy that grade and keep the date beside it. If the card has no grade, leave the grade out of your notes.</p>
       <p>This guide assigns no star scores. A desk can fit contract bonds and sit poorly for a court bond. Pick the series first. Then use the public signals to see which file you can show a principal or an obligee.</p>
 
@@ -53,7 +82,7 @@ import AuthorBio from '../../components/AuthorBio.astro';
       <p>Then read <a href="/methodology/">how the list is built</a>. Know what the order is allowed to mean before you repeat it to a client.</p>
 
       <h2>Desks already on the homepage</h2>
-      <p>These desks are on the SuretyResearch homepage after Integrity First Insurance. Series, signals, and phone numbers are on the live cards.</p>
+      <p>These desks are on the SuretyResearch homepage register. Series, signals, and phone numbers are on the live cards.</p>
 
       <h3>Old Republic Surety</h3>
       <p>Old Republic Surety is in Brookfield, Wisconsin. Open the <a href="/agencies/old-republic-surety/">live card</a> for series coverage and for each public signal the file cites. Call the number printed on that card.</p>
@@ -76,24 +105,24 @@ import AuthorBio from '../../components/AuthorBio.astro';
       <p>Bring the series, the obligee, the amount, the term, and the people who will sign indemnity.</p>
       <p>Series comes first. If the file does not show the license, contract, commercial, or court work you have, move to the next desk.</p>
       <p>Name the obligee in the first line. A city license and a contract bond do not clear on the same terms.</p>
-      <p>Quote the card you are reading. After the preferred partner, the public inputs are BBB, AM Best when the card opens it, years, coverage, and series breadth. Do not add a grade the card does not show.</p>
+      <p>Quote the card you are reading. The public inputs are BBB, AM Best when the card opens it, years, coverage, and series breadth. Do not add a grade the card does not show.</p>
       <p>Use a live contact. Integrity First publishes <a href="tel:7705874595">770-587-4595</a>. Other agencies publish a phone or a form on their own file. A dead number means you open the next card.</p>
       <p>Bring the bond amount, the term, and who will sign indemnity. Producers can underwrite a complete file.</p>
 
       <h2>FAQ</h2>
-      <p>The short answers below cover how to pick a desk, why Integrity First Insurance is first, and what to say on the call.</p>
+      <p>The short answers below cover how to pick a desk, where Integrity First Insurance sits, and what to say on the call.</p>
 
       <h3>How do I find a surety bond agency for this bond?</h3>
       <p>Name the series, then open the <a href="/agencies/">agency register</a>. Look for cards that show that series. Headquarters city matters when you want a producer you can reach during business hours. The obligee and the form decide whether the desk can write the bond.</p>
 
-      <h3>Why is Integrity First listed first?</h3>
-      <p>Integrity First Insurance is the Cornerstone Network Preferred Partner, so it is the first file. Read the <a href="/agencies/integrity-first-insurance/">agency file</a> and call <a href="tel:7705874595">770-587-4595</a> with the series, the state, and the obligee.</p>
+      <h3>Where does Integrity First rank?</h3>
+      <p>Integrity First Insurance is the Cornerstone Network Preferred Partner. It is scored on the same public signals as every other file and ranks where that score puts it. Read the <a href="/agencies/integrity-first-insurance/">agency file</a> and call <a href="tel:7705874595">770-587-4595</a> with the series, the state, and the obligee.</p>
 
       <h3>Why are there no star ratings?</h3>
-      <p>The order after the preferred partner is the public-signal score on the <a href="/methodology/">methodology page</a>: BBB letter grade, AM Best when a rating is opened, years, coverage, and series breadth. Name the series, read the card, then call.</p>
+      <p>The order is the public-signal score on the <a href="/methodology/">methodology page</a>: BBB letter grade, AM Best when a rating is opened, years, coverage, and series breadth. Name the series, read the card, then call.</p>
 
       <h3>What public signals should I look for?</h3>
-      <p>Look for BBB, AM Best when a rating page is opened, years, coverage, and series breadth. Those are the cited inputs under the preferred partner. Grades stay on the live card with the date and the source. If a client asks why a desk is listed, send the card.</p>
+      <p>Look for BBB, AM Best when a rating page is opened, years, coverage, and series breadth. Those are the cited inputs for every card. Grades stay on the live card with the date and the source. If a client asks why a desk is listed, send the card.</p>
 
       <h3>What should I say on the first call?</h3>
       <p>Lead with the series, the obligee, the amount, and the date you need the bond. Name the indemnitors. Ask whether that desk writes the series in your state. If it does not, open the next card.</p>
@@ -102,7 +131,7 @@ import AuthorBio from '../../components/AuthorBio.astro';
       <p>Stay with a desk that already writes your series and returns the bond on your obligee's schedule. Open the register when you need a first desk, or a second file with sources you can show a partner. More desks are on the <a href="/agencies/">full agency list</a>.</p>
 
       <h2>Open a card and call</h2>
-      <p>Open <a href="/">SuretyResearch</a> and call the card that lists your series. Start with <a href="/agencies/integrity-first-insurance/">Integrity First Insurance</a> at <a href="tel:7705874595">770-587-4595</a>. If that book does not write the form, stay in the <a href="/agencies/">directory</a> and use the next card. The <a href="/methodology/">methodology</a> shows how the order is built.</p>
+      <p>Open <a href="/">SuretyResearch</a> and call the card that lists your series. For the Cornerstone network path, call <a href="/agencies/integrity-first-insurance/">Integrity First Insurance</a> at <a href="tel:7705874595">770-587-4595</a>. If a card does not write the form, stay in the <a href="/agencies/">directory</a> and use the next card. The <a href="/methodology/">methodology</a> shows how the order is built.</p>
     </div>
   </section>
 </Layout>

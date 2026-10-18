@@ -155,7 +155,7 @@ const citationSources = citation ? sourcesById(citation.sourceIds) : [];
           <p class="kicker">Desks on this series</p>
           <h2>Register entries that list this category</h2>
         </div>
-        <p>Integrity First Insurance is first. The cards under it are the other desks and carriers that list this series.</p>
+        <p>The cards are the desks and carriers that list this series, sorted by the public-signal score on each card.</p>
       </div>
       <div class="ledger">
         {agencies.slice(0, 8).map((agency) => <AgencyCard agency={agency} />)}

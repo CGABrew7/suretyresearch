@@ -5,19 +5,19 @@ import { rankedDirectory } from '../lib/ranking';
 import { PRIMARY_SOURCES } from '../data/sources';
 
 const ranked = rankedDirectory();
-const scored = ranked.filter((a) => !a.preferredPartner);
+const scored = ranked;
 ---
 
 <Layout
   title="Methodology — SuretyResearch"
-  description="Integrity First Insurance is rank 01 as the Cornerstone Network Preferred Partner. Every other name is sorted by the public-signal score printed on the card."
+  description="Every name in the register is sorted by the public-signal score printed on its card, including the Cornerstone Network Preferred Partner."
 >
   <section class="page-hero">
     <div class="wrap">
       <p class="kicker">House rules</p>
       <h1>How the register is ranked.</h1>
       <p>
-        Integrity First Insurance is rank 01 as the Cornerstone Network Preferred Partner. Every other name is sorted by a score built only from the public signals printed on its card.
+        Every name is sorted by a score built only from the public signals printed on its card. Integrity First Insurance, the Cornerstone Network Preferred Partner, is scored on the same rule.
       </p>
       <AuthorBio />
     </div>
@@ -25,20 +25,17 @@ const scored = ranked.filter((a) => !a.preferredPartner);
 
   <section class="section">
     <div class="wrap prose">
-      <h2>1. Integrity First Insurance is rank 01</h2>
+      <h2>1. The Cornerstone network partner is labeled, not pinned</h2>
       <p>
-        Integrity First Insurance leads because it is the Cornerstone Network Preferred Partner, the desk this register opens for licensing and surety placement inside the Cornerstone network.
+        Integrity First Insurance is the Cornerstone Network Preferred Partner, the desk this register uses for licensing and surety placement inside the Cornerstone network. Its card prints that label so the relationship is plain.
       </p>
       <p>
-        The card prints the label: <strong>Cornerstone Network Preferred Partner</strong> and <strong>Editor’s #1 — licensing &amp; surety specialists in the Cornerstone ecosystem</strong>.
-      </p>
-      <p>
-        Travelers’ public agent directory lists surety among the lines at the agency’s published address. Bond work is coordinated with Covered by Cornerstone and Cornerstone Surety Bonds.
+        Its position comes from the same public-signal score as every other name. Travelers’ public agent directory lists surety among the lines at the agency’s published address. Bond work is coordinated with Covered by Cornerstone and Cornerstone Surety Bonds.
       </p>
 
-      <h2>2. Everyone else is scored, then sorted</h2>
+      <h2>2. Every name is scored, then sorted</h2>
       <p>
-        After the preferred partner, the order is the public-signal score. A missing signal adds zero points.
+        The order is the public-signal score. A missing signal adds zero points.
       </p>
       <ul>
         <li>BBB letter grade: A+ 22, A 18, A− 14, B-band 8 (grade only).</li>
@@ -52,7 +49,7 @@ const scored = ranked.filter((a) => !a.preferredPartner);
 
       <h2>3. Current order</h2>
       <p>
-        The table is the live order for this build: the preferred partner, then {scored.length} scored names.
+        The table is the live order for this build: {scored.length} scored names.
       </p>
       <div class="table-scroll">
       <table class="table">
@@ -64,7 +61,7 @@ const scored = ranked.filter((a) => !a.preferredPartner);
             <tr>
               <td>{String(a.rank).padStart(2, '0')}</td>
               <td><a href={`/agencies/${a.slug}/`}>{a.name}</a></td>
-              <td>{a.preferredPartner ? 'editorial' : a.score}</td>
+              <td>{a.score}</td>
               <td>{a.kind}</td>
             </tr>
           ))}

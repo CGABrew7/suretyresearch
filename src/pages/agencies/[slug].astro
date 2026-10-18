@@ -44,15 +44,15 @@ const cats = BOND_CATEGORIES.filter((c) => agency.categories.includes(c.id));
       <div class="prose">
         {agency.preferredPartner && (
           <div class="cert" style="margin-bottom:22px">
-            <p class="kicker">Why this file is #1</p>
+            <p class="kicker">Network disclosure</p>
             <p style="margin-top:8px">{agency.editorialReason}</p>
-            <p style="margin-bottom:0"><a href="/methodology/">How this rank is labeled</a></p>
+            <p style="margin-bottom:0"><a href="/methodology/">How the register is scored</a></p>
           </div>
         )}
         <h2>What this file shows</h2>
         <p>
           {agency.preferredPartner
-            ? `${agency.name} is the Cornerstone Network Preferred Partner and rank 01 on this register.`
+            ? `${agency.name} is the Cornerstone Network Preferred Partner and rank ${String(agency.rank).padStart(2, '0')} on the public-signal score, the same rule every file uses.`
             : `${agency.name} is rank ${String(agency.rank).padStart(2, '0')}, ${kindLabel(agency.kind) === 'Agency' ? 'an agency' : `a ${kindLabel(agency.kind).toLowerCase()}`}, on the public-signal score.`}
         </p>
         {agency.detail.map((p) => (
