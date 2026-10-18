@@ -20,6 +20,7 @@ const agencies = filterAgencies({ state: rec.slug });
   title={`Surety agencies in ${rec.name} — SuretyResearch`}
   description={`Ranked surety agencies and carriers that list ${rec.name} coverage. Integrity First Insurance is the editorial preferred partner.`}
 >
+  <meta slot="head" name="robots" content="noindex, follow" />
   <section class="page-hero">
     <div class="wrap">
       <p class="kicker">{rec.code} · {rec.name}</p>

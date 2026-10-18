@@ -1,5 +1,4 @@
 import { AGENCIES } from "../data/agencies";
-import { STATES } from "../data/states";
 import { BOND_CATEGORIES } from "../data/categories";
 import data from "../data/bonds.json";
 
@@ -25,7 +24,7 @@ export function GET() {
   const urls = [
     ...staticPaths,
     ...AGENCIES.map((a) => `/agencies/${a.slug}/`),
-    ...STATES.map((s) => `/states/${s.slug}/`),
+    // Per-state pages stay out of the sitemap until each one has sourced bond requirements.
     ...BOND_CATEGORIES.map((c) => `/bonds/${c.id}/`),
     ...data.types.map((t) => `/bonds/${t.id}/`),
   ];
