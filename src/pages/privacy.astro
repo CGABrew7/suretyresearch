@@ -1,33 +1,57 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import AuthorBio from '../components/AuthorBio.astro';
+import { SITE } from '../data/site';
+
+const legalDate = '2026-10-19';
+const legalDateLabel = 'October 19, 2026';
 ---
 
-<Layout title="Privacy — SuretyResearch" description="SuretyResearch keeps the premium sketch in your browser.">
+<Layout
+  title="Privacy - SuretyResearch"
+  description="What SuretyResearch collects, which tools load with the site, and how to ask about information we hold."
+  dateModified={legalDate}
+  updatedLabel={legalDateLabel}
+>
   <section class="page-hero">
     <div class="wrap">
       <p class="kicker">Housekeeping</p>
-      <h1>The premium sketch stays in your browser.</h1>
-      <p>
-        SuretyResearch is a static research site. The calculator runs on your device. A call to Integrity First Insurance or Cornerstone is handled under that firm’s own privacy notice.
-      </p>
+      <h1>Privacy</h1>
+      <p>Last updated {legalDateLabel}</p>
       <AuthorBio />
     </div>
   </section>
   <section class="section">
     <div class="wrap prose">
-      <h2>What this site stores</h2>
+      <h2>What we collect</h2>
       <p>
-        The premium sketch does not send a lead form. Directory questions go to bonds@suretyresearch.com.
+        SuretyResearch is a static research site. The premium sketch runs in your browser and is not sent to us. This site does not use a lead form. Directory questions go to {SITE.email}.
       </p>
-      <h2>What a call does</h2>
       <p>
-        Calling Integrity First Insurance or a Cornerstone site reaches that firm. Use the privacy notice on the site you reach.
+        A call to Integrity First Insurance or a Cornerstone site reaches that firm. Use the privacy notice on the site you reach.
       </p>
-      <h2>Hosting and fonts</h2>
+
+      <h2>Tools we use</h2>
+      <ul>
+        <li>Cloudflare Pages serves the site.</li>
+        <li>Fonts load from Google Fonts, which receives your IP address and browser details when your browser requests them.</li>
+        <li>We count page views with Cloudflare Web Analytics. It sets no cookies and does not follow you across sites. It records the page, referrer, browser type and country, in aggregate.</li>
+      </ul>
+      <p>This build does not run advertising pixels.</p>
+
+      <h2>Cookies</h2>
+      <p>This site does not set cookies. Cloudflare Web Analytics sets no cookies.</p>
+
+      <h2>Your choices and requests</h2>
       <p>
-        Cloudflare Pages serves the site and Google Fonts serves the type. Those requests are ordinary page and font loads. This build does not run advertising pixels.
+        To ask what we hold about you, or to have it corrected or deleted, email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
       </p>
+
+      <h2>Changes</h2>
+      <p>We may update this policy by posting a new version on this page and changing the date above.</p>
+
+      <h2>Contact</h2>
+      <p>Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.</p>
     </div>
   </section>
 </Layout>

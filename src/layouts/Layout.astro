@@ -10,6 +10,10 @@ interface Props {
   feeder?: boolean;
   /** Set false when the page already prints its own Article graph. */
   includeSchema?: boolean;
+  /** ISO date for WebPage dateModified. Legal pages pass their own stamp. */
+  dateModified?: string;
+  /** Trust-bar label. Legal pages pass their own stamp. */
+  updatedLabel?: string;
 }
 
 const {
@@ -18,6 +22,8 @@ const {
   canonical,
   feeder = false,
   includeSchema = true,
+  dateModified = LAST_UPDATED,
+  updatedLabel = SITE.updatedLabel,
 } = Astro.props;
 
 const canonicalUrl = canonical
@@ -40,7 +46,7 @@ const pageSchema = {
   "@type": "WebPage",
   name: title,
   description,
-  dateModified: LAST_UPDATED,
+  dateModified,
   author: {
     "@type": "Organization",
     name: "SuretyResearch",
@@ -109,7 +115,7 @@ const pageSchema = {
       <div class="trust-bar">
         <div class="wrap">
           <a href="/about/">SuretyResearch</a>
-          <span>Last updated {SITE.updatedLabel}</span>
+          <span>Last updated {updatedLabel}</span>
         </div>
       </div>
       <slot />
@@ -172,6 +178,7 @@ const pageSchema = {
             <a href="/faq/">FAQ</a>
             <a href="/contact/">Contact</a>
             <a href="/privacy/">Privacy</a>
+            <a href="/terms/">Terms</a>
           </div>
         </div>
         <div class="footer-bottom">
