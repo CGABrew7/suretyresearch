@@ -16,8 +16,8 @@ export default function BondCalculator() {
 
   const getRate = () => {
     if (creditScore === 'excellent') return { low: 1, high: 2.5, label: 'Excellent (720+)' };
-    if (creditScore === 'good') return { low: 2, high: 4, label: 'Good (680–719)' };
-    if (creditScore === 'fair') return { low: 4, high: 8, label: 'Fair (600–679)' };
+    if (creditScore === 'good') return { low: 2, high: 4, label: 'Good (680 to 719)' };
+    if (creditScore === 'fair') return { low: 4, high: 8, label: 'Fair (600 to 679)' };
     if (creditScore === 'poor') return { low: 8, high: 15, label: 'Below 600' };
     return { low: 0, high: 0, label: '' };
   };
@@ -35,8 +35,9 @@ export default function BondCalculator() {
 
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label>1. Bond form</label>
+            <label htmlFor="calc-bond-form">1. Bond form</label>
             <select
+              id="calc-bond-form"
               value={bondType}
               onChange={(e) => {
                 setBondType(e.target.value);
@@ -53,8 +54,9 @@ export default function BondCalculator() {
           </div>
 
           <div className="form-group">
-            <label>2. Face amount</label>
+            <label htmlFor="calc-face-amount">2. Face amount</label>
             <select
+              id="calc-face-amount"
               value={bondAmount}
               onChange={(e) => {
                 setBondAmount(e.target.value);
@@ -73,8 +75,9 @@ export default function BondCalculator() {
           </div>
 
           <div className="form-group">
-            <label>3. Credit band</label>
+            <label htmlFor="calc-credit-band">3. Credit band</label>
             <select
+              id="calc-credit-band"
               value={creditScore}
               onChange={(e) => {
                 setCreditScore(e.target.value);
@@ -83,8 +86,8 @@ export default function BondCalculator() {
             >
               <option value="">Select credit…</option>
               <option value="excellent">Excellent (720+)</option>
-              <option value="good">Good (680–719)</option>
-              <option value="fair">Fair (600–679)</option>
+              <option value="good">Good (680 to 719)</option>
+              <option value="fair">Fair (600 to 679)</option>
               <option value="poor">Below 600</option>
             </select>
           </div>
@@ -97,7 +100,7 @@ export default function BondCalculator() {
         {showResult && bond && (
           <div className="calc-result">
             <div className="calc-result-big">
-              ${annualLow.toLocaleString()} – ${annualHigh.toLocaleString()}
+              ${annualLow.toLocaleString()} to ${annualHigh.toLocaleString()}
             </div>
             <div className="calc-result-label">Estimated annual premium · {bond.name}</div>
             <div className="result-details">
@@ -112,13 +115,13 @@ export default function BondCalculator() {
               <div className="rd-item">
                 <div className="rd-label">Rate band</div>
                 <div className="rd-value">
-                  {rate.low}% – {rate.high}%
+                  {rate.low}% to {rate.high}%
                 </div>
               </div>
               <div className="rd-item">
                 <div className="rd-label">Monthly-ish</div>
                 <div className="rd-value">
-                  ${Math.round(annualLow / 12).toLocaleString()} – ${Math.round(annualHigh / 12).toLocaleString()}
+                  ${Math.round(annualLow / 12).toLocaleString()} to ${Math.round(annualHigh / 12).toLocaleString()}
                 </div>
               </div>
             </div>
