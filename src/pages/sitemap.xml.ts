@@ -18,6 +18,7 @@ const staticPaths = [
   "/contact/",
   "/faq/",
   "/privacy/",
+  "/terms/",
 ];
 
 export function GET() {
@@ -30,6 +31,8 @@ export function GET() {
   ];
   const lastmodByPath: Record<string, string> = {
     "/guides/best-surety-bond-companies/": "2026-10-13",
+    "/privacy/": "2026-10-19",
+    "/terms/": "2026-10-19",
   };
   const unique = [...new Set(urls)];
   const body = `<?xml version="1.0" encoding="UTF-8"?>

@@ -1,0 +1,59 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AuthorBio from '../components/AuthorBio.astro';
+import { SITE } from '../data/site';
+
+const legalDate = '2026-10-19';
+const legalDateLabel = 'October 19, 2026';
+---
+
+<Layout
+  title="Terms - SuretyResearch"
+  description="Terms for using SuretyResearch. The content is general information about surety bonds."
+  dateModified={legalDate}
+  updatedLabel={legalDateLabel}
+>
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="kicker">Housekeeping</p>
+      <h1>Terms</h1>
+      <p>Last updated {legalDateLabel}</p>
+      <AuthorBio />
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap prose">
+      <h2>Use of this site</h2>
+      <p>
+        The content on SuretyResearch is general information. It is not professional, legal, financial, tax or medical advice. Check anything important with a qualified professional before you act on it.
+      </p>
+      <p>Bond requirements change. Confirm the current rule with the agency that requires the bond.</p>
+
+      <h2>No warranty</h2>
+      <p>
+        The site is provided as is. We work to keep it accurate and current but do not guarantee that it is complete, error free or always available.
+      </p>
+
+      <h2>Limitation of liability</h2>
+      <p>
+        To the extent the law allows, SuretyResearch is not liable for any indirect, incidental or consequential loss arising from your use of the site. Our total liability for any claim is limited to the amount you paid us in the 12 months before the claim. If you paid nothing, that amount is zero. Where the law does not allow a limit, the limit applies only as far as the law allows.
+      </p>
+
+      <h2>Links</h2>
+      <p>Links to other sites are provided for convenience. We do not control those sites and are not responsible for them.</p>
+
+      <h2>Changes</h2>
+      <p>We may update these terms by posting a new version on this page and changing the date above.</p>
+
+      <h2>Contact</h2>
+      <p>Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.</p>
+
+      <h2>Related</h2>
+      <ul>
+        <li><a href="/privacy/">Privacy policy</a>: page views, fonts, and requests about information we hold.</li>
+        <li><a href="/contact/">Contact the desk</a>: the preferred partner phone and directory mail.</li>
+        <li><a href="/methodology/">How the register is ranked</a>: the public signals behind every file.</li>
+      </ul>
+    </div>
+  </section>
+</Layout>
