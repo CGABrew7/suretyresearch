@@ -122,7 +122,7 @@ export default function BondCalculator() {
                 </div>
               </div>
             </div>
-            <p style={{ fontSize: '0.92rem', color: '#3c4452', marginBottom: 14 }}>
+            <p style={{ fontSize: '0.92rem', color: 'var(--ink-2)', marginBottom: 14 }}>
               Industry-average sketch. Underwriting, the state form, and financials set the final figure.
             </p>
             <a className="btn btn-brass" href="/agencies/integrity-first-insurance/">
