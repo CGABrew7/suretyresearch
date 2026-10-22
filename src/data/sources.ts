@@ -30,6 +30,41 @@ export const PRIMARY_SOURCES = [
     label: "Texas Department of Insurance — surety company contacts",
     url: "https://www.tdi.texas.gov/commercial/pcbondsurety.html",
   },
+  {
+    id: "jet-mortgage",
+    label: "Jet Insurance Company, mortgage license bond pricing",
+    url: "https://jetsurety.com/mortgage-license-bonds",
+  },
+  {
+    id: "lance-il-mortgage",
+    label: "Lance Surety Bonds, Illinois residential mortgage broker bond",
+    url: "https://www.lancesuretybonds.com/bonds-by-state/illinois/mortgage-broker-bonds",
+  },
+  {
+    id: "lance-oh-mortgage",
+    label: "Lance Surety Bonds, Ohio mortgage broker bond",
+    url: "https://www.lancesuretybonds.com/bonds-by-state/ohio/mortgage-broker-bonds",
+  },
+  {
+    id: "bryant-mortgage",
+    label: "Bryant Surety Bonds, mortgage broker bond cost",
+    url: "https://www.bryantsuretybonds.com/license-permit-bonds/mortgage-broker-bonds",
+  },
+  {
+    id: "bryant-rates",
+    label: "Bryant Surety Bonds, example rates by surety bond type",
+    url: "https://www.bryantsuretybonds.com/learn-surety/surety-bond-cost",
+  },
+  {
+    id: "bryant-ohio-mortgage",
+    label: "Bryant Surety Bonds, Ohio mortgage broker bond cost",
+    url: "https://www.bryantsuretybonds.com/surety-bonds-by-state/ohio/mortgage-broker-bonds",
+  },
+  {
+    id: "groupleader-mortgage",
+    label: "GroupLeader, mortgage broker bond rates",
+    url: "https://www.groupleader.com/mortgage-broker-bonds/",
+  },
 ] as const;
 
 export type PrimarySourceId = (typeof PRIMARY_SOURCES)[number]["id"];
