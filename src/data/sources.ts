@@ -8,7 +8,7 @@ export const PRIMARY_SOURCES = [
   {
     id: "miller",
     label: "40 U.S.C. § 3131 — Bonds of contractors of public buildings or works",
-    url: "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title40-section3131&num=0&edition=prelim",
+    url: "https://www.govinfo.gov/content/pkg/USCODE-2023-title40/html/USCODE-2023-title40-subtitleII-partA-chap31-subchapIII-sec3131.htm",
   },
   {
     id: "bmc",
