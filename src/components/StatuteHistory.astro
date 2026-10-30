@@ -1,0 +1,75 @@
+---
+import { blameUrl, licenseUrl, type StatuteHistoryRecord } from "../data/statuteHistory";
+
+interface Props {
+  record: StatuteHistoryRecord;
+  place: string;
+}
+
+const { record, place } = Astro.props;
+---
+
+<aside class="statute-history" aria-labelledby="statute-history-heading">
+  <h2 id="statute-history-heading" class="serif">Statute history</h2>
+  <p>
+    <a href="https://github.com/lexifina/global-law" target="_blank" rel="noopener">Global Law</a> keeps a git history of these {place} bond statutes. The blame view shows the text and the law that last changed each line.
+  </p>
+  <ul class="source-list">
+    {
+      record.statutes.map((statute) => (
+        <li>
+          <a href={blameUrl(record, statute.path)} target="_blank" rel="noopener">
+            {statute.label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+  <p class="statute-attrib">
+    {record.attribution}{" "}
+    The history is © <a href="https://lexifina.com" target="_blank" rel="noopener">Lexifina</a>, licensed{" "}
+    <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>.{" "}
+    <a href={licenseUrl(record)} target="_blank" rel="noopener">Submodule license</a>.
+  </p>
+</aside>
+
+<style>
+  .statute-history {
+    margin: 0 0 36px;
+    padding: 18px 0 4px;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    max-width: 42rem;
+  }
+
+  .statute-history h2 {
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+  }
+
+  .statute-history p {
+    color: var(--ink-2);
+    max-width: 40rem;
+  }
+
+  .statute-history .source-list {
+    margin: 12px 0 14px;
+  }
+
+  .statute-attrib {
+    font-size: 0.95rem;
+    margin-bottom: 16px;
+  }
+
+  .statute-history a {
+    overflow-wrap: anywhere;
+  }
+
+  @media (max-width: 640px) {
+    .statute-history li a {
+      display: block;
+      padding: 8px 0;
+      min-height: 44px;
+    }
+  }
+</style>
