@@ -3,7 +3,9 @@ import Layout from '../../layouts/Layout.astro';
 import AgencyCard from '../../components/AgencyCard.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
 import StatePicker from '../../components/StatePicker.astro';
+import StatuteHistory from '../../components/StatuteHistory.astro';
 import { STATES, getStateBySlug } from '../../data/states';
+import { statuteHistoryFor } from '../../data/statuteHistory';
 import { filterAgencies } from '../../lib/ranking';
 import { BOND_CATEGORIES } from '../../data/categories';
 
@@ -14,6 +16,7 @@ export function getStaticPaths() {
 const rec = getStateBySlug(Astro.params.state ?? '');
 if (!rec) throw new Error('Unknown state');
 const agencies = filterAgencies({ state: rec.slug });
+const statuteHistory = statuteHistoryFor(rec.slug);
 ---
 
 <Layout
@@ -34,6 +37,7 @@ const agencies = filterAgencies({ state: rec.slug });
 
   <section class="section">
     <div class="wrap">
+      {statuteHistory && <StatuteHistory record={statuteHistory} place={rec.name} />}
       <div class="card-meta" style="margin-bottom:18px">
         {BOND_CATEGORIES.map((c) => (
           <a class="pill" href={`/bonds/${c.id}/`}>{c.name}</a>
