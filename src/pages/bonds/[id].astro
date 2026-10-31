@@ -39,94 +39,73 @@ const isCategoryPage = categoryIds.has(id ?? '');
 const isMortgage = id === 'mortgage-broker';
 const agencies = filterAgencies({ category: (isCategoryPage ? id : category?.id) as any });
 
-const MORTGAGE_UPDATED = '2026-10-22';
+const MORTGAGE_UPDATED = '2026-10-31';
 
 const mortgageAnswer =
-  'Jet Insurance Company publishes a $250 annual premium for a $50,000 mortgage license bond at its preferred-tier rate of 0.5%, and that page includes mortgage broker bonds. Lance Surety Bonds publishes $500 to $1,500 a year for a score over 700, $1,500 to $2,500 for a score from 600 to 699, and $2,500 to $5,000 for a score below 599 on its $50,000 Illinois residential mortgage broker bond and its $50,000 Ohio minimum. Bryant Surety Bonds publishes 0.5% to 1.25% at a score of 700 or above and roughly $375 to $1,500 a year for strong personal credit on a $50,000 bond, and GroupLeader publishes an example of $375 to $750 a year for excellent credit (700+) and $750 to $1,500 a year for average credit (650 to 699) on a $50,000 bond.';
+  'Jet Insurance Company publishes a $250 annual premium at a flat 0.5% preferred-tier rate for a $50,000 mortgage license bond, and that page includes mortgage broker bonds. Lance Surety Bonds publishes 1% to 3% and $500 to $1,500 a year above a score of 700, 3% to 5% and $1,500 to $2,500 a year for a score from 600 to 699, and 5% to 10% and $2,500 to $5,000 a year at a score of 599 or below, on its $50,000 residential mortgage broker bond at a loan volume of $5,000,001 to $20,000,000. Bryant Surety Bonds publishes 0.75% to 3%, roughly $375 to $1,500 a year, for strong personal credit on a $50,000 bond. GroupLeader publishes 0.75% to 1.5% for excellent credit (700+), with a $50,000 example that might cost $375 to $750 a year, and 1.5% to 3% for average credit (650 to 699), with a $50,000 example that might cost $750 to $1,500 a year.';
 
-const mortgageCostRows: { tier: string; premium: string; sourceIds: PrimarySourceId[] }[] = [
+const mortgageCostRows: {
+  tier: string;
+  rate: string;
+  cost: string;
+  sourceId: PrimarySourceId;
+  linkLabel: string;
+}[] = [
   {
     tier: 'Preferred tier',
-    premium:
-      '$250 a year at 0.5% for a $50,000 mortgage license bond. The same page lists mortgage broker bonds among the licenses this price covers.',
-    sourceIds: ['jet-mortgage'],
+    rate: '0.5%',
+    cost: '$250 a year',
+    sourceId: 'jet-mortgage',
+    linkLabel: 'Jet Insurance Company, mortgage license bond pricing',
   },
   {
-    tier: 'Over 700',
-    premium:
-      '$500 to $1,500 a year on the $50,000 bond. The Illinois page states 1% to 3% for a score above 700.',
-    sourceIds: ['lance-il-mortgage', 'lance-oh-mortgage'],
+    tier: 'Above 700',
+    rate: '1% to 3%',
+    cost: '$500 to $1,500 a year',
+    sourceId: 'lance-il-mortgage',
+    linkLabel: 'Lance Surety Bonds, residential mortgage broker bond pricing',
   },
   {
     tier: '600 to 699',
-    premium:
-      '$1,500 to $2,500 a year on the $50,000 bond. The Illinois page states 3% to 5% for a score from 600 to 699.',
-    sourceIds: ['lance-il-mortgage', 'lance-oh-mortgage'],
+    rate: '3% to 5%',
+    cost: '$1,500 to $2,500 a year',
+    sourceId: 'lance-il-mortgage',
+    linkLabel: 'Lance Surety Bonds, residential mortgage broker bond pricing',
   },
   {
     tier: 'Below 599',
-    premium:
-      '$2,500 to $5,000 a year on the $50,000 bond. The Illinois page states 5% to 10% for a score of 599 or below.',
-    sourceIds: ['lance-il-mortgage', 'lance-oh-mortgage'],
+    rate: '5% to 10%',
+    cost: '$2,500 to $5,000 a year',
+    sourceId: 'lance-il-mortgage',
+    linkLabel: 'Lance Surety Bonds, residential mortgage broker bond pricing',
   },
   {
     tier: 'Strong personal credit',
-    premium:
-      '0.75% to 3% of the bond amount. Bryant prints roughly $375 to $1,500 a year on a $50,000 bond for this tier.',
-    sourceIds: ['bryant-mortgage'],
-  },
-  {
-    tier: '700 and above',
-    premium:
-      '0.5% to 1.25% of the bond amount in the mortgage broker bond column. The Ohio page states this rate for a FICO score of 700 or more.',
-    sourceIds: ['bryant-rates', 'bryant-ohio-mortgage'],
-  },
-  {
-    tier: '650 to 699',
-    premium: '0.75% to 1.5% of the bond amount, in the mortgage broker bond column.',
-    sourceIds: ['bryant-rates'],
-  },
-  {
-    tier: '600 to 649',
-    premium: '2% to 5% of the bond amount, in the mortgage broker bond column.',
-    sourceIds: ['bryant-rates'],
-  },
-  {
-    tier: '550 to 599',
-    premium: '5% to 7.5% of the bond amount, in the mortgage broker bond column.',
-    sourceIds: ['bryant-rates'],
-  },
-  {
-    tier: '549 and under',
-    premium: '5% to 10% of the bond amount, in the mortgage broker bond column.',
-    sourceIds: ['bryant-rates'],
+    rate: '0.75% to 3%',
+    cost: 'Roughly $375 to $1,500 a year',
+    sourceId: 'bryant-mortgage',
+    linkLabel: 'Bryant Surety Bonds, mortgage broker bond cost',
   },
   {
     tier: 'Excellent credit (700+)',
-    premium:
-      '0.75% to 1.5% of the bond amount. The page example for a $50,000 bond is $375 to $750 a year.',
-    sourceIds: ['groupleader-mortgage'],
+    rate: '0.75% to 1.5%',
+    cost: 'Might cost $375 to $750 a year',
+    sourceId: 'groupleader-mortgage',
+    linkLabel: 'GroupLeader, mortgage broker bond rates',
   },
   {
     tier: 'Average credit (650 to 699)',
-    premium:
-      '1.5% to 3% of the bond amount. The page example for a $50,000 bond is $750 to $1,500 a year.',
-    sourceIds: ['groupleader-mortgage'],
-  },
-  {
-    tier: 'Challenged credit',
-    premium: '4% to 10% of the bond amount.',
-    sourceIds: ['groupleader-mortgage'],
+    rate: '1.5% to 3%',
+    cost: 'Might cost $750 to $1,500 a year',
+    sourceId: 'groupleader-mortgage',
+    linkLabel: 'GroupLeader, mortgage broker bond rates',
   },
 ];
 
 const mortgageSourceIds: PrimarySourceId[] = [
   'jet-mortgage',
   'lance-il-mortgage',
-  'lance-oh-mortgage',
   'bryant-mortgage',
-  'bryant-rates',
-  'bryant-ohio-mortgage',
   'groupleader-mortgage',
 ];
 
@@ -151,12 +130,14 @@ const mortgageFaqSchema = {
   ],
 };
 
-const title = isCategoryPage && category
-  ? `${category.name} bonds — SuretyResearch`
-  : `${bond?.name} — SuretyResearch`;
+const title = isMortgage
+  ? 'Mortgage Broker Bond | SuretyResearch'
+  : isCategoryPage && category
+    ? `${category.name} bonds — SuretyResearch`
+    : `${bond?.name} — SuretyResearch`;
 
 const description = isMortgage
-  ? 'Published annual premiums for a $50,000 mortgage broker bond, by the credit tier each surety provider prints.'
+  ? 'Published premium rates and annual dollar costs for a $50,000 mortgage broker bond, by the credit tier each provider prints.'
   : isCategoryPage && category
     ? category.summary
     : `${bond?.name} cost bands: typical ${bond?.typical}. Face ${bond?.bondRange}.`;
@@ -169,7 +150,7 @@ const citationSources = citation ? sourcesById(citation.sourceIds) : [];
   title={title}
   description={description}
   dateModified={isMortgage ? MORTGAGE_UPDATED : undefined}
-  updatedLabel={isMortgage ? 'October 22, 2026' : undefined}
+  updatedLabel={isMortgage ? 'October 31, 2026' : undefined}
 >
   {isMortgage && (
     <Fragment slot="head">
@@ -189,7 +170,7 @@ const citationSources = citation ? sourcesById(citation.sourceIds) : [];
               ? category.summary
               : bond?.description}
       </p>
-      {isMortgage && <p class="dates">Updated October 22, 2026</p>}
+      {isMortgage && <p class="dates">Updated October 31, 2026</p>}
       <AuthorBio />
       <div class="btn-row">
         <a class="btn btn-brass" href="/agencies/">Open the register</a>
@@ -214,38 +195,52 @@ const citationSources = citation ? sourcesById(citation.sourceIds) : [];
           <div class="prose" style="margin-bottom:32px">
             <h2>How much does a $50,000 mortgage broker bond cost per year?</h2>
             <p>
-              Each row is a credit tier a surety provider printed for a mortgage broker bond, with that provider's rate or $50,000 premium.
-              Lance Surety Bonds prints the dollar premiums below for its $50,000 Illinois residential mortgage broker bond, at a loan volume of $5,000,001 to $20,000,000, and for its $50,000 Ohio minimum.
+              Each row is a credit tier whose source prints both a premium rate and a dollar cost for a $50,000 bond. A tier is left out when that page does not print both figures.
             </p>
             <div class="table-scroll">
               <table class="table cost-table">
+                <caption class="sr-only">Annual cost of a $50,000 mortgage broker bond by the credit tier each linked page prints.</caption>
                 <thead>
                   <tr>
-                    <th>Credit tier</th>
-                    <th>Published premium</th>
-                    <th>Source</th>
+                    <th scope="col">Credit tier</th>
+                    <th scope="col">Premium rate range</th>
+                    <th scope="col">Dollar cost</th>
+                    <th scope="col">Source</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {mortgageCostRows.map((row) => (
-                    <tr>
-                      <td>{row.tier}</td>
-                      <td>{row.premium}</td>
-                      <td>
-                        {sourcesById(row.sourceIds).map((source) => (
-                          <a href={source.url} target="_blank" rel="noopener">{source.label}</a>
-                        ))}
-                      </td>
-                    </tr>
-                  ))}
+                  {mortgageCostRows.map((row) => {
+                    const source = sourcesById([row.sourceId])[0];
+                    return (
+                      <tr>
+                        <td data-label="Credit tier">{row.tier}</td>
+                        <td data-label="Premium rate range">
+                          <a href={source.url} target="_blank" rel="noopener">{row.rate}</a>
+                        </td>
+                        <td data-label="Dollar cost">
+                          <a href={source.url} target="_blank" rel="noopener">{row.cost}</a>
+                        </td>
+                        <td data-label="Source">
+                          <a href={source.url} target="_blank" rel="noopener">{row.linkLabel}</a>
+                        </td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             </div>
+            <p class="cost-note">
+              Jet calls the $250 price preferred-tier pricing and does not print a credit score for it. The same page includes mortgage broker bonds. The Lance rows are that page's $50,000 residential mortgage broker bond at a loan volume of $5,000,001 to $20,000,000. Its dollar columns are labeled Over 700, Between 600 and 699, and Below 599, and the 5% to 10% rate is for a score of 599 or below.
+            </p>
             <h3>Sources</h3>
             <ul class="source-list cost-sources">
-              {sourcesById(mortgageSourceIds).map((source) => (
-                <li><a href={source.url} target="_blank" rel="noopener">{source.label}</a></li>
-              ))}
+              {mortgageSourceIds.map((id) => {
+                const source = sourcesById([id])[0];
+                const linkLabel = mortgageCostRows.find((row) => row.sourceId === id)?.linkLabel ?? source.label;
+                return (
+                  <li><a href={source.url} target="_blank" rel="noopener">{linkLabel}</a></li>
+                );
+              })}
             </ul>
             <h2>What this bond covers</h2>
             <p>{bond.description}</p>
@@ -365,14 +360,25 @@ const citationSources = citation ? sourcesById(citation.sourceIds) : [];
 </Layout>
 
 <style>
-  .cost-table {
-    width: 100%;
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
   }
 
-  @media (max-width: 720px) {
-    .cost-table {
-      min-width: 36rem;
-    }
+  .cost-note {
+    color: var(--ink-2);
+    margin-top: 8px;
+  }
+
+  .cost-table {
+    width: 100%;
   }
 
   .cost-table th {
@@ -384,11 +390,51 @@ const citationSources = citation ? sourcesById(citation.sourceIds) : [];
   }
 
   .cost-table a {
-    display: block;
-    margin: 4px 0;
+    display: inline;
   }
 
-  @media (max-width: 640px) {
+  @media (max-width: 720px) {
+    .cost-table thead {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .cost-table,
+    .cost-table tbody,
+    .cost-table tr,
+    .cost-table td {
+      display: block;
+      width: 100%;
+    }
+
+    .cost-table tr {
+      border-bottom: 1px solid var(--rule-strong);
+      padding: 12px 0 4px;
+    }
+
+    .cost-table td {
+      border: 0;
+      padding: 4px 0;
+    }
+
+    .cost-table td::before {
+      content: attr(data-label);
+      display: block;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
     .cost-table a,
     .cost-sources a,
     .related-links a {
