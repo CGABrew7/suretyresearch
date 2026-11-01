@@ -19,7 +19,7 @@ export const FAQS: Faq[] = [
   },
   {
     q: "How much does a bond cost?",
-    a: "An annual premium, often 1–15% of the face amount, set by credit, form, and underwriting. The <a href='/#calculator'>premium sketch</a> is an industry-average band. A licensed desk confirms the figure.",
+    a: "An annual premium, often 1 to 15% of the face amount, set by credit, form, and underwriting. The <a href='/#calculator'>premium sketch</a> is an industry-average band. A licensed desk confirms the figure.",
   },
   {
     q: "Is a bond the same as insurance?",

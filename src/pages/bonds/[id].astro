@@ -133,8 +133,8 @@ const mortgageFaqSchema = {
 const title = isMortgage
   ? 'Mortgage Broker Bond | SuretyResearch'
   : isCategoryPage && category
-    ? `${category.name} bonds — SuretyResearch`
-    : `${bond?.name} — SuretyResearch`;
+    ? `${category.name} bonds | SuretyResearch`
+    : `${bond?.name} | SuretyResearch`;
 
 const description = isMortgage
   ? 'Published premium rates and annual dollar costs for a $50,000 mortgage broker bond, by the credit tier each provider prints.'
@@ -305,10 +305,10 @@ const citationSources = citation ? sourcesById(citation.sourceIds) : [];
                 </tr>
               </thead>
               <tbody>
-                <tr><td>Excellent (720+)</td><td>1–3%</td><td>$250 – $750</td><td>$1,000 – $3,000</td></tr>
-                <tr><td>Good (680–719)</td><td>2–5%</td><td>$500 – $1,250</td><td>$2,000 – $5,000</td></tr>
-                <tr><td>Fair (600–679)</td><td>5–8%</td><td>$1,250 – $2,000</td><td>$5,000 – $8,000</td></tr>
-                <tr><td>Below 600</td><td>8–15%</td><td>$2,000 – $3,750</td><td>$8,000 – $15,000</td></tr>
+                <tr><td>Excellent (720+)</td><td>1 to 3%</td><td>$250 to $750</td><td>$1,000 to $3,000</td></tr>
+                <tr><td>Good (680 to 719)</td><td>2 to 5%</td><td>$500 to $1,250</td><td>$2,000 to $5,000</td></tr>
+                <tr><td>Fair (600 to 679)</td><td>5 to 8%</td><td>$1,250 to $2,000</td><td>$5,000 to $8,000</td></tr>
+                <tr><td>Below 600</td><td>8 to 15%</td><td>$2,000 to $3,750</td><td>$8,000 to $15,000</td></tr>
               </tbody>
             </table>
             <p>Common uses: {bond.examples}.</p>
