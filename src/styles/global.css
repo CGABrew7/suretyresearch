@@ -1019,8 +1019,21 @@ a.pill:hover {
 .site-footer {
   background: var(--tint-950);
   color: var(--tint-200);
-  padding: 48px 0 28px;
+  padding: 0 0 28px;
   font-size: 0.95rem;
+}
+
+.footer-art {
+  display: block;
+  width: 100%;
+  height: clamp(64px, calc(100vw * 112 / 1800), 136px);
+  margin: 0 0 36px;
+  pointer-events: none;
+  color: rgba(197, 206, 218, 0.08);
+}
+
+.footer-art path {
+  vector-effect: non-scaling-stroke;
 }
 
 .footer-grid {

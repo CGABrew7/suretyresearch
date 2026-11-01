@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import FooterArt from '../components/FooterArt.astro';
 import { LAST_UPDATED, SITE } from '../data/site';
 
 interface Props {
@@ -137,6 +138,7 @@ const pageSchema = {
     )}
 
     <footer class="site-footer">
+      <FooterArt />
       <div class="wrap">
         <div class="footer-grid">
           <div>
