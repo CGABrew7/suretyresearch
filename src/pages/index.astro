@@ -7,17 +7,34 @@ import BondCalculator from '../components/BondCalculator.jsx';
 import { rankedDirectory, kindLabel } from '../lib/ranking';
 import { BOND_CATEGORIES } from '../data/categories';
 import { HOME_FAQS } from '../data/faqs';
+import { SITE } from '../data/site';
 
 const ranked = rankedDirectory();
 const featured = ranked.slice(0, 6);
 const excerpt = ranked.slice(0, 4);
 const ifi = ranked.find((a) => a.preferredPartner) ?? ranked[0];
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: SITE.name,
+  url: new URL('/', SITE.url).toString(),
+  description: SITE.description,
+  publisher: {
+    '@type': 'Organization',
+    name: SITE.name,
+    url: new URL('/', SITE.url).toString(),
+  },
+};
 ---
 
 <Layout
   title="Surety Bond Agency Register | SuretyResearch"
   description="A ranked surety bond agency register for mortgage, insurance, and contractor professionals, with sources on every card and a premium sketch calculator."
 >
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+  </Fragment>
   <section class="hero">
     <div class="wrap hero-grid">
       <div class="hero-copy">

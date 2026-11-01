@@ -1,0 +1,19 @@
+# SuretyResearch
+
+> A ranked surety bond agency register for mortgage, insurance, and contractor professionals. Sources sit on every card.
+
+SuretyResearch publishes agency files, bond series explainers, and the public-signal score used to order every file. Integrity First Insurance is the Cornerstone Network Preferred Partner and is scored on the same signals as every other file.
+
+## Key pages
+
+- [Home](https://suretyresearch.com/): The register, the bond series, and a premium sketch
+- [Agencies](https://suretyresearch.com/agencies/): Ranked agency and carrier files
+- [Bond types](https://suretyresearch.com/bonds/): License, contract, commercial, and court series
+- [Mortgage broker bond](https://suretyresearch.com/bonds/mortgage-broker/): Published premium rate and annual dollar cost of a $50,000 mortgage broker bond by credit tier
+- [License and permit bonds](https://suretyresearch.com/bonds/license-permit/): The series that includes the mortgage broker form
+- [Methodology](https://suretyresearch.com/methodology/): How the public-signal score is built
+- [Guides](https://suretyresearch.com/guides/): Explainers on surety bonds, credit, and finding an agency
+- [Credit score and premium](https://suretyresearch.com/guides/credit-score-impact/): How a credit score changes a surety premium
+- [FAQ](https://suretyresearch.com/faq/): Short answers on surety bonds and this register
+- [About](https://suretyresearch.com/about/): What the desk publishes
+- [Contact](https://suretyresearch.com/contact/): How to reach the desk
