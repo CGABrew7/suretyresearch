@@ -2,22 +2,22 @@
 export const PRIMARY_SOURCES = [
   {
     id: "sfaa",
-    label: "Surety & Fidelity Association of America — What is a surety bond?",
+    label: "Surety & Fidelity Association of America: What is a surety bond?",
     url: "https://surety.org/surety-fidelity/what-is-surety/",
   },
   {
     id: "miller",
-    label: "40 U.S.C. § 3131 — Bonds of contractors of public buildings or works",
+    label: "40 U.S.C. § 3131: Bonds of contractors of public buildings or works",
     url: "https://www.govinfo.gov/content/pkg/USCODE-2023-title40/html/USCODE-2023-title40-subtitleII-partA-chap31-subchapIII-sec3131.htm",
   },
   {
     id: "bmc",
-    label: "49 CFR § 387.307 — Property broker surety bond or trust fund",
+    label: "49 CFR § 387.307: Property broker surety bond or trust fund",
     url: "https://www.ecfr.gov/current/title-49/subtitle-B/chapter-III/subchapter-B/part-387/subpart-C/section-387.307",
   },
   {
     id: "c570-list",
-    label: "U.S. Treasury Circular 570 — list of certified companies, effective August 1, 2026",
+    label: "U.S. Treasury Circular 570: list of certified companies, effective August 1, 2026",
     url: "https://fiscal.treasury.gov/about-us/doing-business-with-fiscal-service/surety-bonds/list-certified-companies",
   },
   {
@@ -27,7 +27,7 @@ export const PRIMARY_SOURCES = [
   },
   {
     id: "tdi",
-    label: "Texas Department of Insurance — surety company contacts",
+    label: "Texas Department of Insurance: surety company contacts",
     url: "https://www.tdi.texas.gov/commercial/pcbondsurety.html",
   },
   {

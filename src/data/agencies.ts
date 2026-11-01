@@ -116,8 +116,8 @@ export const AGENCIES: AgencyRecord[] = [
     ],
     relatedLinks: [
       { label: "Request a bond via Cornerstone Surety", url: "https://cornerstonesuretybonds.com/" },
-      { label: "Business insurance — Covered by Cornerstone", url: "https://coveredbycornerstone.com/" },
-      { label: "State licensing — Cornerstone Licensing", url: "https://cornerstonelicensing.com/" },
+      { label: "Business insurance: Covered by Cornerstone", url: "https://coveredbycornerstone.com/" },
+      { label: "State licensing: Cornerstone Licensing", url: "https://cornerstonelicensing.com/" },
     ],
     notes: [
       "A separate agency that uses the name Integrity First Insurance in another state is a different company.",
@@ -130,9 +130,9 @@ export const AGENCIES: AgencyRecord[] = [
     shortName: "SuretyBonds.com",
     legalName: "Brooklyn Ventures, LLC d.b.a. SuretyBonds.com",
     kind: "agency",
-    tagline: "Columbia, Missouri online agency — licensed in all 50 states",
+    tagline: "Columbia, Missouri online agency, licensed in all 50 states",
     summary:
-      "A high-volume online surety agency founded in 2009. Public BBB file shows an A+ accredited rating. The firm publishes a 50-state license table and is part of the Tokio Marine / HCC family after a 2014–2015 acquisition chain.",
+      "A high-volume online surety agency founded in 2009. Public BBB file shows an A+ accredited rating. The firm publishes a 50-state license table and is part of the Tokio Marine / HCC family after a 2014 to 2015 acquisition chain.",
     detail: [
       "Founder Josh Kayser launched the site on 13 March 2009. SuretyBonds.com’s own anniversary reporting says HCC Insurance Holdings acquired the firm in 2014, then Tokio Marine acquired HCC in 2015.",
       "BBB Serving Greater Missouri lists the business as accredited with an A+ rating (file opened 2011; business started 18 January 2009). We treat that as a BBB letter grade, not a SuretyResearch star score.",
@@ -151,7 +151,7 @@ export const AGENCIES: AgencyRecord[] = [
         key: "bbb",
         label: "BBB letter grade",
         value: "A+ (accredited)",
-        source: "BBB profile — SuretyBonds.com, Columbia, MO",
+        source: "BBB profile: SuretyBonds.com, Columbia, MO",
         sourceUrl: "https://www.bbb.org/us/mo/columbia/profile/surety-bonds/suretybondscom-0734-310444905",
         asOf: SIGNAL_AS_OF,
       },
@@ -187,7 +187,7 @@ export const AGENCIES: AgencyRecord[] = [
     name: "Lance Surety Bonds",
     shortName: "Lance",
     kind: "agency",
-    tagline: "Doylestown agency — license, contract, court, and fidelity",
+    tagline: "Doylestown agency: license, contract, court, and fidelity",
     summary:
       "Lance Surety Bonds is a Pennsylvania agency (Doylestown) with a BBB A+ accredited file. BBB lists a 1 May 2010 start date, accreditation since 9 February 2012, and Pennsylvania license 683386.",
     detail: [
@@ -209,7 +209,7 @@ export const AGENCIES: AgencyRecord[] = [
         key: "bbb",
         label: "BBB letter grade",
         value: "A+ (accredited)",
-        source: "BBB — Lance Surety Bonds, Doylestown, PA",
+        source: "BBB: Lance Surety Bonds, Doylestown, PA",
         sourceUrl: "https://www.bbb.org/us/pa/doylestown/profile/fidelity-bonds/lance-surety-bonds-0241-235987134",
         asOf: SIGNAL_AS_OF,
       },
@@ -234,7 +234,7 @@ export const AGENCIES: AgencyRecord[] = [
     name: "Colonial Surety Company",
     shortName: "Colonial",
     kind: "carrier",
-    tagline: "Direct-writing carrier since 1930 — AM Best A, all U.S. jurisdictions",
+    tagline: "Direct-writing carrier since 1930, AM Best A, all U.S. jurisdictions",
     summary:
       "Colonial Surety is a Woodcliff Lake, New Jersey carrier that sells surety and fidelity directly. Its about page states it was founded in 1930, is rated A (Excellent) by AM Best, is Treasury-listed, and is licensed and admitted in all U.S. states and territories.",
     detail: [
@@ -254,7 +254,7 @@ export const AGENCIES: AgencyRecord[] = [
         key: "amBest",
         label: "AM Best (company-published)",
         value: "A (Excellent)",
-        source: "Colonial Surety — Our Story",
+        source: "Colonial Surety: Our Story",
         sourceUrl: "https://colonialsurety.com/about/",
         asOf: SIGNAL_AS_OF,
       },
@@ -262,7 +262,7 @@ export const AGENCIES: AgencyRecord[] = [
         key: "years",
         label: "Founded",
         value: "1930",
-        source: "Colonial Surety — Our Story",
+        source: "Colonial Surety: Our Story",
         sourceUrl: "https://colonialsurety.com/about/",
         asOf: SIGNAL_AS_OF,
       },
@@ -270,7 +270,7 @@ export const AGENCIES: AgencyRecord[] = [
         key: "states",
         label: "Admitted footprint",
         value: "All U.S. states and territories (company-published)",
-        source: "Colonial Surety — Our Story",
+        source: "Colonial Surety: Our Story",
         sourceUrl: "https://colonialsurety.com/about/",
         asOf: SIGNAL_AS_OF,
       },
@@ -278,12 +278,12 @@ export const AGENCIES: AgencyRecord[] = [
         key: "treasury",
         label: "Treasury listing",
         value: "Treasury Listed (company-published)",
-        source: "Colonial Surety — Our Story",
+        source: "Colonial Surety: Our Story",
         sourceUrl: "https://colonialsurety.com/about/",
         asOf: SIGNAL_AS_OF,
       },
     ],
-    sources: [{ label: "Colonial Surety — Our Story", url: "https://colonialsurety.com/about/" }],
+    sources: [{ label: "Colonial Surety: Our Story", url: "https://colonialsurety.com/about/" }],
     notes: ["Confirm Circular 570 status on the current Treasury list before a federal bid."],
   },
   {
@@ -292,11 +292,11 @@ export const AGENCIES: AgencyRecord[] = [
     shortName: "Merchants",
     legalName: "Merchants Bonding Company (Mutual)",
     kind: "carrier",
-    tagline: "Surety-only mutual, West Des Moines — writing since 1933",
+    tagline: "Surety-only mutual, West Des Moines, writing since 1933",
     summary:
       "Merchants is a surety specialist mutual founded in 1933 by E.H. Warner and Merle Milligan. The company publishes an AM Best A (Excellent) rating (A or better since 1958) and writes contract and commercial surety in all 50 states from 6700 Westown Parkway, West Des Moines, Iowa.",
     detail: [
-      "Merchants’ public materials emphasize that surety is essentially the whole book — not a sideline of a multiline carrier.",
+      "Merchants’ public materials emphasize that surety is essentially the whole book, not a sideline of a multiline carrier.",
       "AM Best’s company profile (May 2025 action in the public snippet we reviewed) shows A (Excellent). Outlook language can move; check AM Best for the live view.",
       "Sold through appointed agents, not as a consumer direct writer in the Colonial/Jet sense.",
     ],
@@ -322,7 +322,7 @@ export const AGENCIES: AgencyRecord[] = [
         key: "years",
         label: "Founded",
         value: "1933 (Warner / Milligan)",
-        source: "Merchants Bonding — About",
+        source: "Merchants Bonding: About",
         sourceUrl: "https://www.merchantsbonding.com/about",
         asOf: SIGNAL_AS_OF,
       },
@@ -330,13 +330,13 @@ export const AGENCIES: AgencyRecord[] = [
         key: "states",
         label: "Licensed footprint",
         value: "All 50 states (company-published)",
-        source: "Merchants Bonding — About",
+        source: "Merchants Bonding: About",
         sourceUrl: "https://www.merchantsbonding.com/about",
         asOf: SIGNAL_AS_OF,
       },
     ],
     sources: [
-      { label: "Merchants Bonding — About", url: "https://www.merchantsbonding.com/about" },
+      { label: "Merchants Bonding: About", url: "https://www.merchantsbonding.com/about" },
       { label: "AM Best company profile", url: "https://ratings.ambest.com/CompanyProfile.aspx?ambnum=594" },
     ],
     notes: [],
@@ -347,7 +347,7 @@ export const AGENCIES: AgencyRecord[] = [
     shortName: "Travelers",
     legalName: "Travelers Casualty and Surety Company of America",
     kind: "carrier",
-    tagline: "National carrier — AM Best A++ commonly cited for the group",
+    tagline: "National carrier: AM Best A++ commonly cited for the group",
     summary:
       "Travelers is a major U.S. surety writer for contract and commercial bonds, distributed through appointed agents (including Integrity First Insurance’s public Alpharetta listing). Independent roundups in 2026 cite an AM Best A++ (Superior) financial-strength rating for Travelers.",
     detail: [
@@ -367,7 +367,7 @@ export const AGENCIES: AgencyRecord[] = [
       {
         key: "amBest",
         label: "AM Best (third-party compilation)",
-        value: "A++ (Superior) — confirm live at AM Best",
+        value: "A++ (Superior); confirm live at AM Best",
         source: "Construction Coverage 2026 surety roundup",
         sourceUrl: "https://constructioncoverage.com/surety-bonds",
         asOf: SIGNAL_AS_OF,
@@ -394,7 +394,7 @@ export const AGENCIES: AgencyRecord[] = [
     shortName: "Old Republic",
     legalName: "Old Republic Surety Company",
     kind: "carrier",
-    tagline: "Brookfield, Wisconsin underwriter — A+ Superior, all 50 states",
+    tagline: "Brookfield, Wisconsin underwriter, A+ Superior, all 50 states",
     summary:
       "Old Republic Surety writes contract, miscellaneous, and commercial fidelity through a large independent-agency network. The company publishes an AM Best A+ (Superior) rating (as of an 11 April 2025 snapshot on its ratings page), a Treasury listing in excess of $200 million, licensed-in-all-50-states status, and surety roots to 1923 / the 1986 Old Republic Surety name.",
     detail: [
@@ -413,8 +413,8 @@ export const AGENCIES: AgencyRecord[] = [
       {
         key: "amBest",
         label: "AM Best (company ratings page)",
-        value: "A+ (Superior), FSC XV — as of 11 Apr 2025 on their page",
-        source: "Old Republic Surety — Financial Ratings",
+        value: "A+ (Superior), FSC XV, as of 11 Apr 2025 on their page",
+        source: "Old Republic Surety: Financial Ratings",
         sourceUrl: "https://www.orsurety.com/about/financial-ratings",
         asOf: SIGNAL_AS_OF,
       },
@@ -422,7 +422,7 @@ export const AGENCIES: AgencyRecord[] = [
         key: "treasury",
         label: "Treasury listing (company-published)",
         value: "In excess of $200,000,000",
-        source: "Old Republic Surety — About / At a Glance",
+        source: "Old Republic Surety: About / At a Glance",
         sourceUrl: "https://www.orsurety.com/about",
         asOf: SIGNAL_AS_OF,
       },
@@ -430,7 +430,7 @@ export const AGENCIES: AgencyRecord[] = [
         key: "years",
         label: "Writing surety since",
         value: "1923 (ORI); current name 1986",
-        source: "Old Republic Surety — About / History",
+        source: "Old Republic Surety: About / History",
         sourceUrl: "https://www.orsurety.com/about/our-history",
         asOf: SIGNAL_AS_OF,
       },
@@ -455,7 +455,7 @@ export const AGENCIES: AgencyRecord[] = [
     name: "Liberty Mutual Surety",
     shortName: "Liberty Mutual",
     kind: "carrier",
-    tagline: "Global contract surety — company calls itself the world’s largest surety",
+    tagline: "Global contract surety: company calls itself the world’s largest surety",
     summary:
       "Liberty Mutual’s commercial surety page describes the group as the world’s largest surety and publishes financial-strength ratings of A (Excellent) from AM Best, A2 from Moody’s, and A from S&P. Distribution is through brokers and agents on mid-to-large contract accounts as well as commercial lines.",
     detail: [
@@ -474,7 +474,7 @@ export const AGENCIES: AgencyRecord[] = [
         key: "amBest",
         label: "AM Best (company-published)",
         value: "A (Excellent)",
-        source: "Liberty Mutual Business — Surety",
+        source: "Liberty Mutual Business: Surety",
         sourceUrl: "https://business.libertymutual.com/commercial-solutions/surety/",
         asOf: SIGNAL_AS_OF,
       },
@@ -482,7 +482,7 @@ export const AGENCIES: AgencyRecord[] = [
         key: "states",
         label: "Footprint",
         value: "Global / U.S. national (company-published)",
-        source: "Liberty Mutual Business — Surety",
+        source: "Liberty Mutual Business: Surety",
         sourceUrl: "https://business.libertymutual.com/commercial-solutions/surety/",
         asOf: SIGNAL_AS_OF,
       },
@@ -497,11 +497,11 @@ export const AGENCIES: AgencyRecord[] = [
     name: "The Hartford Surety",
     shortName: "Hartford",
     kind: "carrier",
-    tagline: "National carrier — A+ Excellent cited in 2026 contractor guides",
+    tagline: "National carrier: A+ Excellent cited in 2026 contractor guides",
     summary:
       "The Hartford writes contract and commercial surety through agents. A 2026 Construction Coverage compilation lists The Hartford at AM Best A+ (Excellent) and flags the company as a full-line option for contractors.",
     detail: [
-      "We did not pull a live AM Best PDF in this pass. The A+ figure is attributed to the Construction Coverage compilation dated for 2026 — confirm on AM Best before a bid.",
+      "We did not pull a live AM Best PDF in this pass. The A+ figure is attributed to the Construction Coverage compilation dated for 2026. Confirm on AM Best before a bid.",
       "Works through appointed agents, including many independent commercial agencies.",
     ],
     hqCity: "Hartford",
@@ -515,7 +515,7 @@ export const AGENCIES: AgencyRecord[] = [
       {
         key: "amBest",
         label: "AM Best (third-party compilation)",
-        value: "A+ (Excellent) — confirm live at AM Best",
+        value: "A+ (Excellent); confirm live at AM Best",
         source: "Construction Coverage 2026 surety roundup",
         sourceUrl: "https://constructioncoverage.com/surety-bonds",
         asOf: SIGNAL_AS_OF,
@@ -577,11 +577,11 @@ export const AGENCIES: AgencyRecord[] = [
     shortName: "Jet",
     legalName: "Amherst National Insurance Company (formerly Jet Insurance Company)",
     kind: "carrier",
-    tagline: "Direct-to-principal digital surety — Treasury-listed, AM Best A−",
+    tagline: "Direct-to-principal digital surety: Treasury-listed, AM Best A−",
     summary:
       "Jet launched in late 2018 as a direct-to-principal surety and fidelity carrier out of Charlotte, licensed in all 50 states and D.C. (except bail). Treasury added Jet to Circular 570 in September 2024. AM Best later affirmed A− (Excellent) on Amherst National Insurance Company, the former Jet Insurance Company, after a December 2025 Amherst acquisition.",
     detail: [
-      "Corporate names moved in 2025–2026 (Jet → Amherst National / related Amherst vehicles). The consumer brand many principals still search is Jet / jetsurety.com.",
+      "Corporate names moved in 2025 and 2026 (Jet → Amherst National / related Amherst vehicles). The consumer brand many principals still search is Jet / jetsurety.com.",
       "Construction Coverage’s 2026 guide still treats Jet as a small-business / license-and-permit specialist. Confirm the legal paper name on any bond form.",
     ],
     hqCity: "Charlotte",
@@ -596,7 +596,7 @@ export const AGENCIES: AgencyRecord[] = [
       {
         key: "amBest",
         label: "AM Best (ANIC / former Jet)",
-        value: "A− (Excellent), stable — ANIC affirmation",
+        value: "A− (Excellent), stable (ANIC affirmation)",
         source: "AM Best news action on Amherst National Insurance Company",
         sourceUrl: "https://news.ambest.com/newscontent.aspx?altsrc=23&refnum=273751",
         asOf: SIGNAL_AS_OF,
@@ -631,14 +631,14 @@ export const AGENCIES: AgencyRecord[] = [
       { label: "Treasury-list press release", url: "https://www.prnewswire.com/news-releases/us-treasury-adds-jet-insurance-company-to-list-of-certified-companies-302236885.html" },
       { label: "AM Best ANIC action", url: "https://news.ambest.com/newscontent.aspx?altsrc=23&refnum=273751" },
     ],
-    notes: ["Confirm the issuing company name on the bond — Jet’s legal wrapper changed after the 2025 Amherst transaction."],
+    notes: ["Confirm the issuing company name on the bond. Jet’s legal wrapper changed after the 2025 Amherst transaction."],
   },
   {
     slug: "american-surety-company",
     name: "American Surety Company",
     shortName: "ASC",
     kind: "carrier",
-    tagline: "Indianapolis commercial surety — 1993, all 50 states, Core Specialty",
+    tagline: "Indianapolis commercial surety: 1993, all 50 states, Core Specialty",
     summary:
       "American Surety Company (Indianapolis) writes commercial surety for independent agents in all 50 states and has been in business since 1993. Core Specialty completed its acquisition in 2024. ASC’s own FAQ publishes an AM Best A (Excellent) financial-strength rating; AM Best’s public profile (9 Oct 2025 snippet) shows A (Excellent) on the Core Specialty group rating unit.",
     detail: [
@@ -658,7 +658,7 @@ export const AGENCIES: AgencyRecord[] = [
       {
         key: "amBest",
         label: "AM Best (company FAQ + AM Best profile)",
-        value: "A (Excellent) — group / company-published",
+        value: "A (Excellent): group / company-published",
         source: "ASC FAQ; AM Best company profile",
         sourceUrl: "https://www.american-surety.com/faq/",
         asOf: SIGNAL_AS_OF,
@@ -692,9 +692,9 @@ export const AGENCIES: AgencyRecord[] = [
     shortName: "PHLY",
     legalName: "Philadelphia Indemnity Insurance Company (Tokio Marine)",
     kind: "carrier",
-    tagline: "Tokio Marine specialty carrier — commercial surety via appointed agents",
+    tagline: "Tokio Marine specialty carrier: commercial surety via appointed agents",
     summary:
-      "Philadelphia Insurance Companies (PHLY), a Tokio Marine company, writes specialty commercial lines including surety through appointed agents. SuretyBonds.com’s public history notes the HCC → Tokio Marine ownership chain that also sits behind that online agency — a related but separate distribution story.",
+      "Philadelphia Insurance Companies (PHLY), a Tokio Marine company, writes specialty commercial lines including surety through appointed agents. SuretyBonds.com’s public history notes the HCC → Tokio Marine ownership chain that also sits behind that online agency, a related but separate distribution story.",
     detail: [
       "PHLY is a carrier. Retail buyers still need an agent of record.",
       "We omit an AM Best number here because we did not open PHLY’s current ratings page in this research pass.",
@@ -727,7 +727,7 @@ export const AGENCIES: AgencyRecord[] = [
     name: "Zurich Surety",
     shortName: "Zurich",
     kind: "carrier",
-    tagline: "Global contract surety — used on large contractor programs",
+    tagline: "Global contract surety: used on large contractor programs",
     summary:
       "Zurich is a major global surety writer used on large U.S. contractor programs. Third-party 2026 contractor guides describe Zurich as a top-share U.S. surety market. Placement is almost entirely through construction brokers, not a consumer website checkout.",
     detail: [
@@ -762,11 +762,11 @@ export const AGENCIES: AgencyRecord[] = [
     name: "Nationwide Surety & Fidelity",
     shortName: "Nationwide",
     kind: "carrier",
-    tagline: "National mutual — contract and commercial via agents; CBIC heritage in contract",
+    tagline: "National mutual: contract and commercial via agents; CBIC heritage in contract",
     summary:
       "Nationwide writes surety and fidelity through its agency force. Contractors Bonding and Insurance Company (CBIC) is the well-known contract-surety specialist inside the Nationwide family. We list the group as a carrier market, not as a retail bond shop.",
     detail: [
-      "Ask your agent whether the paper is Nationwide or CBIC — the form and underwriting desk can differ.",
+      "Ask your agent whether the paper is Nationwide or CBIC; the form and underwriting desk can differ.",
       "No AM Best figure is shown here because we did not capture Nationwide’s current surety-entity rating page in this pass.",
     ],
     hqCity: "Columbus",
@@ -794,11 +794,11 @@ export const AGENCIES: AgencyRecord[] = [
     name: "NFP Surety",
     shortName: "NFP",
     kind: "agency",
-    tagline: "National broker — surety practice for commercial and construction accounts",
+    tagline: "National broker: surety practice for commercial and construction accounts",
     summary:
       "NFP is a large U.S. insurance broker with a dedicated surety practice for commercial and construction clients. This is a broker of record relationship, not a click-out license-bond storefront. We include NFP because licensed professionals already in an NFP benefits/P&C house often keep surety there.",
     detail: [
-      "We do not show a BBB letter grade or AM Best figure — NFP is a broker, and we did not lock a single surety-office BBB file in this pass.",
+      "We do not show a BBB letter grade or AM Best figure. NFP is a broker, and we did not lock a single surety-office BBB file in this pass.",
       "Best when you already have (or want) a full commercial program, not when you only need a $15,000 auto-dealer bond tonight.",
     ],
     hqCity: "New York",
@@ -819,7 +819,7 @@ export const AGENCIES: AgencyRecord[] = [
       },
     ],
     sources: [{ label: "NFP", url: "https://www.nfp.com" }],
-    notes: ["BBB and AM Best omitted — confirm the specific NFP office and issuing carriers on your proposal."],
+    notes: ["BBB and AM Best omitted; confirm the specific NFP office and issuing carriers on your proposal."],
   },
   {
     slug: "bondexchange",
@@ -828,7 +828,7 @@ export const AGENCIES: AgencyRecord[] = [
     kind: "marketplace",
     tagline: "Wholesale / technology marketplace used by retail agents",
     summary:
-      "BondExchange is a wholesale surety marketplace and technology layer that appointed retail agents use to quote and issue commercial and license bonds. Principals usually do not open an account directly — your agent does.",
+      "BondExchange is a wholesale surety marketplace and technology layer that appointed retail agents use to quote and issue commercial and license bonds. Principals usually do not open an account directly; your agent does.",
     detail: [
       "Listed so licensing professionals understand why an agency (including IFI) might bind a Western Surety or similar form through a wholesale portal.",
       "Founding-year figures circulating in trade writeups (often 1977) were not opened on BondExchange’s own legal page in this pass, so we do not print a year.",
