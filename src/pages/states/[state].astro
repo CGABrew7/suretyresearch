@@ -8,6 +8,13 @@ import { STATES, getStateBySlug } from '../../data/states';
 import { statuteHistoryFor } from '../../data/statuteHistory';
 import { filterAgencies } from '../../lib/ranking';
 import { BOND_CATEGORIES } from '../../data/categories';
+import { SITE } from '../../data/site';
+import {
+  STATE_BRIEF_UPDATED,
+  STATE_BRIEF_UPDATED_LABEL,
+  stateBriefFor,
+  stateBriefSources,
+} from '../../data/stateBriefs';
 
 export function getStaticPaths() {
   return STATES.map((s) => ({ params: { state: s.slug } }));
@@ -17,26 +24,117 @@ const rec = getStateBySlug(Astro.params.state ?? '');
 if (!rec) throw new Error('Unknown state');
 const agencies = filterAgencies({ state: rec.slug });
 const statuteHistory = statuteHistoryFor(rec.slug);
+const brief = stateBriefFor(rec.slug);
+const briefSources = brief ? stateBriefSources(brief) : [];
+const briefFaqSchema = brief
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      dateModified: STATE_BRIEF_UPDATED,
+      author: {
+        '@type': 'Organization',
+        name: 'SuretyResearch',
+        url: new URL('/about/', SITE.url).toString(),
+      },
+      mainEntity: brief.faqs.map((faq) => ({
+        '@type': 'Question',
+        name: faq.q,
+        acceptedAnswer: { '@type': 'Answer', text: faq.a },
+      })),
+    }
+  : null;
 ---
 
 <Layout
-  title={`Surety agencies in ${rec.name} | SuretyResearch`}
-  description={`Ranked surety agencies and carriers that list ${rec.name} coverage. Sorted by cited public signals.`}
+  title={brief?.title ?? `Surety agencies in ${rec.name} | SuretyResearch`}
+  description={brief?.description ?? `Ranked surety agencies and carriers that list ${rec.name} coverage. Sorted by cited public signals.`}
+  dateModified={brief ? STATE_BRIEF_UPDATED : undefined}
+  updatedLabel={brief ? STATE_BRIEF_UPDATED_LABEL : undefined}
 >
-  <meta slot="head" name="robots" content="noindex, follow" />
+  {briefFaqSchema ? (
+    <script slot="head" type="application/ld+json" set:html={JSON.stringify(briefFaqSchema)} />
+  ) : (
+    <meta slot="head" name="robots" content="noindex, follow" />
+  )}
   <section class="page-hero">
     <div class="wrap">
       <p class="kicker">{rec.code} · {rec.name}</p>
-      <h1>Register files that serve {rec.name}.</h1>
+      <h1>{brief ? brief.h1 : `Register files that serve ${rec.name}.`}</h1>
       <p>
-        {agencies.length} entries serve {rec.name}, sorted by the public-signal score on each card.
+        {brief
+          ? brief.answer
+          : `${agencies.length} entries serve ${rec.name}, sorted by the public-signal score on each card.`}
       </p>
+      {brief && <p class="dates">Updated {STATE_BRIEF_UPDATED_LABEL}</p>}
       <AuthorBio />
     </div>
   </section>
 
   <section class="section">
     <div class="wrap">
+      {brief && (
+        <div class="prose state-brief">
+          {brief.sections[0] && (
+            <>
+              <h2>{brief.sections[0].heading}</h2>
+              {brief.sections[0].paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+            </>
+          )}
+          {brief.table && (
+            <>
+              <div class="table-scroll">
+                <table class="table bond-table">
+                  <caption class="sr-only">{brief.table.caption}</caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">License class</th>
+                      <th scope="col">Contemplated gross volume</th>
+                      <th scope="col">Bond amount</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {brief.table.rows.map((row) => (
+                      <tr>
+                        <td data-label="License class">{row.license}</td>
+                        <td data-label="Contemplated gross volume">{row.volume}</td>
+                        <td data-label="Bond amount">{row.amount}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <p class="table-note">{brief.table.note}</p>
+            </>
+          )}
+          {brief.sections.slice(1).map((section) => (
+            <>
+              <h2>{section.heading}</h2>
+              {section.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+            </>
+          ))}
+          <h2>Sources</h2>
+          <ul class="source-list">
+            {briefSources.map((source) => (
+              <li><a href={source.url} target="_blank" rel="noopener">{source.label}</a></li>
+            ))}
+          </ul>
+          <h2>FAQ</h2>
+          <div class="faq-stack">
+            {brief.faqs.map((faq) => (
+              <details class="faq-item">
+                <summary class="faq-q">{faq.q}<span aria-hidden="true">+</span></summary>
+                <div class="faq-a"><p>{faq.a}</p></div>
+              </details>
+            ))}
+          </div>
+          <h2>Related pages</h2>
+          <ul class="related-links">
+            {brief.related.map((link) => (
+              <li><a href={link.href}>{link.label}</a></li>
+            ))}
+          </ul>
+        </div>
+      )}
       {statuteHistory && <StatuteHistory record={statuteHistory} place={rec.name} />}
       <div class="card-meta" style="margin-bottom:18px">
         {BOND_CATEGORIES.map((c) => (
@@ -44,7 +142,11 @@ const statuteHistory = statuteHistoryFor(rec.slug);
         ))}
       </div>
       <h2 class="serif" style="font-size:1.6rem;margin-bottom:14px">Desks on the {rec.name} file</h2>
-      <p style="margin-bottom:18px;color:var(--ink-2);max-width:40rem">The cards below are the register entries that list {rec.name} coverage.</p>
+      <p style="margin-bottom:18px;color:var(--ink-2);max-width:40rem">
+        {brief
+          ? `${agencies.length} register entries list ${rec.name} coverage, sorted by the public-signal score on each card.`
+          : `The cards below are the register entries that list ${rec.name} coverage.`}
+      </p>
       <div class="ledger">
         {agencies.map((agency) => <AgencyCard agency={agency} />)}
       </div>
@@ -55,3 +157,85 @@ const statuteHistory = statuteHistoryFor(rec.slug);
     </div>
   </section>
 </Layout>
+
+<style>
+  .state-brief {
+    margin-bottom: 36px;
+  }
+
+  .table-note {
+    color: var(--ink-2);
+    margin-top: 8px;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .bond-table {
+    width: 100%;
+  }
+
+  .bond-table th,
+  .bond-table td {
+    overflow-wrap: anywhere;
+  }
+
+  @media (max-width: 720px) {
+    .bond-table thead {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .bond-table,
+    .bond-table tbody,
+    .bond-table tr,
+    .bond-table td {
+      display: block;
+      width: 100%;
+    }
+
+    .bond-table tr {
+      border-bottom: 1px solid var(--rule-strong);
+      padding: 12px 0 4px;
+    }
+
+    .bond-table td {
+      border: 0;
+      padding: 4px 0;
+    }
+
+    .bond-table td::before {
+      content: attr(data-label);
+      display: block;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .source-list a,
+    .related-links a {
+      display: flex;
+      align-items: center;
+      min-height: 44px;
+    }
+  }
+</style>

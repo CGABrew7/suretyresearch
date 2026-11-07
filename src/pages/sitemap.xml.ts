@@ -26,13 +26,20 @@ export function GET() {
     ...staticPaths,
     ...AGENCIES.map((a) => `/agencies/${a.slug}/`),
     // Per-state pages stay out of the sitemap until each one has sourced bond requirements.
+    // Arizona and Nebraska are listed below because those pages now cite their statutes.
     ...BOND_CATEGORIES.map((c) => `/bonds/${c.id}/`),
     ...data.types.map((t) => `/bonds/${t.id}/`),
+    // Arizona and Nebraska carry sourced bond requirements. Other state pages stay out.
+    "/states/arizona/",
+    "/states/nebraska/",
   ];
   const lastmodByPath: Record<string, string> = {
     "/guides/best-surety-bond-companies/": "2026-10-13",
     "/privacy/": "2026-10-19",
     "/terms/": "2026-10-19",
+    "/bonds/contract/": "2026-11-07",
+    "/states/arizona/": "2026-11-07",
+    "/states/nebraska/": "2026-11-07",
   };
   const unique = [...new Set(urls)];
   const body = `<?xml version="1.0" encoding="UTF-8"?>

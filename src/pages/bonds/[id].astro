@@ -37,6 +37,38 @@ const bond = data.types.find((t) => t.id === id);
 const category = getCategory(id) ?? BOND_CATEGORIES.find((c) => c.bondTypeIds.includes(id ?? ''));
 const isCategoryPage = categoryIds.has(id ?? '');
 const isMortgage = id === 'mortgage-broker';
+const isContract = id === 'contract' && isCategoryPage;
+
+const CONTRACT_UPDATED = '2026-11-07';
+
+const contractAnswer =
+  'A contract surety bond is the bid bond, performance bond, or payment bond on a construction contract. The Surety & Fidelity Association of America describes those three forms as the bonds that show the contractor can complete the work and pay subcontractors, suppliers, and other workers. Before a federal contract of more than $100,000 is awarded for construction, alteration, or repair of a public building or public work, 40 U.S.C. § 3131 requires a performance bond and a payment bond.';
+
+const contractStatute =
+  'The performance bond protects the Government. The officer awarding the contract sets it at an amount the officer considers adequate. The payment bond protects people who supply labor and material. Its amount equals the total payable under the contract, unless the officer finds that amount impractical in a writing with specific findings. The payment bond then cannot be less than the performance bond. Both bonds become binding when the contract is awarded.';
+
+const contractFaqs: { q: string; a: string }[] = [
+  { q: 'What is a contract surety bond?', a: contractAnswer },
+  {
+    q: 'When does federal construction require a performance bond and a payment bond?',
+    a: 'Before a contract of more than $100,000 is awarded for construction, alteration, or repair of a federal public building or public work, 40 U.S.C. § 3131 requires both bonds. They become binding when the contract is awarded.',
+  },
+  {
+    q: 'How does a payment bond differ from a performance bond?',
+    a: 'The performance bond protects the Government, at an amount the contracting officer considers adequate. The payment bond protects people supplying labor and material. It equals the contract price unless the officer finds that amount impractical, and it then cannot be less than the performance bond.',
+  },
+];
+
+const contractRelated: { href: string; label: string }[] = [
+  { href: '/bonds/performance/', label: 'Performance bond required on a federal public work' },
+  { href: '/bonds/contractor/', label: 'Contractor license bond' },
+  { href: '/guides/how-surety-bonds-work/', label: 'How a surety bond works' },
+  { href: '/guides/credit-score-impact/', label: 'How a credit score changes a surety premium' },
+  { href: '/states/arizona/', label: 'Arizona contractor license bond amounts' },
+  { href: '/states/nebraska/', label: 'Nebraska public construction bonds' },
+];
+
+const contractSourceIds: PrimarySourceId[] = ['sfaa', 'miller'];
 const agencies = filterAgencies({ category: (isCategoryPage ? id : category?.id) as any });
 
 const MORTGAGE_UPDATED = '2026-10-31';
@@ -130,17 +162,37 @@ const mortgageFaqSchema = {
   ],
 };
 
+const contractFaqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  dateModified: CONTRACT_UPDATED,
+  author: {
+    '@type': 'Organization',
+    name: 'SuretyResearch',
+    url: new URL('/about/', SITE.url).toString(),
+  },
+  mainEntity: contractFaqs.map((faq) => ({
+    '@type': 'Question',
+    name: faq.q,
+    acceptedAnswer: { '@type': 'Answer', text: faq.a },
+  })),
+};
+
 const title = isMortgage
   ? 'Mortgage Broker Bond | SuretyResearch'
-  : isCategoryPage && category
-    ? `${category.name} bonds | SuretyResearch`
-    : `${bond?.name} | SuretyResearch`;
+  : isContract
+    ? 'Contract surety bonds | SuretyResearch'
+    : isCategoryPage && category
+      ? `${category.name} bonds | SuretyResearch`
+      : `${bond?.name} | SuretyResearch`;
 
 const description = isMortgage
   ? 'Published premium rates and annual dollar costs for a $50,000 mortgage broker bond, by the credit tier each provider prints.'
-  : isCategoryPage && category
-    ? category.summary
-    : `${bond?.name} cost bands: typical ${bond?.typical}. Face ${bond?.bondRange}.`;
+  : isContract
+    ? 'Bid, performance, and payment bonds on a construction contract. Federal public works over $100,000 require performance and payment bonds.'
+    : isCategoryPage && category
+      ? category.summary
+      : `${bond?.name} cost bands: typical ${bond?.typical}. Face ${bond?.bondRange}.`;
 
 const citation = bond ? bondCitations[bond.id] : undefined;
 const citationSources = citation ? sourcesById(citation.sourceIds) : [];
@@ -149,28 +201,31 @@ const citationSources = citation ? sourcesById(citation.sourceIds) : [];
 <Layout
   title={title}
   description={description}
-  dateModified={isMortgage ? MORTGAGE_UPDATED : undefined}
-  updatedLabel={isMortgage ? 'October 31, 2026' : undefined}
+  dateModified={isMortgage ? MORTGAGE_UPDATED : isContract ? CONTRACT_UPDATED : undefined}
+  updatedLabel={isMortgage ? 'October 31, 2026' : isContract ? 'November 7, 2026' : undefined}
 >
-  {isMortgage && (
+  {(isMortgage || isContract) && (
     <Fragment slot="head">
-      <script type="application/ld+json" set:html={JSON.stringify(mortgageFaqSchema)} />
+      <script type="application/ld+json" set:html={JSON.stringify(isMortgage ? mortgageFaqSchema : contractFaqSchema)} />
     </Fragment>
   )}
   <section class="page-hero">
     <div class="wrap">
       <p class="kicker">{category ? `${category.ledger} · ${category.name}` : 'Bond form'}</p>
-      <h1>{isCategoryPage && category ? category.name : bond?.name}</h1>
+      <h1>{isContract ? 'Contract surety bonds' : isCategoryPage && category ? category.name : bond?.name}</h1>
       <p>
         {isMortgage
           ? mortgageAnswer
-          : citation
-            ? citation.answer
-            : isCategoryPage && category
-              ? category.summary
-              : bond?.description}
+          : isContract
+            ? contractAnswer
+            : citation
+              ? citation.answer
+              : isCategoryPage && category
+                ? category.summary
+                : bond?.description}
       </p>
       {isMortgage && <p class="dates">Updated October 31, 2026</p>}
+      {isContract && <p class="dates">Updated November 7, 2026</p>}
       <AuthorBio />
       <div class="btn-row">
         <a class="btn btn-brass" href="/agencies/">Open the register</a>
@@ -181,12 +236,50 @@ const citationSources = citation ? sourcesById(citation.sourceIds) : [];
 
   <section class="section">
     <div class="wrap">
+      {isContract && (
+        <div class="prose" style="margin-bottom:28px">
+          <h2>What the statute requires</h2>
+          <p>{contractStatute}</p>
+          <ul class="source-list">
+            {sourcesById(contractSourceIds).map((source) => (
+              <li><a href={source.url} target="_blank" rel="noopener">{source.label}</a></li>
+            ))}
+          </ul>
+          <h2>FAQ</h2>
+          <div class="faq-stack">
+            {contractFaqs.map((faq) => (
+              <details class="faq-item">
+                <summary class="faq-q">{faq.q}<span aria-hidden="true">+</span></summary>
+                <div class="faq-a"><p>{faq.a}</p></div>
+              </details>
+            ))}
+          </div>
+          <h2>Related pages</h2>
+          <ul class="related-links">
+            {contractRelated.map((link) => (
+              <li><a href={link.href}>{link.label}</a></li>
+            ))}
+          </ul>
+        </div>
+      )}
+
       {isCategoryPage && category && (
         <div class="prose" style="margin-bottom:28px">
           <h2>Who posts these bonds</h2>
           <p>{category.whoNeeds}</p>
-          <h2>What the face and premium look like on this site</h2>
-          <p>{category.typicalRange}. Those bands are the ranges published on this register. A licensed desk sets the rate on the file.</p>
+          {isContract ? (
+            <>
+              <h2>What sets the face amount</h2>
+              <p>
+                The face amount follows the contract and the statute quoted above. A licensed desk sets the premium on the file.
+              </p>
+            </>
+          ) : (
+            <>
+              <h2>What the face and premium look like on this site</h2>
+              <p>{category.typicalRange}. Those bands are the ranges published on this register. A licensed desk sets the rate on the file.</p>
+            </>
+          )}
         </div>
       )}
 
