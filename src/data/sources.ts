@@ -65,6 +65,31 @@ export const PRIMARY_SOURCES = [
     label: "GroupLeader, mortgage broker bond rates",
     url: "https://www.groupleader.com/mortgage-broker-bonds/",
   },
+  {
+    id: "az-roc-bond",
+    label: "Arizona Registrar of Contractors, bond information",
+    url: "https://roc.az.gov/bond-information",
+  },
+  {
+    id: "az-32-1152",
+    label: "A.R.S. § 32-1152, contractor license bonds",
+    url: "https://www.azleg.gov/ars/32/01152.htm",
+  },
+  {
+    id: "az-34-222",
+    label: "A.R.S. § 34-222, public-works performance and payment bonds",
+    url: "https://www.azleg.gov/ars/34/00222.htm",
+  },
+  {
+    id: "ne-52-118",
+    label: "Neb. Rev. Stat. § 52-118, public building payment bond",
+    url: "https://nebraskalegislature.gov/laws/statutes.php?statute=52-118",
+  },
+  {
+    id: "ne-72-803",
+    label: "Neb. Rev. Stat. § 72-803, state building performance bond and bid security",
+    url: "https://nebraskalegislature.gov/laws/statutes.php?statute=72-803",
+  },
 ] as const;
 
 export type PrimarySourceId = (typeof PRIMARY_SOURCES)[number]["id"];
