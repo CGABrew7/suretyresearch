@@ -1,72 +1,356 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
-import { LAST_UPDATED, SITE } from '../../data/site';
+import { SITE } from '../../data/site';
+import { sourcesById, type PrimarySourceId } from '../../data/sources';
 
-const pageTitle = "Credit Score Impact on Bond Cost";
-const description = "Credit is the main input in this site’s surety premium sketch, because a paid claim becomes a reimbursement the principal owes.";
-const canonicalPath = "/guides/credit-score-impact/";
+const CHECKED_LABEL = 'November 9, 2026';
+const CHECKED_ISO = '2026-11-09';
+
+const pageTitle = 'Credit Score Impact on Bond Cost';
+const description =
+  'Yes. A 620 credit score can still get most license bonds. Published premium rates that include a score of 620, with the dollar math for a $10,000 bond and a $50,000 bond.';
+const canonicalPath = '/guides/credit-score-impact/';
+const question = '620 credit score: can I get a bond and what will it cost?';
+
+function money(amount: number): string {
+  return `$${amount.toLocaleString('en-US')}`;
+}
+
+function premium(face: number, percent: number): number {
+  const tenths = Math.round(percent * 10);
+  const amount = (face * tenths) / 1000;
+  if (!Number.isInteger(amount)) {
+    throw new Error(`Premium is not a whole dollar: ${face} at ${percent}%`);
+  }
+  return amount;
+}
+
+function timesLine(face: number, percent: number): string {
+  return `${money(face)} times ${percent}% is ${money(premium(face, percent))}.`;
+}
+
+function span(face: number, low: number, high: number): string {
+  return `${money(premium(face, low))} to ${money(premium(face, high))}`;
+}
+
+const suretyPrinted = {
+  tenLow: 300,
+  tenHigh: 500,
+  fiftyLow: 1500,
+  fiftyHigh: 2500,
+};
+
+if (premium(10000, 3) !== suretyPrinted.tenLow || premium(10000, 5) !== suretyPrinted.tenHigh) {
+  throw new Error('SuretyBonds.com $10,000 dollars do not match 3% to 5%');
+}
+if (premium(50000, 3) !== suretyPrinted.fiftyLow || premium(50000, 5) !== suretyPrinted.fiftyHigh) {
+  throw new Error('SuretyBonds.com $50,000 dollars do not match 3% to 5%');
+}
+
+const bondExpressTen = span(10000, 2, 3);
+const bondExpressFifty = span(50000, 2, 3);
+const bryantTen = span(10000, 2.5, 5);
+const bryantFifty = span(50000, 2.5, 5);
+const suretyTen = `${money(suretyPrinted.tenLow)} to ${money(suretyPrinted.tenHigh)}`;
+const suretyFifty = `${money(suretyPrinted.fiftyLow)} to ${money(suretyPrinted.fiftyHigh)}`;
+
+const lead =
+  'Yes. A score of 620 can still get most license bonds. Bonds Express says standard programs work for a FICO score of 620 or higher, and its approval page says approval rates stay high for most license bonds. Bonds Express prints 2% to 3% for a score of 620 to 679. Bryant Surety Bonds prints 2.5% to 5% for other license bonds at a score of 600 to 649. SuretyBonds.com prints 3% to 5% for a score of 600 to 675. Checked November 9, 2026.';
+
+const bondExpressMath = `Bonds Express does not print dollar amounts for the 620 to 679 tier. These amounts are that 2% to 3% rate times the bond amount. ${timesLine(10000, 2)} ${timesLine(10000, 3)} A $10,000 bond is ${bondExpressTen} a year on this rate. ${timesLine(50000, 2)} ${timesLine(50000, 3)} A $50,000 bond is ${bondExpressFifty} a year on this rate. The Bonds Express approval page prints the same 2% to 3% for a score of 600 to 649, which also includes 620.`;
+
+const bryantMath = `Bryant Surety Bonds prints 2.5% to 5% as the average rate for other license bonds at a score of 600 to 649. A score of 620 is inside that band. The dollar table on that page is labeled 550 to 649, a wider band, so the amounts below use the 600 to 649 rate. ${timesLine(10000, 2.5)} ${timesLine(10000, 5)} A $10,000 bond is ${bryantTen} a year on this rate. ${timesLine(50000, 2.5)} ${timesLine(50000, 5)} A $50,000 bond is ${bryantFifty} a year on this rate. On that same row, a mortgage broker bond is 2% to 5%, an auto dealer bond is 2.5% to 5%, a freight broker bond is 7.5% to 10%, and a tax and utility bond is 15% to 17%.`;
+
+const suretyMath = `SuretyBonds.com prints 3% to 5% for a score of 600 to 675 on its $30,000 cost page. Its cost guide prints ${suretyTen} for a $10,000 bond and ${suretyFifty} for a $50,000 bond in that same band. ${timesLine(10000, 3)} ${timesLine(10000, 5)} ${timesLine(50000, 3)} ${timesLine(50000, 5)} That multiplication matches the dollars the cost guide prints.`;
+
+const faqAnswer = `${lead} ${bondExpressMath} ${bryantMath} ${suretyMath}`;
+
+const rows: {
+  provider: string;
+  band: string;
+  rate: string;
+  ten: string;
+  fifty: string;
+  basis: string;
+  rateSourceId: PrimarySourceId;
+  dollarSourceId: PrimarySourceId;
+}[] = [
+  {
+    provider: 'Bonds Express',
+    band: '620 to 679',
+    rate: '2% to 3%',
+    ten: bondExpressTen,
+    fifty: bondExpressFifty,
+    basis: 'Calculated from the printed rate',
+    rateSourceId: 'bondsexpress-credit',
+    dollarSourceId: 'bondsexpress-credit',
+  },
+  {
+    provider: 'Bryant Surety Bonds, other license bonds',
+    band: '600 to 649',
+    rate: '2.5% to 5%',
+    ten: bryantTen,
+    fifty: bryantFifty,
+    basis: 'Calculated from the printed rate',
+    rateSourceId: 'bryant-rates',
+    dollarSourceId: 'bryant-rates',
+  },
+  {
+    provider: 'SuretyBonds.com',
+    band: '600 to 675',
+    rate: '3% to 5%',
+    ten: suretyTen,
+    fifty: suretyFifty,
+    basis: 'Printed on the cost guide',
+    rateSourceId: 'suretybonds-30000',
+    dollarSourceId: 'suretybonds-cost',
+  },
+];
+
+const sourceIds: PrimarySourceId[] = [
+  'bondsexpress-credit',
+  'bondsexpress-approval',
+  'bryant-rates',
+  'suretybonds-30000',
+  'suretybonds-cost',
+];
+
 const articleSchema = {
-  "@context": "https://schema.org",
-  "@type": "Article",
+  '@context': 'https://schema.org',
+  '@type': 'Article',
   headline: pageTitle,
   description,
-  datePublished: "2026-08-09",
-  dateModified: LAST_UPDATED,
+  datePublished: '2026-08-09',
+  dateModified: CHECKED_ISO,
   author: {
-    "@type": "Organization",
-    name: "SuretyResearch",
-    url: new URL("/about/", SITE.url).toString(),
+    '@type': 'Organization',
+    name: 'SuretyResearch',
+    url: new URL('/about/', SITE.url).toString(),
   },
   publisher: {
-    "@type": "Organization",
-    name: "SuretyResearch",
+    '@type': 'Organization',
+    name: 'SuretyResearch',
     url: SITE.url,
-    logo: new URL("/logo-lockup.png", SITE.url).toString(),
+    logo: new URL('/logo-lockup.png', SITE.url).toString(),
     email: SITE.email,
   },
   mainEntityOfPage: new URL(canonicalPath, SITE.url).toString(),
 };
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  dateModified: CHECKED_ISO,
+  author: {
+    '@type': 'Organization',
+    name: 'SuretyResearch',
+    url: new URL('/about/', SITE.url).toString(),
+  },
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: question,
+      acceptedAnswer: { '@type': 'Answer', text: faqAnswer },
+    },
+  ],
+};
 ---
 
-<Layout title="How Credit Scores Affect Bond Cost - SuretyResearch" description={description} canonical={canonicalPath}>
+<Layout
+  title="How Credit Scores Affect Bond Cost - SuretyResearch"
+  description={description}
+  canonical={canonicalPath}
+  dateModified={CHECKED_ISO}
+  updatedLabel={CHECKED_LABEL}
+>
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   </Fragment>
   <section class="page-hero">
     <div class="wrap">
       <p class="kicker">Pricing</p>
       <h1>Credit Score Impact on Bond Cost</h1>
+      <p>Yes. A score of 620 can still get most license bonds. The premium rate range and the dollar examples are in the first section.</p>
       <p>Credit is the main input in this site’s premium sketch, because a paid claim becomes a reimbursement the principal owes the surety.</p>
       <AuthorBio />
     </div>
   </section>
 
   <section class="section">
-    <div class="wrap prose">
-      <h2>Why credit prices the bond</h2>
-      <p>A surety bond creates a repayment obligation. If the surety pays a valid claim, the principal reimburses that payment, so the rate follows credit.</p>
+    <div class="wrap">
+      <div class="prose">
+        <h2 id="score-620">{question}</h2>
+        <p>{lead}</p>
+      </div>
+      <div class="table-scroll">
+        <table class="table cost-table">
+          <caption class="sr-only">
+            Premium rates that include a credit score of 620, and the annual premium on a $10,000 bond and a $50,000 bond.
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">Provider</th>
+              <th scope="col">Score band</th>
+              <th scope="col">Premium rate</th>
+              <th scope="col">$10,000 bond</th>
+              <th scope="col">$50,000 bond</th>
+              <th scope="col">Dollar basis</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((row) => {
+              const rateSource = sourcesById([row.rateSourceId])[0];
+              const dollarSource = sourcesById([row.dollarSourceId])[0];
+              return (
+                <tr>
+                  <td data-label="Provider">{row.provider}</td>
+                  <td data-label="Score band">{row.band}</td>
+                  <td data-label="Premium rate">
+                    <a href={rateSource.url} target="_blank" rel="noopener">{row.rate}</a>
+                  </td>
+                  <td data-label="$10,000 bond">
+                    <a href={dollarSource.url} target="_blank" rel="noopener">{row.ten} a year</a>
+                  </td>
+                  <td data-label="$50,000 bond">
+                    <a href={dollarSource.url} target="_blank" rel="noopener">{row.fifty} a year</a>
+                  </td>
+                  <td data-label="Dollar basis">{row.basis}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+      <div class="prose">
+        <h3>Dollar examples</h3>
+        <p>{bondExpressMath}</p>
+        <p>{bryantMath}</p>
+        <p>{suretyMath}</p>
+        <p>A licensed desk sets the rate on the file. The bands further down are the premium sketch this site uses. They are separate from these provider rates.</p>
+        <h3>Sources</h3>
+        <p>
+          Checked {CHECKED_LABEL}. Bonds Express posted the credit-tier page on May 16, 2026 and the approval page on May 22, 2026. Bryant Surety Bonds and SuretyBonds.com title the pages as 2026 guides and do not print a day.
+        </p>
+        <ul class="source-list">
+          {sourceIds.map((id) => {
+            const source = sourcesById([id])[0];
+            return (
+              <li><a href={source.url} target="_blank" rel="noopener">{source.label}</a></li>
+            );
+          })}
+        </ul>
+        <h3>Related pages</h3>
+        <ul>
+          <li><a href="/bonds/license-permit/">License and permit bond face amounts and premium bands</a></li>
+          <li><a href="/bonds/mortgage-broker/">Published rates for a $50,000 mortgage broker bond</a></li>
+          <li><a href="/guides/how-surety-bonds-work/">How a surety bond premium is set</a></li>
+        </ul>
 
-      <h2>Rate ranges this sketch uses</h2>
-      <p>These are the bands the premium sketch on this site uses for a standard license or permit bond. A licensed desk sets the rate on the file.</p>
-      <p><strong>Excellent (720+):</strong> 1 to 3% of the bond amount. A $25,000 face is $250 to $750 a year on this band.</p>
-      <p><strong>Good (680 to 719):</strong> 2 to 5%. A $25,000 face is $500 to $1,250 a year on this band.</p>
-      <p><strong>Fair (600 to 679):</strong> 5 to 8%. A $25,000 face is $1,250 to $2,000 a year on this band.</p>
-      <p><strong>Below 600:</strong> 8 to 15%. A $25,000 face is $2,000 to $3,750 a year on this band. Some forms also ask for collateral.</p>
+        <h2>Why credit prices the bond</h2>
+        <p>A surety bond creates a repayment obligation. If the surety pays a valid claim, the principal reimburses that payment, so the rate follows credit.</p>
 
-      <h2>What the application does to a score</h2>
-      <p>A standard license-bond quote on this path uses a soft pull. A soft pull does not change the credit score, so the quote itself is not a new hard inquiry.</p>
+        <h2>Rate ranges this sketch uses</h2>
+        <p>These are the bands the premium sketch on this site uses for a standard license or permit bond. They are separate from the provider rates above. A licensed desk sets the rate on the file.</p>
+        <p><strong>Excellent (720+):</strong> 1 to 3% of the bond amount. A $25,000 face is $250 to $750 a year on this band.</p>
+        <p><strong>Good (680 to 719):</strong> 2 to 5%. A $25,000 face is $500 to $1,250 a year on this band.</p>
+        <p><strong>Fair (600 to 679):</strong> 5 to 8%. A $25,000 face is $1,250 to $2,000 a year on this band.</p>
+        <p><strong>Below 600:</strong> 8 to 15%. A $25,000 face is $2,000 to $3,750 a year on this band. Some forms also ask for collateral.</p>
 
-      <h2>What a lower score changes</h2>
-      <p>A lower score raises the rate inside the bands above. The same form can still be written, sometimes with collateral, through a surety that takes that file.</p>
-      <p>The practical path is the <a href="/agencies/integrity-first-insurance/">Integrity First Insurance</a> desk, which can take the form to more than one market.</p>
+        <h2>What the application does to a score</h2>
+        <p>A standard license-bond quote on this path uses a soft pull. A soft pull does not change the credit score, so the quote itself is not a new hard inquiry.</p>
 
-      <h2>What else the surety reads</h2>
-      <p>On a small license bond, credit often sets the rate. On a larger contract bond, the surety also reads financial statements, experience, prior claims, and the bond amount.</p>
+        <h2>What a lower score changes</h2>
+        <p>A lower score raises the rate inside the bands above. The same form can still be written, sometimes with collateral, through a surety that takes that file.</p>
+        <p>The practical path is the <a href="/agencies/integrity-first-insurance/">Integrity First Insurance</a> desk, which can take the form to more than one market.</p>
 
-      <h2>How to land in a lower band</h2>
-      <p>Check the score before you apply. A score sitting just under 720 or 680 can move a file into the next band on this sketch once revolving balances come down and report errors are corrected.</p>
-      <p>Use the <a href="/#calculator">premium sketch</a>, then call <a href="/agencies/integrity-first-insurance/">Integrity First Insurance</a>.</p>
+        <h2>What else the surety reads</h2>
+        <p>On a small license bond, credit often sets the rate. On a larger contract bond, the surety also reads financial statements, experience, prior claims, and the bond amount.</p>
+
+        <h2>How to land in a lower band</h2>
+        <p>Check the score before you apply. A score sitting just under 720 or 680 can move a file into the next band on this sketch once revolving balances come down and report errors are corrected.</p>
+        <p>Use the <a href="/#calculator">premium sketch</a>, then call <a href="/agencies/integrity-first-insurance/">Integrity First Insurance</a>.</p>
+      </div>
     </div>
   </section>
 </Layout>
+
+<style>
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .cost-table {
+    width: 100%;
+    margin: 8px 0 20px;
+  }
+
+  .cost-table th,
+  .cost-table td {
+    font-size: 0.95rem;
+  }
+
+  .cost-table a {
+    display: inline;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 720px) {
+    .cost-table thead {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .cost-table,
+    .cost-table tbody,
+    .cost-table tr,
+    .cost-table td {
+      display: block;
+      width: 100%;
+    }
+
+    .cost-table tr {
+      border-bottom: 1px solid var(--rule-strong);
+      padding: 12px 0 4px;
+    }
+
+    .cost-table td {
+      border: 0;
+      padding: 4px 0;
+    }
+
+    .cost-table td::before {
+      content: attr(data-label);
+      display: block;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .cost-table a,
+    .source-list a {
+      display: flex;
+      align-items: center;
+      min-height: 44px;
+    }
+  }
+</style>

@@ -56,6 +56,26 @@ export const PRIMARY_SOURCES = [
     url: "https://www.bryantsuretybonds.com/learn-surety/surety-bond-cost",
   },
   {
+    id: "bondsexpress-credit",
+    label: "Bonds Express, credit tiers and premium rates, posted May 16, 2026",
+    url: "https://www.bondsexpress.com/bad-credit-bonds/bad-credit-surety-bonds/",
+  },
+  {
+    id: "bondsexpress-approval",
+    label: "Bonds Express, approval tiers by credit score, posted May 22, 2026",
+    url: "https://www.bondsexpress.com/bad-credit-bonds/surety-bond-approval-with-bad-credit/",
+  },
+  {
+    id: "suretybonds-cost",
+    label: "SuretyBonds.com, surety bond cost by credit score",
+    url: "https://www.suretybonds.com/edu/surety-bond-cost",
+  },
+  {
+    id: "suretybonds-30000",
+    label: "SuretyBonds.com, $30,000 surety bond cost by credit score",
+    url: "https://www.suretybonds.com/edu/how-much-does-a-30000-surety-bond-cost",
+  },
+  {
     id: "bryant-ohio-mortgage",
     label: "Bryant Surety Bonds, Ohio mortgage broker bond cost",
     url: "https://www.bryantsuretybonds.com/surety-bonds-by-state/ohio/mortgage-broker-bonds",
