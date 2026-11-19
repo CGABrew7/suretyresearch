@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import FooterArt from '../components/FooterArt.astro';
 import { LAST_UPDATED, SITE } from '../data/site';
+import { partnerHref } from '../lib/partnerLink';
 
 interface Props {
   title: string;
@@ -149,8 +150,8 @@ const pageSchema = {
           </p>
           <div class="btn-row">
             <a class="btn btn-brass" href="/agencies/">Open the register</a>
-            <a class="btn btn-ghost" href={phoneHref}>Call {SITE.ifi.phone}</a>
-            <a class="btn btn-ghost" href={SITE.ifi.cornerstoneSurety} target="_blank" rel="noopener">Cornerstone Surety</a>
+            <a class="btn btn-ghost" href={phoneHref} data-sr-track="call">Call {SITE.ifi.phone}</a>
+            <a class="btn btn-ghost" href={partnerHref(SITE.ifi.cornerstoneSurety, 'cornerstone_surety')} data-sr-track="partner" target="_blank" rel="noopener">Cornerstone Surety</a>
           </div>
         </div>
       </section>
@@ -238,6 +239,16 @@ const pageSchema = {
         }, { threshold: 0.2 });
         watch.forEach((el) => io.observe(el));
       }
+    </script>
+    <script is:inline>
+      document.addEventListener('click', function (event) {
+        var el = event.target;
+        if (el && el.nodeType === 3) el = el.parentElement;
+        var node = el && el.closest ? el.closest('[data-sr-track]') : null;
+        if (!node || typeof window.clarity !== 'function') return;
+        var kind = node.getAttribute('data-sr-track');
+        window.clarity('event', kind === 'call' ? 'sr_call' : 'sr_partner_click');
+      });
     </script>
   </body>
 </html>

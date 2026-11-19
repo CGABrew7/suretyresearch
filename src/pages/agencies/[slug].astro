@@ -6,6 +6,7 @@ import { AGENCIES } from '../../data/agencies';
 import { rankedDirectory, kindLabel } from '../../lib/ranking';
 import { BOND_CATEGORIES } from '../../data/categories';
 import { SITE } from '../../data/site';
+import { partnerHref } from '../../lib/partnerLink';
 
 export function getStaticPaths() {
   return AGENCIES.map((agency) => ({ params: { slug: agency.slug } }));
@@ -102,9 +103,9 @@ const cats = BOND_CATEGORIES.filter((c) => agency.categories.includes(c.id));
           <div class="btn-row" style="margin-top:0">
             {agency.preferredPartner ? (
               <>
-                <a class="btn btn-brass" href={`tel:${SITE.ifi.phone.replace(/-/g, '')}`}>{SITE.ifi.phone}</a>
-                <a class="btn btn-ghost" href={agency.website} target="_blank" rel="noopener">IFI website</a>
-                <a class="btn btn-ghost" href={SITE.ifi.cornerstoneSurety} target="_blank" rel="noopener">Cornerstone Surety</a>
+                <a class="btn btn-brass" href={`tel:${SITE.ifi.phone.replace(/-/g, '')}`} data-sr-track="call">{SITE.ifi.phone}</a>
+                <a class="btn btn-ghost" href={partnerHref(agency.website, 'ifi_site')} data-sr-track="partner" target="_blank" rel="noopener">IFI website</a>
+                <a class="btn btn-ghost" href={partnerHref(SITE.ifi.cornerstoneSurety, 'cornerstone_surety')} data-sr-track="partner" target="_blank" rel="noopener">Cornerstone Surety</a>
               </>
             ) : (
               <>
