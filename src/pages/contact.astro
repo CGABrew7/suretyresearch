@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import '../styles/register.css';
 import AuthorBio from '../components/AuthorBio.astro';
 import { SITE } from '../data/site';
+import { partnerHref } from '../lib/partnerLink';
 ---
 
 <Layout register title="Contact | SuretyResearch" description="Call Integrity First Insurance, the Cornerstone Network Preferred Partner, to place a bond.">
@@ -25,8 +26,8 @@ import { SITE } from '../data/site';
           Cornerstone Network Preferred Partner. The published address is 925 North Point Parkway, Suite 475, Alpharetta, GA 30005.
         </p>
         <div class="btn-row">
-          <a class="btn btn-brass" href={`tel:${SITE.ifi.phone.replace(/-/g, '')}`}>{SITE.ifi.phone}</a>
-          <a class="btn btn-ghost" href={SITE.ifi.url} target="_blank" rel="noopener">integrityfirstinsurance.com</a>
+          <a class="btn btn-brass" href={`tel:${SITE.ifi.phone.replace(/-/g, '')}`} data-sr-track="call">{SITE.ifi.phone}</a>
+          <a class="btn btn-ghost" href={partnerHref(SITE.ifi.url, 'ifi_site')} data-sr-track="partner" target="_blank" rel="noopener">integrityfirstinsurance.com</a>
         </div>
       </div>
       <div class="cert">
@@ -36,9 +37,9 @@ import { SITE } from '../data/site';
           The same network places surety, business insurance, and state licensing.
         </p>
         <ul class="source-list">
-          <li><a href={SITE.ifi.cornerstoneSurety} target="_blank" rel="noopener">Cornerstone Surety Bonds</a></li>
-          <li><a href={SITE.ifi.cornerstoneInsurance} target="_blank" rel="noopener">Covered by Cornerstone</a></li>
-          <li><a href={SITE.ifi.cornerstoneLicensing} target="_blank" rel="noopener">Cornerstone Licensing</a></li>
+          <li><a href={partnerHref(SITE.ifi.cornerstoneSurety, 'cornerstone_surety')} data-sr-track="partner" target="_blank" rel="noopener">Cornerstone Surety Bonds</a></li>
+          <li><a href={partnerHref(SITE.ifi.cornerstoneInsurance, 'cornerstone_insurance')} data-sr-track="partner" target="_blank" rel="noopener">Covered by Cornerstone</a></li>
+          <li><a href={partnerHref(SITE.ifi.cornerstoneLicensing, 'cornerstone_licensing')} data-sr-track="partner" target="_blank" rel="noopener">Cornerstone Licensing</a></li>
         </ul>
         <p style="color:var(--ink-2);margin-top:12px;font-size:0.92rem">
           Hours published on those sites: Monday to Friday, 8am to 6pm ET. Editorial mail: {SITE.email}.
