@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import '../styles/register.css';
 import AuthorBio from '../components/AuthorBio.astro';
 import { rankedDirectory } from '../lib/ranking';
 import { PRIMARY_SOURCES } from '../data/sources';
@@ -9,13 +10,14 @@ const scored = ranked;
 ---
 
 <Layout
+  register
   title="Methodology | SuretyResearch"
   description="Every name in the register is sorted by the public-signal score printed on its card, including the Cornerstone Network Preferred Partner."
 >
   <section class="page-hero">
     <div class="wrap">
       <p class="kicker">House rules</p>
-      <h1>How the register is ranked.</h1>
+      <h1 class="h-t1">How the register is ranked.</h1>
       <p>
         Every name is sorted by a score built only from the public signals printed on its card. Integrity First Insurance, the Cornerstone Network Preferred Partner, is scored on the same rule.
       </p>
