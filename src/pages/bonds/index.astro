@@ -1,18 +1,20 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
+import '../../styles/register.css';
 import { BOND_CATEGORIES } from '../../data/categories';
 import data from '../../data/bonds.json';
 ---
 
 <Layout
+  register
   title="Bond types | SuretyResearch"
   description="License and permit, contract/performance, commercial, and court bonds, plus cost bands for common forms."
 >
   <section class="page-hero">
     <div class="wrap">
       <p class="kicker">Bond series</p>
-      <h1>Four series. Then the specific forms.</h1>
+      <h1 class="h-t1">Four series. Then the specific forms.</h1>
       <p>
         Start with the series that matches the bond, then open the form page for the face and premium band this site publishes. Placement goes through Integrity First Insurance first.
       </p>
@@ -22,7 +24,7 @@ import data from '../../data/bonds.json';
 
   <section class="section">
     <div class="wrap">
-      <div class="grid-2" style="margin-bottom:36px">
+      <div class="grid-2">
         {BOND_CATEGORIES.map((cat) => (
           <a class="tile" href={`/bonds/${cat.id}/`}>
             <p class="kicker">{cat.ledger}</p>

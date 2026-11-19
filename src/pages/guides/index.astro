@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
+import '../../styles/register.css';
 
 const guides = [
   { slug: "best-surety-bond-companies", title: "Best surety bond companies", desc: "A 2026 buyer's shortlist ordered by published AM Best ratings and Treasury Circular 570 limits." },
@@ -11,19 +12,19 @@ const guides = [
 ];
 ---
 
-<Layout title="Guides | SuretyResearch" description="Plain-English surety guides for licensed professionals.">
+<Layout register title="Guides | SuretyResearch" description="Plain-English surety guides for licensed professionals.">
   <section class="page-hero">
     <div class="wrap">
       <p class="kicker">Research notes</p>
-      <h1>Guides that stay useful after the register.</h1>
+      <h1 class="h-t1">Guides that stay useful after the register.</h1>
       <p>Each guide opens with the answer, then the detail a desk needs before it places the bond.</p>
       <AuthorBio />
     </div>
   </section>
   <section class="section">
-    <div class="wrap" style="max-width:720px">
+    <div class="wrap">
       {guides.map((g) => (
-        <a href={`/guides/${g.slug}/`} class="tile" style="margin-bottom:12px">
+        <a href={`/guides/${g.slug}/`} class="tile">
           <p class="kicker">Guide</p>
           <h3>{g.title}</h3>
           <p>{g.desc}</p>
