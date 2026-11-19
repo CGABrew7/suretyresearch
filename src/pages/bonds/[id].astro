@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import '../../styles/register.css';
 import AgencyCard from '../../components/AgencyCard.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
 import data from '../../data/bonds.json';
@@ -199,6 +200,7 @@ const citationSources = citation ? sourcesById(citation.sourceIds) : [];
 ---
 
 <Layout
+  register
   title={title}
   description={description}
   dateModified={isMortgage ? MORTGAGE_UPDATED : isContract ? CONTRACT_UPDATED : undefined}
@@ -520,10 +522,10 @@ const citationSources = citation ? sourcesById(citation.sourceIds) : [];
     .cost-table td::before {
       content: attr(data-label);
       display: block;
-      font-size: 0.72rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--ink-3);
+      font-size: 0.9375rem;
+      letter-spacing: 0;
+      text-transform: none;
+      color: var(--h-ink);
       font-weight: 600;
       margin-bottom: 2px;
     }
