@@ -90,6 +90,14 @@ body.sr-register .h-note {
 body.sr-register .wrap,
 body.sr-register .h-wrap {
   width: min(var(--h-max), calc(100% - 2 * var(--h-m)));
+  min-width: 0;
+}
+
+body.sr-register .grid-2,
+body.sr-register .prose,
+body.sr-register .cert,
+body.sr-register .story-grid {
+  min-width: 0;
 }
 
 body.sr-register .h-grid {
