@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import '../../styles/register.css';
 import AgencyCard from '../../components/AgencyCard.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
 import StatePicker from '../../components/StatePicker.astro';
@@ -46,6 +47,7 @@ const briefFaqSchema = brief
 ---
 
 <Layout
+  register
   title={brief?.title ?? `Surety agencies in ${rec.name} | SuretyResearch`}
   description={brief?.description ?? `Ranked surety agencies and carriers that list ${rec.name} coverage. Sorted by cited public signals.`}
   dateModified={brief ? STATE_BRIEF_UPDATED : undefined}
@@ -141,7 +143,7 @@ const briefFaqSchema = brief
           <a class="pill" href={`/bonds/${c.id}/`}>{c.name}</a>
         ))}
       </div>
-      <h2 class="serif" style="font-size:1.6rem;margin-bottom:14px">Desks on the {rec.name} file</h2>
+      <h2 class="serif" style="margin-bottom:14px">Desks on the {rec.name} file</h2>
       <p style="margin-bottom:18px;color:var(--ink-2);max-width:40rem">
         {brief
           ? `${agencies.length} register entries list ${rec.name} coverage, sorted by the public-signal score on each card.`
@@ -223,10 +225,10 @@ const briefFaqSchema = brief
     .bond-table td::before {
       content: attr(data-label);
       display: block;
-      font-size: 0.72rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--ink-3);
+      font-size: 0.9375rem;
+      letter-spacing: 0;
+      text-transform: none;
+      color: var(--h-ink);
       font-weight: 600;
       margin-bottom: 2px;
     }
