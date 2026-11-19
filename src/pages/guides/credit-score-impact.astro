@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import '../../styles/register.css';
 import AuthorBio from '../../components/AuthorBio.astro';
 import { SITE } from '../../data/site';
 import { sourcesById, type PrimarySourceId } from '../../data/sources';
@@ -158,6 +159,7 @@ const faqSchema = {
 ---
 
 <Layout
+  register
   title="How Credit Scores Affect Bond Cost - SuretyResearch"
   description={description}
   canonical={canonicalPath}
@@ -338,10 +340,10 @@ const faqSchema = {
     .cost-table td::before {
       content: attr(data-label);
       display: block;
-      font-size: 0.72rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--ink-3);
+      font-size: 0.9375rem;
+      letter-spacing: 0;
+      text-transform: none;
+      color: var(--h-ink);
       font-weight: 600;
       margin-bottom: 2px;
     }
