@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import '../../styles/register.css';
 import AgencyCard from '../../components/AgencyCard.astro';
 import AuthorBio from '../../components/AuthorBio.astro';
 import { rankedDirectory } from '../../lib/ranking';
@@ -10,6 +11,7 @@ const ifi = ranked[0];
 ---
 
 <Layout
+  register
   title="Agency register | SuretyResearch"
   description="Ranked directory of surety agencies and carriers, ordered by cited BBB, AM Best, years, coverage, and bond-series breadth."
 >
