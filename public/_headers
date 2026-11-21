@@ -8,3 +8,7 @@
 
 /og-image.png
   Content-Type: image/png
+
+/ef21d857c04be8f48fb8edcb906c4efa.txt
+  Content-Type: text/plain; charset=utf-8
+  X-Content-Type-Options: nosniff
