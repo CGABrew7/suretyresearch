@@ -9,7 +9,7 @@ SuretyResearch publishes agency files, bond series explainers, and the public-si
 - [Home](https://suretyresearch.com/): The register, the bond series, and a premium sketch
 - [Agencies](https://suretyresearch.com/agencies/): Ranked agency and carrier files
 - [Bond types](https://suretyresearch.com/bonds/): License, contract, commercial, and court series
-- [Mortgage broker bond](https://suretyresearch.com/bonds/mortgage-broker/): Published premium rate and annual dollar cost of a $50,000 mortgage broker bond by credit tier
+- [Mortgage broker bond](https://suretyresearch.com/bonds/mortgage-broker/): Published rate and annual premium of a $50,000 mortgage broker bond by credit tier. The required bond amount varies by state.
 - [License and permit bonds](https://suretyresearch.com/bonds/license-permit/): The series that includes the mortgage broker form
 - [Methodology](https://suretyresearch.com/methodology/): How the public-signal score is built
 - [Guides](https://suretyresearch.com/guides/): Explainers on surety bonds, credit, and finding an agency
