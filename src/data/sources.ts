@@ -86,6 +86,21 @@ export const PRIMARY_SOURCES = [
     url: "https://www.groupleader.com/mortgage-broker-bonds/",
   },
   {
+    id: "bondsexpress-mortgage",
+    label: "Bonds Express, mortgage broker bond cost, posted May 22, 2026, date modified June 17, 2026",
+    url: "https://www.bondsexpress.com/industry-guides/mortgage-broker-bond-explained/",
+  },
+  {
+    id: "bondexperts-mortgage",
+    label: "The Bond Experts, mortgage broker bond cost, published April 25, 2026",
+    url: "https://www.thebondexperts.com/blog/mortgage-broker-bond-nmls-guide/",
+  },
+  {
+    id: "swiftbonds-mortgage",
+    label: "Swiftbonds, mortgage broker bonds, bond amounts by state",
+    url: "https://swiftbonds.com/license-permit-bonds/mortgage-broker-bonds/",
+  },
+  {
     id: "az-roc-bond",
     label: "Arizona Registrar of Contractors, bond information",
     url: "https://roc.az.gov/bond-information",

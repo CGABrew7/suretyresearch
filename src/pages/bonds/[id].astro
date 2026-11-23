@@ -72,10 +72,10 @@ const contractRelated: { href: string; label: string }[] = [
 const contractSourceIds: PrimarySourceId[] = ['sfaa', 'miller'];
 const agencies = filterAgencies({ category: (isCategoryPage ? id : category?.id) as any });
 
-const MORTGAGE_UPDATED = '2026-10-31';
+const MORTGAGE_UPDATED = '2026-11-23';
 
 const mortgageAnswer =
-  'Jet Insurance Company publishes a $250 annual premium at a flat 0.5% preferred-tier rate for a $50,000 mortgage license bond, and that page includes mortgage broker bonds. Lance Surety Bonds publishes 1% to 3% and $500 to $1,500 a year above a score of 700, 3% to 5% and $1,500 to $2,500 a year for a score from 600 to 699, and 5% to 10% and $2,500 to $5,000 a year at a score of 599 or below, on its $50,000 residential mortgage broker bond at a loan volume of $5,000,001 to $20,000,000. Bryant Surety Bonds publishes 0.75% to 3%, roughly $375 to $1,500 a year, for strong personal credit on a $50,000 bond. GroupLeader publishes 0.75% to 1.5% for excellent credit (700+), with a $50,000 example that might cost $375 to $750 a year, and 1.5% to 3% for average credit (650 to 699), with a $50,000 example that might cost $750 to $1,500 a year.';
+  'Jet Insurance Company publishes a $250 annual premium at a flat 0.5% preferred-tier rate for a $50,000 mortgage license bond, and that page includes mortgage broker bonds. Lance Surety Bonds publishes 1% to 3% and $500 to $1,500 a year above a score of 700, 3% to 5% and $1,500 to $2,500 a year for a score from 600 to 699, and 5% to 10% and $2,500 to $5,000 a year at a score of 599 or below, on its $50,000 residential mortgage broker bond at a loan volume of $5,000,001 to $20,000,000. Bryant Surety Bonds publishes 0.75% to 3%, roughly $375 to $1,500 a year, for strong personal credit on a $50,000 bond. GroupLeader publishes 0.75% to 1.5% for excellent credit (700+), with a $50,000 example that might cost $375 to $750 a year, and 1.5% to 3% for average credit (650 to 699), with a $50,000 example that might cost $750 to $1,500 a year. Bonds Express publishes 1% to 3% and $500 to $1,500 a year for good credit on a $50,000 mortgage broker bond, and up to 10% and $2,500 to $5,000 a year for bad credit. The Bond Experts publishes 1% to 3% and $500 to $1,500 a year for excellent credit (700+), 3% to 5% and $1,500 to $2,500 a year for good credit (650 to 699), and 5% to 10% and $2,500 to $5,000 a year for fair credit (600 to 649). The required bond amount varies by state.';
 
 const mortgageCostRows: {
   tier: string;
@@ -89,49 +89,84 @@ const mortgageCostRows: {
     rate: '0.5%',
     cost: '$250 a year',
     sourceId: 'jet-mortgage',
-    linkLabel: 'Jet Insurance Company, mortgage license bond pricing',
+    linkLabel: 'Jet Insurance Company, mortgage license bond pricing (no date printed on the page)',
   },
   {
     tier: 'Above 700',
     rate: '1% to 3%',
     cost: '$500 to $1,500 a year',
     sourceId: 'lance-il-mortgage',
-    linkLabel: 'Lance Surety Bonds, residential mortgage broker bond pricing',
+    linkLabel: 'Lance Surety Bonds, residential mortgage broker bond pricing, date modified December 25, 2024',
   },
   {
     tier: '600 to 699',
     rate: '3% to 5%',
     cost: '$1,500 to $2,500 a year',
     sourceId: 'lance-il-mortgage',
-    linkLabel: 'Lance Surety Bonds, residential mortgage broker bond pricing',
+    linkLabel: 'Lance Surety Bonds, residential mortgage broker bond pricing, date modified December 25, 2024',
   },
   {
     tier: 'Below 599',
     rate: '5% to 10%',
     cost: '$2,500 to $5,000 a year',
     sourceId: 'lance-il-mortgage',
-    linkLabel: 'Lance Surety Bonds, residential mortgage broker bond pricing',
+    linkLabel: 'Lance Surety Bonds, residential mortgage broker bond pricing, date modified December 25, 2024',
   },
   {
     tier: 'Strong personal credit',
     rate: '0.75% to 3%',
     cost: 'Roughly $375 to $1,500 a year',
     sourceId: 'bryant-mortgage',
-    linkLabel: 'Bryant Surety Bonds, mortgage broker bond cost',
+    linkLabel: 'Bryant Surety Bonds, mortgage broker bond cost, date modified August 17, 2026',
   },
   {
     tier: 'Excellent credit (700+)',
     rate: '0.75% to 1.5%',
     cost: 'Might cost $375 to $750 a year',
     sourceId: 'groupleader-mortgage',
-    linkLabel: 'GroupLeader, mortgage broker bond rates',
+    linkLabel: 'GroupLeader, mortgage broker bond rates, published December 15, 2025',
   },
   {
     tier: 'Average credit (650 to 699)',
     rate: '1.5% to 3%',
     cost: 'Might cost $750 to $1,500 a year',
     sourceId: 'groupleader-mortgage',
-    linkLabel: 'GroupLeader, mortgage broker bond rates',
+    linkLabel: 'GroupLeader, mortgage broker bond rates, published December 15, 2025',
+  },
+  {
+    tier: 'Good credit',
+    rate: '1% to 3%',
+    cost: '$500 to $1,500 a year',
+    sourceId: 'bondsexpress-mortgage',
+    linkLabel: 'Bonds Express, mortgage broker bond cost, posted May 22, 2026, date modified June 17, 2026',
+  },
+  {
+    tier: 'Bad credit',
+    rate: 'Up to 10%',
+    cost: '$2,500 to $5,000 a year',
+    sourceId: 'bondsexpress-mortgage',
+    linkLabel: 'Bonds Express, mortgage broker bond cost, posted May 22, 2026, date modified June 17, 2026',
+  },
+  {
+    tier: 'Excellent credit (700+)',
+    rate: '1% to 3%',
+    cost: '$500 to $1,500 a year',
+    sourceId: 'bondexperts-mortgage',
+    linkLabel: 'The Bond Experts, mortgage broker bond cost, published April 25, 2026',
+  },
+  {
+    tier: 'Good credit (650 to 699)',
+    rate: '3% to 5%',
+    cost: '$1,500 to $2,500 a year',
+    sourceId: 'bondexperts-mortgage',
+    linkLabel: 'The Bond Experts, mortgage broker bond cost, published April 25, 2026',
+  },
+  {
+    tier: 'Fair credit (600 to 649)',
+    rate: '5% to 10%',
+    cost: '$2,500 to $5,000 a year',
+    sourceId: 'bondexperts-mortgage',
+    linkLabel: 'The Bond Experts, mortgage broker bond cost, published April 25, 2026',
   },
 ];
 
@@ -140,6 +175,8 @@ const mortgageSourceIds: PrimarySourceId[] = [
   'lance-il-mortgage',
   'bryant-mortgage',
   'groupleader-mortgage',
+  'bondsexpress-mortgage',
+  'bondexperts-mortgage',
 ];
 
 const mortgageFaqSchema = {
@@ -188,7 +225,7 @@ const title = isMortgage
       : `${bond?.name} | SuretyResearch`;
 
 const description = isMortgage
-  ? 'Published premium rates and annual dollar costs for a $50,000 mortgage broker bond, by the credit tier each provider prints.'
+  ? 'Published annual premiums for a $50,000 mortgage broker bond, by the credit tier each provider prints. The required amount varies by state.'
   : isContract
     ? 'Bid, performance, and payment bonds on a construction contract. Federal public works over $100,000 require performance and payment bonds.'
     : isCategoryPage && category
@@ -204,7 +241,7 @@ const citationSources = citation ? sourcesById(citation.sourceIds) : [];
   title={title}
   description={description}
   dateModified={isMortgage ? MORTGAGE_UPDATED : isContract ? CONTRACT_UPDATED : undefined}
-  updatedLabel={isMortgage ? 'October 31, 2026' : isContract ? 'November 7, 2026' : undefined}
+  updatedLabel={isMortgage ? 'November 23, 2026' : isContract ? 'November 7, 2026' : undefined}
 >
   {(isMortgage || isContract) && (
     <Fragment slot="head">
@@ -226,7 +263,7 @@ const citationSources = citation ? sourcesById(citation.sourceIds) : [];
                 ? category.summary
                 : bond?.description}
       </p>
-      {isMortgage && <p class="dates">Updated October 31, 2026</p>}
+      {isMortgage && <p class="dates">Updated November 23, 2026</p>}
       {isContract && <p class="dates">Updated November 7, 2026</p>}
       <AuthorBio />
       <div class="btn-row">
@@ -290,16 +327,16 @@ const citationSources = citation ? sourcesById(citation.sourceIds) : [];
           <div class="prose" style="margin-bottom:32px">
             <h2>How much does a $50,000 mortgage broker bond cost per year?</h2>
             <p>
-              Each row is a credit tier whose source prints both a premium rate and a dollar cost for a $50,000 bond. A tier is left out when that page does not print both figures.
+              Each row is a credit tier whose source prints both a premium rate and an annual premium for a $50,000 bond. A tier is left out when that page does not print both figures.
             </p>
             <div class="table-scroll">
               <table class="table cost-table">
-                <caption class="sr-only">Annual cost of a $50,000 mortgage broker bond by the credit tier each linked page prints.</caption>
+                <caption class="sr-only">Annual premium of a $50,000 mortgage broker bond by the credit tier each linked page prints.</caption>
                 <thead>
                   <tr>
-                    <th scope="col">Credit tier</th>
-                    <th scope="col">Premium rate range</th>
-                    <th scope="col">Dollar cost</th>
+                    <th scope="col">Tier</th>
+                    <th scope="col">Published rate range</th>
+                    <th scope="col">Annual premium</th>
                     <th scope="col">Source</th>
                   </tr>
                 </thead>
@@ -308,11 +345,11 @@ const citationSources = citation ? sourcesById(citation.sourceIds) : [];
                     const source = sourcesById([row.sourceId])[0];
                     return (
                       <tr>
-                        <td data-label="Credit tier">{row.tier}</td>
-                        <td data-label="Premium rate range">
+                        <td data-label="Tier">{row.tier}</td>
+                        <td data-label="Published rate range">
                           <a href={source.url} target="_blank" rel="noopener">{row.rate}</a>
                         </td>
-                        <td data-label="Dollar cost">
+                        <td data-label="Annual premium">
                           <a href={source.url} target="_blank" rel="noopener">{row.cost}</a>
                         </td>
                         <td data-label="Source">
@@ -324,8 +361,16 @@ const citationSources = citation ? sourcesById(citation.sourceIds) : [];
                 </tbody>
               </table>
             </div>
+            <p>
+              The required bond amount varies by state.
+              <a href={sourcesById(['jet-mortgage'])[0].url} target="_blank" rel="noopener">Jet Insurance Company</a> says the required limit varies by state and license type.
+              <a href={sourcesById(['bondsexpress-mortgage'])[0].url} target="_blank" rel="noopener">Bonds Express</a> says each state sets its own bond amount tiers.
+              <a href={sourcesById(['bondexperts-mortgage'])[0].url} target="_blank" rel="noopener">The Bond Experts</a> says the required bond amount varies by state.
+              <a href={sourcesById(['bryant-mortgage'])[0].url} target="_blank" rel="noopener">Bryant Surety Bonds</a> says bond amounts vary widely by state.
+              <a href={sourcesById(['swiftbonds-mortgage'])[0].url} target="_blank" rel="noopener">Swiftbonds</a> says bond amounts vary widely by state.
+            </p>
             <p class="cost-note">
-              Jet calls the $250 price preferred-tier pricing and does not print a credit score for it. The same page includes mortgage broker bonds. The Lance rows are that page's $50,000 residential mortgage broker bond at a loan volume of $5,000,001 to $20,000,000. Its dollar columns are labeled Over 700, Between 600 and 699, and Below 599, and the 5% to 10% rate is for a score of 599 or below.
+              Jet calls the $250 price preferred-tier pricing and does not print a credit score for it. The same page includes mortgage broker bonds. The Lance rows are that page's $50,000 residential mortgage broker bond at a loan volume of $5,000,001 to $20,000,000. Its dollar columns are labeled Over 700, Between 600 and 699, and Below 599, and the 5% to 10% rate is for a score of 599 or below. Bonds Express names the tiers good credit and bad credit and does not print a credit score for them. The bad-credit rate on that row is the page's phrase up to 10%, and the premium is that page's bad-credit column for a $50,000 bond. The Bond Experts rows use its labels for excellent credit (700+), good credit (650 to 699), and fair credit (600 to 649).
             </p>
             <h3>Sources</h3>
             <ul class="source-list cost-sources">
